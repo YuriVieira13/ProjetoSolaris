@@ -5,9 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="icon" href="assets/icons" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
 
 <body>
+    <div class="login-fundo">
     <div class="header">
         <div class="titulo">Solaris</div>
         <ul class="navbar">
@@ -24,32 +29,44 @@
                 <a href="Contato.html">Contato</a>
             </li>
             </li>
-            <li>
+            <li class="agora">
                 <a href="Login.html">Login</a>
             </li>
         </ul>
     </div>
+  
 
 
 
     <div class="login">
-        <div class="card card-login">
-            <h2>Bem vindo de volta</h2>
+        <div class="card-card-login">
+            <h2>Bem-vindo de Volta!</h2>
             <div class="formulario">
                 <div class="campo">
-                    <span>E-mail:</span>
-                    <input id="email_input" type="text" placeholder="Login">
+                    <div class="linha">
+                    <span class="esquerda">EMAIL:</span>
+                    </div>
+                    <input id="email_input" type="text" >
                 </div>
                 <div class="campo">
-                    <span>Senha:</span>
-                    <input id="senha_input" type="password" placeholder="******">
+                    <div class="linha">
+                    <span class="esquerda">SENHA:</span> 
+                    </div>
+                    <input id="senha_input" type="password">
+                    <div class="linha">
+                    <span class="direita">Esqueceu sua senha?</span>
+                    </div>
                 </div>
-                <button class="botaoEntrar">Entrar</button>
-                <div class="firula"> OU</div>
-                <button onclick="window.location.href='Cadastro.html'" class="botaoCadastrar">Crie uma conta</button>
+                <button class="botaoEntrar">ENTRAR</button>
+                <div class="ou">ou</div>
+                <button onclick="window.location.href='Cadastro.html'"
+                
+                class="botaoCadastrar">CRIE UMA CONTA</button>
             </div>
 
         </div>
+    </div>
+
     </div>
 
 </body>
