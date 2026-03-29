@@ -5,28 +5,28 @@ body {
     padding: 0;
     box-sizing: border-box;
     font-family: 'DM Sans', sans-serif;
-    color:white
-
+    color: white
 }
 
-.login-fundo {
+.login-fundo,
+.cadastro-fundo {
 
     width: 100%;
     height: 100vh;
-    background-image:url(../asstes/imgs/background_log_cad.png.png);
-    background-size: cover;        
-    background-position: center;   
-    background-repeat: no-repeat;  
-    background-attachment: fixed; 
+    background-image: url(../asstes/imgs/background_log_cad.png.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 
 }
 
 
 .header {
     display: flex;
-    justify-content: space-between; 
-    align-items: center;           
-    padding: 20px 40px;             
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
 }
 
 .titulo {
@@ -34,7 +34,7 @@ body {
     font-size: 26.5px;
     padding-left: 50px;
 
-    
+
 }
 
 .navbar {
@@ -43,7 +43,7 @@ body {
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    gap:30px;
+    gap: 30px;
 
     padding-right: 40px;
 
@@ -51,16 +51,14 @@ body {
 
 .navbar a {
     text-decoration: none;
-    color:white
-
+    color: white
 }
 
 .navbar li {
     list-style: none;
-    color:white
-
+    color: white
 }
-    
+
 .agora {
     background: #fda70f;
     padding: 6px 20px;
@@ -80,9 +78,9 @@ body {
 
 }
 
-.card-card-login {
+.card-card-login{
 
-  
+
     width: 420px;
     height: 500px;
 
@@ -93,12 +91,12 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items:center;
+    align-items: center;
 
 }
 
 .formulario {
-  
+
     gap: 15px;
     width: 100%;
 
@@ -122,9 +120,9 @@ body {
 
 
 .campo .linha-esquerda {
-    margin-bottom:8px;
+    margin-bottom: 8px;
     margin-top: 4px;
-    
+
     width: 88%;
 
 }
@@ -132,7 +130,7 @@ body {
 .campo .linha-direita {
     margin-top: 4px;
     padding-left: 270px;
-   
+
 
 }
 
@@ -154,7 +152,7 @@ body {
     text-align: center;
 }
 
-.botaoEntrar {
+.botaoEntrar, .botao-Cadastrar{
     margin-top: 15px;
     height: 50px;
     width: 95%;
@@ -168,7 +166,7 @@ body {
 
 
     font-size: 15.4px;
-    color:white;
+    color: white;
     text-align: center;
 
 }
@@ -185,7 +183,7 @@ body {
 
 
     font-size: 15.4px;
-    color:white;
+    color: white;
     text-align: center;
 
 }
@@ -207,4 +205,37 @@ body {
 
 .ou span {
     font-size: 12px;
+}
+
+/*Cadastro*/
+
+.card-card-cadastro {
+
+
+    width: 420px;
+    min-height: 500px;
+
+    background-color: rgba(48, 107, 23, 0.86);
+    border-radius: 20px;
+    padding: 25px;
+    margin-top: 100px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+
+}
+
+.mensagem {
+
+    color: white;
+    font-weight: bold;
+}
+
+.mensagem a {
+
+    color: white;
+    font-weight: bold;
 }
