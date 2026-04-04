@@ -1,6 +1,6 @@
 let emailFinal = '';
 let senhaFinal = '';
-
+let nomeFinal = '';
 function validarEmail() {
     let emailInserido = email_input.value;
     let emailMinusculo = emailInserido.toLowerCase();
@@ -35,7 +35,8 @@ function validarEmail() {
                         if (!dominio.includes('.')) {
                             resposta = `E-mail inválido. O domínio deve conter pelo menos um ponto (.).`
                         } else {
-                            emailFinal = emailMinusculo;
+                            emailFinal = emailMinusculo; //Se o e-mail inserido passar por todas as validações e estiver correto,
+                            // a variável global 'emailFinal' recebe o e-mail inserido. Assim, podemos verificar se o e-mail foi preenchido corretamente na função 'cadastrar'
                         }
                     }
                 }
@@ -48,6 +49,45 @@ function validarEmail() {
         resposta = `Por favor, preencha o campo de e-mail.`
     }
     div_verificarEmail.innerHTML = resposta;
+}
+
+
+function verificarNome() {
+    let nomeInserido = nome_input.value;
+    let nomeMinusculo = nomeInserido.toLowerCase();
+    let resposta = `Nome válido`
+    let valido = true;
+    let caracteresPermitidos = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
+        'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' '];
+
+    if (nomeInserido == '') {
+        resposta = `Por favor, preencha o campo Nome.`
+    } else if (nomeInserido.length > 50) {
+        resposta = `Nome inválido. O tamanho máximo permitido é de 50 caracteres.`
+    } else { //Entra no ELSE Se nomeInserido não for nulo e se tiver menos de 50 caracteres.
+
+        nomeInserido = nomeMinusculo.trim(); //O método '.trim()' remove espaços em branco do início e final da string da variável nomeInserido.
+        
+        for (let i = 0; i < nomeInserido.length; i++) { 
+            if (!caracteresPermitidos.includes(nomeInserido[i])) { //Verifica se a variável nomeInserido possui algum carácter não incluso no vetor caracteresPermitidos.
+                valido = false;
+                break;
+            }
+        }
+
+        if (!valido) { 
+            resposta = `Nome inválido. Nome deve conter apenas letras e espaços.`;
+        } else {
+            if (!nomeInserido.includes(" ")) { //Verifica se o nome possui espaço, validando se o usuário inseriu nome e sobrenome
+                resposta = `Nome inválido. Por favor, insira nome e sobrenome`
+            } else if (nomeInserido.length < 6) {
+                resposta = `Nome inválido. Nome deve ter no mínimo 6 caracteres.`
+            } else {
+                nomeFinal = nomeInserido;
+            }
+        }
+    }
+    div_verificarNome.innerHTML = resposta;
 }
 
 
@@ -67,7 +107,7 @@ function verificarSenha() {
             let temLetraMinuscula = false;
             let temNumero = false;
 
-            for (let i = 0; i < senhaInserida.length; i++) {  
+            for (let i = 0; i < senhaInserida.length; i++) {
                 if (caracteresEspeciais.includes(senhaInserida[i])) { //Verifica se a senha possui pelo menos 1 carácter especial.
                     temCaracterEspecial = true;
                 }
