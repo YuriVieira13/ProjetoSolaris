@@ -67,13 +67,13 @@
                         <span>Senha:</span>
                     </div>
                     <input id="senha_input" type="password" placeholder="******" oninput="verificarSenha()"/>
-                    <p id="div_verificarSenha"> ></p>
+                    <p id="div_verificarSenha"></p>
                 </div>
                 <div class="campo">
                     <div class="linha-esquerda">
                         <span>Confirmação da Senha:</span>
                     </div>
-                    <input id="confirmacao_senha_input" type="password" placeholder="******" />
+                    <input id="confirmacao_senha_input" type="password" placeholder="******" oninput="confirmacaoDeSenha()" />
                     <p id="div_verificarConfirmacao"></p>
                 </div>
                 <button class="botao-Cadastrar" onclick="cadastrar()">CADASTRAR</button>

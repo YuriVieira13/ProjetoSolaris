@@ -1,5 +1,7 @@
+
 let emailFinal = '';
 let senhaFinal = '';
+let senhaConfirmacao = '';
 let nomeFinal = '';
 function validarEmail() {
     let emailInserido = email_input.value;
@@ -67,15 +69,15 @@ function verificarNome() {
     } else { //Entra no ELSE Se nomeInserido não for nulo e se tiver menos de 50 caracteres.
 
         nomeInserido = nomeMinusculo.trim(); //O método '.trim()' remove espaços em branco do início e final da string da variável nomeInserido.
-        
-        for (let i = 0; i < nomeInserido.length; i++) { 
+
+        for (let i = 0; i < nomeInserido.length; i++) {
             if (!caracteresPermitidos.includes(nomeInserido[i])) { //Verifica se a variável nomeInserido possui algum carácter não incluso no vetor caracteresPermitidos.
                 valido = false;
                 break;
             }
         }
 
-        if (!valido) { 
+        if (!valido) {
             resposta = `Nome inválido. Nome deve conter apenas letras e espaços.`;
         } else {
             if (!nomeInserido.includes(" ")) { //Verifica se o nome possui espaço, validando se o usuário inseriu nome e sobrenome
@@ -138,3 +140,23 @@ function verificarSenha() {
     }
     div_verificarSenha.innerHTML = resposta;
 }
+
+function confirmacaoDeSenha() {
+    let senhaInseridaConfirmacao = confirmacao_senha_input.value;
+    let resposta = `Confirmado`
+
+    if (senhaFinal == '') {
+        resposta = 'Por favor, preencha primeiro o campo Senha'
+    } else if (senhaInseridaConfirmacao == '') {
+        resposta = 'Por favor, preencha o campo Confirmação de senha'
+    }
+    else if (senhaInseridaConfirmacao != senhaFinal) {
+        resposta = 'Inválido. Senhas diferentes'
+    } else {
+        senhaConfirmacao = senhaInseridaConfirmacao;
+    }
+    div_verificarConfirmacao.innerHTML = resposta;
+}
+
+
+
