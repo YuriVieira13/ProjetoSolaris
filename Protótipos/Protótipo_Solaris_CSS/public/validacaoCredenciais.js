@@ -16,6 +16,13 @@ function validarEmail() {
                         resposta = `E-mail inválido. Precisa conter '@'`
                     }
                 } else {
+                    let emailSeparadoArroba = emailInserido.split('@');
+                    let dominio = emailSeparadoArroba[1];
+
+                    if (!dominio.includes('.')) {
+                        resposta = `E-mail inválido. Domínio precisa conter .`
+                    }
+
                     let qtdArroba = 0;
                     for (let i = 0; i < emailInserido.length; i++) {
                         if (emailInserido[i] == '@') {
