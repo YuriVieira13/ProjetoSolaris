@@ -1,3 +1,6 @@
+let emailFinal = '';
+let senhaFinal = '';
+
 function validarEmail() {
     let emailInserido = email_input.value;
     let emailMinusculo = emailInserido.toLowerCase();
@@ -5,9 +8,9 @@ function validarEmail() {
 
     if (emailInserido != '') {
         if (emailInserido.length <= 256) { //Verifica se e-mail possui 256 caracteres ou menos. 
-        //Limite de caracteres baseado na recomendação de boas práticas da RFC 5321.
+            //Limite de caracteres baseado na recomendação de boas práticas da RFC 5321.
             if (emailMinusculo[0] < 'a' || emailMinusculo[0] > 'z') {
-                resposta = `E-mail inválido. O e-mail deve começar com uma letra.`
+                resposta = `E-mail inválido. O e-mail deve começar com um carácter não especial.`
             } else {
                 if (emailInserido.indexOf('@') == -1 || emailInserido.indexOf('.') == -1) {
                     resposta = `E-mail inválido. Deve conter os caracteres '@' e '.'.`
@@ -18,7 +21,7 @@ function validarEmail() {
                             qtdArroba++;
                         }
                         if (emailInserido[i] == '.') { // Verifica se há pontos consecutivos no e-mail.
-                            if (emailInserido[i - 1] == '.' && i > 0) {  
+                            if (emailInserido[i - 1] == '.' && i > 0) {
                                 resposta = `E-mail inválido. Não são permitidos pontos consecutivos (..).`
                             }
                         }
@@ -31,6 +34,8 @@ function validarEmail() {
 
                         if (!dominio.includes('.')) {
                             resposta = `E-mail inválido. O domínio deve conter pelo menos um ponto (.).`
+                        } else {
+                            emailFinal = emailMinusculo;
                         }
                     }
                 }
@@ -43,4 +48,53 @@ function validarEmail() {
         resposta = `Por favor, preencha o campo de e-mail.`
     }
     div_verificarEmail.innerHTML = resposta;
+}
+
+
+function verificarSenha() {
+    let senhaInserida = senha_input.value;
+    let caracteresEspeciais = ['!', '@', '#', '$', '%', '&', '*', '_', '+', '=', '-', '{', '}', '<', '>', ']', '[']
+    let resposta = `Senha válida`;
+
+    if (senhaInserida == '') {
+        resposta = `Por favor, preencha o campo de senha.`
+    } else {
+        if (senhaInserida.length <= 9) {
+            resposta = `Senha inválida. O tamanho mínimo necessário é de 10 caracteres.`
+        } else {
+            let temCaracterEspecial = false;
+            let temLetraMaiuscula = false;
+            let temLetraMinuscula = false;
+            let temNumero = false;
+
+            for (let i = 0; i < senhaInserida.length; i++) {  
+                if (caracteresEspeciais.includes(senhaInserida[i])) { //Verifica se a senha possui pelo menos 1 carácter especial.
+                    temCaracterEspecial = true;
+                }
+                if (senhaInserida[i] >= 'A' && senhaInserida[i] <= 'Z') {  //Verifica se a senha possui pelo menos 1 letra maiúscula.
+                    temLetraMaiuscula = true;
+                }
+                if (senhaInserida[i] >= 'a' && senhaInserida[i] <= 'z') {  //Verifica se a senha possui pelo menos 1 letra minúscula.
+                    temLetraMinuscula = true;
+                }
+                if (senhaInserida[i] >= '0' && senhaInserida[i] <= '9') {    //Verifica se a senha possui pelo menos 1 número.
+                    temLetraMinuscula = true;
+                    temNumero = true;
+                }
+            }
+
+            if (temCaracterEspecial == false) {
+                resposta = `Senha inválida. Deve conter pelo menos 1 carácter especial.`
+            } else if (temLetraMaiuscula == false) {
+                resposta = `Senha inválida. Deve conter pelo menos 1 letra Maiúscula`
+            } else if (temLetraMinuscula == false) {
+                resposta = `Senha inválida. Deve conter pelo menos 1 letra minuscula`
+            } else if (temNumero == false) {
+                resposta = `Senha inválida. Deve conter pelo menos 1 número`
+            } else {
+                senhaFinal = senhaInserida;
+            }
+        }
+    }
+    div_verificarSenha.innerHTML = resposta;
 }
