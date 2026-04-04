@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="styles/style.css" />
     <link rel="icon" href="assets/icons" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
+
+    <script src="validacaoCredenciais.js"></script>
 </head>
 
 <body>
@@ -53,11 +55,8 @@
                     <span >SENHA:</span> 
                     </div>
                     <input id="senha_input" type="password">
-                    <div class="linha-direita">
-                    <span >Esqueceu sua senha?</span>
-                    </div>
                 </div>
-                <button class="botaoEntrar">ENTRAR</button>
+                <button class="botaoEntrar" onclick="logar()">ENTRAR</button>
                 <div class="ou">ou</div>
                 <button onclick="window.location.href='Cadastro.html'"
                 
