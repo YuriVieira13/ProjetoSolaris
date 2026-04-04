@@ -163,9 +163,9 @@ function cadastrar() {
     if (emailFinal == '' || senhaFinal == '' || nomeFinal == '' || senhaConfirmacao == '') {
         alert(`Por favor, preencha todos os campos para prosseguir.`)
     } else {
-        setTimeout(() => { //Espera 4 segundos antes de direcionar o usuário para tela de login
+        setTimeout(() => { //Espera 2 segundos antes de direcionar o usuário para tela de login
             window.location.href = "Login.html"
-        }, 4000);
+        }, 2000);
     }
 }
 
@@ -176,7 +176,7 @@ function logar() {
     if (emailInserido == emailFinal && senhaInserida == senhaFinal) {
         setTimeout(() => {
             window.location.href = "Grafico.html"
-        }, 4000);
+        }, 2000);
     } else {
         alert('Credenciais incorretas')
     }
