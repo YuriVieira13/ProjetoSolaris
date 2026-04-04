@@ -1,8 +1,9 @@
-
+//Variáveis globais usadas na função 'cadastrar()'
 let emailFinal = '';
 let senhaFinal = '';
 let senhaConfirmacao = '';
 let nomeFinal = '';
+
 function validarEmail() {
     let emailInserido = email_input.value;
     let emailMinusculo = emailInserido.toLowerCase();
@@ -156,6 +157,16 @@ function confirmacaoDeSenha() {
         senhaConfirmacao = senhaInseridaConfirmacao;
     }
     div_verificarConfirmacao.innerHTML = resposta;
+}
+
+function cadastrar() {
+    if (emailFinal == '' || senhaFinal == '' || nomeFinal == '' || senhaConfirmacao == '') {
+        alert(`Por favor, preencha todos os campos para prosseguir.`)
+    } else {
+        setTimeout(() => { //Espera 4 segundos antes de direcionar o usuário para tela de login
+            window.location.href = "Login.html"
+        }, 4000);
+    }
 }
 
 
