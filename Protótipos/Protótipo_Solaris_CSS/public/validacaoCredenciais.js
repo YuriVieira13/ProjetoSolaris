@@ -169,5 +169,17 @@ function cadastrar() {
     }
 }
 
+function logar() {
+    let emailInserido = email_input.value;
+    let senhaInserida = senha_input.value;
 
+    if (emailInserido == emailFinal && senhaInserida == senhaFinal) {
+        setTimeout(() => {
+            window.location.href = "Grafico.html"
+        }, 4000);
+    } else {
+        alert('Credenciais incorretas')
+    }
+
+}
 
