@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Solaris</title>
+
+</head>
+
+<body>
+    <div>
+        <h1>Simulador Solaris</h1>
+
+        <h2>Tamanho da Área (Hectares):</h2>
+        <input type="number" id="ipt_area"><br>
+
+        <h2>Sua Produtividade Atual (Sacas por Hectare):</h2>
+        <input type="number" id="ipt_sacas"><br>
+
+        <h2>Preço da Soja (R$/Saca):</h2>
+        <input type="number" id="ipt_preco"><br>
+
+        <button onclick="verFaturamento()">Simular Com Solaris</button>
+        <button onclick="limparCampos()">Limpar Simulação</button>
+        <br><br>
+
+        <div id="div_mensagem"></div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    function verFaturamento() {
+
+        let area = Number(ipt_area.value)
+        let produtividade = Number(ipt_sacas.value)
+        let preco = Number(ipt_preco.value)
+        let mensagem = ''
+
+        if (!area || !produtividade || !preco) {
+            alert(`Por favor, preencha todos os campos corretamente.`)
+        } else {
+
+            let producaoAtual = area * produtividade
+            let receitaAtual = producaoAtual * preco
+            let saldoAtual = receitaAtual
+
+            let ganhoDeSacas = producaoAtual * 0.57
+            let producaoSolaris = producaoAtual + ganhoDeSacas
+            let receitaSolaris = producaoSolaris * preco
+
+            let saldoSolaris = receitaSolaris
+
+            let incrementoNoSaldo = saldoSolaris - saldoAtual
+
+            mensagem = `
+   <h2>Comparativo de Cenários</h2>
+
+  <h3>Cenário Atual (Sem Solaris)</h3>
+  <p>Produção Estimada: ${Math.floor(producaoAtual)} sacas</p>
+  <p>Receita Bruta: R$ ${receitaAtual.toFixed(2).replace('.', ',')}</p>
+
+  <br>
+
+  <h3>Cenário Projetado (Com Solaris)</h3>
+  <p>Produção Estimada: ${Math.floor(producaoSolaris)} sacas (+57%)</p>
+  <p>Receita Bruta: R$ ${receitaSolaris.toFixed(2).replace('.', ',')}</p>
+  <p>Saldo: R$ ${saldoSolaris.toFixed(2).replace('.', ',')}</p>
+
+  <br>
+
+  <h3>Seu Ganho Adicional na Safra: R$ ${incrementoNoSaldo.toFixed(2).replace('.', ',')}</h3>
+  <p>Este valor representa o aumento direto na sua margem, 
+  somando a nova receita gerada pela otimização da luz e a economia em insumos.</p>
+`
+        }
+        div_mensagem.innerHTML = mensagem
+    }
+
+    function limparCampos() {
+        ipt_area.value = ""
+        ipt_sacas.value = ""
+        ipt_preco.value = ""
+        div_mensagem.innerHTML = ''
+    }
+</script>
