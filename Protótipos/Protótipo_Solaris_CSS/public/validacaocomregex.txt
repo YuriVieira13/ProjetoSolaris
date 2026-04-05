@@ -1,0 +1,59 @@
+Gi, ficou muito legal sua validação, tu fez no braçal e funcionou, fiquei testando o código aqui de tarde.
+ Vou deixar embaixo duas funções,
+só por repertório, já que o JP recomendou não usar regex, de como daria para fazer validação também.
+
+A base desses regex mais simples é:
+/ / - iniciam e finalizam o regex
+
+^ - pegar a string desde o começo
+[] - é como se fosse vetor mesmo, estabelece o intervalo, exemplo a-z vai contar de a até Z
++ - diz que pode ser 1 ou mais caracteres
+& - final string
+
+test é um método próprio do regex pelo que eu entendi.
+
+function verificarNome() {
+    let nomeInserido = nome_input.value.trim();
+    let resposta = ``;
+
+    if (nomeInserido === '') {
+        resposta = "Por favor, preencha o campo Nome.";
+    } else if (nomeInserido.length > 50) {
+        resposta = "Nome inválido. Máximo 50 caracteres.";
+    } else if (!/^[a-zA-Z ]+$/.test(nomeInserido)) {
+        resposta = "Nome inválido. Apenas letras e espaços.";
+    } else if (!nomeInserido.includes(" ")) {
+        resposta = "Nome inválido. Insira nome e sobrenome.";
+    } else if (nomeInserido.length < 6) {
+        resposta = "Nome inválido. Mínimo 6 caracteres.";
+    } else {
+        nomeFinal = nomeInserido.toLowerCase();
+        resposta = "Nome válido.";
+    }
+
+    div_verificarNome.innerHTML = resposta;
+}
+
+function verificarSenha() {
+    let senhaInserida = senha_input.value;
+    let resposta - ``;
+
+    if (senhaInserida === '') {
+        resposta = "Por favor, preencha o campo de senha.";
+    } else if (senhaInserida.length < 10) {
+        resposta = "Senha inválida. Mínimo 10 caracteres.";
+    } else if (!/[A-Z]/.test(senhaInserida)) {
+        resposta = "Senha inválida. Deve conter pelo menos 1 letra maiúscula.";
+    } else if (!/[a-z]/.test(senhaInserida)) {
+        resposta = "Senha inválida. Deve conter pelo menos 1 letra minúscula.";
+    } else if (!/[0-9]/.test(senhaInserida)) {
+        resposta = "Senha inválida. Deve conter pelo menos 1 número.";
+    } else if (!/[!@#$%&*_\+\-={}<>[\]]/.test(senhaInserida)) {
+        resposta = "Senha inválida. Deve conter pelo menos 1 caractere especial.";
+    } else {
+        senhaFinal = senhaInserida;
+        resposta = "Senha válida.";
+    }
+
+    div_verificarSenha.innerHTML = resposta;
+}
