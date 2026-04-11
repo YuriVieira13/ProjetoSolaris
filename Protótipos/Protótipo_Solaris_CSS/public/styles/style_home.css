@@ -8,6 +8,8 @@
   --cor-verde: #306b17;
   --cor-verde-claro: #449920;
   --cor-verde-escuro: #2f5d1c;
+  --cor-verde-mais-escuro: #24361c;
+  --cor-footer: #1d4310;
 }
 
 * {
@@ -39,6 +41,10 @@ body {
 .titles_icons {
   display: flex;
   align-items: center;
+}
+
+.titles_icons p{
+  font-size: 22px;
 }
 
 .titles_icons i {
@@ -107,6 +113,7 @@ body {
   width: 75%;
   margin-left: 15%;
   text-align: start;
+  padding-bottom: 5vh;
 }
 
 .banner h2 {
@@ -139,25 +146,25 @@ body {
 .img1 {
   background: url("../asstes/imgs/plantio_soja.png") no-repeat center;
   background-size: cover;
-  width: 25vw;
+  width: 33vw;
   height: 40vh;
-  padding: 0 0 0 5vw;
+  padding: 0 0 0 3vw;
 }
 
 .img2 {
   background: url("../asstes/imgs/plantio_soja2.png") no-repeat center;
   background-size: cover;
-  width: 15vw;
+  width: 20vw;
   height: 40vh;
-  padding: 0 5vw 0 5vw;
+  padding: 0 2vw 0 2vw;
 }
 
 .img3 {
   background: url("../asstes/imgs/plantio_soja4.png") no-repeat center;
   background-size: cover;
-  width: 25vw;
+  width: 33vw;
   height: 40vh;
-  padding: 0 5vw 0 0;
+  padding: 0 2vw 0 0;
 }
 
 /* ======================= CONTEUDO 1 ======================= */
@@ -169,7 +176,7 @@ body {
 }
 
 .conteudo1 h2 {
-  font-size: 20px;
+  font-size: 24px;
   letter-spacing: 0.75em;
 }
 
@@ -189,8 +196,8 @@ body {
   align-items: center;
   justify-items: center;
   text-align: center;
-  padding: 15vh 15vw 15vh 15vw;
-  height: 65vh;
+  padding: 0 15vw 15vh 15vw;
+  height: 50vh;
 }
 
 .sobre h1 {
@@ -198,8 +205,8 @@ body {
   padding-bottom: 5vh;
 }
 
-.sobre .titles_icons {
-  padding: 0 0 5vh 0;
+.sobre .titles_icons p {
+  padding: 5vh 0 5vh 0;
 }
 
 /* ======================= CONTEUDO 3 ======================= */
@@ -209,7 +216,8 @@ body {
   justify-content: center;
   align-items: center;
   background-color: var(--cor-verde-escuro);
-  height: 100vh;
+  height: 75vh;
+  padding: 10vh 0 15vh 0;
 }
 
 .solucoes_img {
@@ -244,6 +252,10 @@ body {
   font-weight: normal;
 }
 
+.solucoes .titles_icons p {
+  padding: 2.5vh 0 2.5vh 0;
+}
+
 /* ======================= CONTEUDO 4 ======================= */
 
 .servicos {
@@ -276,7 +288,7 @@ body {
 .servicos .container img {
   height: 30vh;
   width: 25vw;
-}
+} 
 
 .servicos .container:hover {
   scale: 1.1;
@@ -284,12 +296,12 @@ body {
 
 .servicos .container h1 {
   font-size: 28px;
-  padding: 1vh 0 0 1vw;
+  padding: 2vh 0 0 2vw;
 }
 
 .servicos .container h3 {
   font-weight: normal;
-  padding: 1vh 1vw 0 1vw;
+  padding: 2vh 1vw 0 2vw;
 }
 
 .topicos {
@@ -310,12 +322,12 @@ body {
 }
 
 .diferencial p {
-  padding: 2.5vh 0 2.5vh 0;
+  padding: 2.5vh 0 5vh 0;
   font-size: 22px;
 }
 
 .diferencial h1 {
-  padding-bottom: 2vh;
+  padding-bottom: 5vh;
   font-size: 48px;
 }
 
@@ -336,22 +348,7 @@ body {
   width: 40vw;
   height: 140vh;
   padding: 0 10vw 0 3vw;
-  background-color: #1f2e18;
-}
-
-.porque::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url("../asstes/imgs/plantio_soja3.png") no-repeat center;
-  background-size: cover;
-  opacity: 0.2;
-  z-index: 0;
-}
-
-.porque>* {
-  position: relative;
-  z-index: 1;
+  background-color: var(--cor-verde-mais-escuro);
 }
 
 .porque .titles_icons {
@@ -372,12 +369,11 @@ body {
 /* ======================= FOOTER ======================= */
 
 .footer {
-  height: 50vh;
-  background-color: var(--cor-verde-escuro);
+  height: 60vh;
+  background-color: var(--cor-footer);
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 15vh 0 15vh 0;
 }
 
 .footer img {
@@ -397,6 +393,7 @@ body {
   display: flex;
   justify-content: space-evenly;
   width: 50vw;
+  padding: 10vh 0 0 0;
 }
 
 .content {
@@ -407,6 +404,7 @@ body {
 
 .content h1 {
   color: var(--cor-verde-claro);
+  padding: 2vh 0 0 0;
 }
 
 .content a, p {
