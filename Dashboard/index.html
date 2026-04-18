@@ -64,9 +64,143 @@
                             <p>Não vistos</p>
                         </div>
                     </div>
+
+
+                    <section class="conteudo">
+                        <div class="box grande">
+                            <canvas id="graficoLinha"></canvas>
+                        </div>
+                    
+                        <div class="box mapa">
+                            <h3>Mapa de Calor da Propriedade</h3>
+                        
+                        <div class="grid-mapa">
+                                <div class="area">Área 6</div>
+                                <div class="area">Área 1</div>
+                                <div class="area">Área 2</div>
+                                <div class="area">Área 5</div>
+                        
+                                <div class="area">Área 7</div>
+                                <div class="area">Área 3</div>
+                                <div class="area">Área 4</div>
+                                <div class="area">Área 8</div>
+                            </div>
+                        </div>
+                    
+                        <div class="box pequeno">
+                            <canvas id="graficoPizza"></canvas>
+                        </div>
+                    </section>
                 </section>
+                
             </div>
         </div>
     </body>
+
+    <script>
+
+        /* GRAFICO DE LINHA */
+
+        const grafLinha = document.getElementById('graficoLinha')
+
+        new Chart(grafLinha, {
+            type: 'bar',
+            data: {
+                labels: [
+                    'Sensor 1','Sensor 2','Sensor 3','Sensor 4',
+                    'Sensor 5','Sensor 6','Sensor 7','Sensor 8'
+                ],
+                datasets: [
+                    {
+                        label: 'Média do PPFD Máximo',
+                        data: [1822,1700,1800,1700,1550,1880,1864,1400],
+                        backgroundColor: '#3b6cb7'
+                    },
+                    {
+                        label: 'Média do PPFD Mínimo',
+                        data: [835,890,850,750,550,800,813,500],
+                        backgroundColor: '#e67e22'
+                    },
+                    {
+                        label: 'Meta',
+                        data: [1700,1700,1700,1700,1700,1700,1700,1700],
+                        type: 'line',
+                        borderColor: '#888',
+                        borderWidth: 2,
+                        pointRadius: 0
+                    },
+                    {
+                        label: 'Limite',
+                        data: [600,600,600,600,600,600,600,600],
+                        type: 'line',
+                        borderColor: '#f1c40f',
+                        borderWidth: 2,
+                        pointRadius: 0
+                    }
+                ]
+            },
+            options: {
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Média Semanal de incidência solar (PPFD) por Sensor'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'PPFD'
+                        }
+                    }
+                }
+            }
+        });
+
+
+
+        /* GRAFICO DE PIZZA */
+
+        const grafPizza = document.getElementById('graficoPizza')
+
+        new Chart(grafPizza, {
+    type: 'pie',
+    data: {
+        labels: [
+            'Acima da meta',
+            'Normal',
+            'Abaixo do limite',
+        ],
+        datasets: [{
+            data: [4, 2, 2],
+            backgroundColor: [
+                '#2ecc71',
+                '#f1c40f', 
+                '#e74c3c'  
+            ]
+        }]
+    },
+    options: {
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                position: 'bottom'
+            },
+            title: {
+                display: true,
+                text: 'Controle das Áreas'
+            }
+        }
+    }
+});
+        </script>
+
+
 </html>
+
 
