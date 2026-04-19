@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./style.css" />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="div_container">
+            <aside class="sidebar">
+                <img
+                    src="../assets/imgs/logo.png"
+                    alt="Logo solaris"
+                    class="img_logo"
+                />
+
+                <div class="div_barra"></div>
+
+                <nav class="navbar">
+                    <a href="../index.html" class="btn_sidebar">Dashboard</a>
+
+                    <button class="btn_sidebar">Sensores</button>
+
+                    <button class="btn_sidebar">Relatorios</button>
+
+                    <button class="btn_sidebar">Alertas</button>
+                </nav>
+
+                <div class="div_barra"></div>
+
+                <h4 class="titulo">Configurações da conta</h4>
+
+                <img src="../assets/imgs/Pessoa.png" class="img_perfil" />
+                <h4 class="nomeUsuario">Guilherme Cunha</h4>
+                <button class="btn_sidebar">Configurações</button>
+            </aside>
+
+            <div class="header">
+                <p class="p_header">Área 2</p>
+            </div>
+
+            <div class="main">
+                <section>
+                    <div class="div_cards">
+                        <div class="div_card">
+                            <span>Status Da Área</span>
+                            <h1 style="color: greenyellow">ATIVO</h1>
+                            <p>Monitoradas!</p>
+                        </div>
+
+                        <div class="div_card">
+                            <span>Média Máxima da Semana</span>
+                            <h1 style="color: orange">1822</h1>
+                            <p class="p_media">umol/m/s</p>
+                        </div>
+
+                        <div class="div_card">
+                            <span>Média mínima da semana</span>
+                            <h1 style="color: rgb(47, 47, 128)">835</h1>
+                            <p class="p_media">umol/m/s</p>
+                        </div>
+
+                        <div class="div_card">
+                            <span>Alertas</span>
+                            <h1>1</h1>
+                            <p>Não vistos!</p>
+                        </div>
+                    </div>
+
+                    <section class="conteudo">
+                        <div class="box grande">
+                            <canvas id="graficoPPFD"></canvas>
+                        </div>
+
+                        <div class="box mapa">
+                            <h3>Mapa de Calor da Propriedade</h3>
+
+                            <div class="grid-mapa">
+                                <a href="area1.html" class="area">Área 1</a>
+                                <a href="area2.html" class="area ativa"
+                                    >Área 2</a
+                                >
+                                <a href="area3.html" class="area">Área 3</a>
+                                <a href="area4.html" class="area">Área 4</a>
+                                <a href="area5.html" class="area">Área 5</a>
+                                <a href="area6.html" class="area">Área 6</a>
+                                <a href="area7.html" class="area">Área 7</a>
+                                <a href="area8.html" class="area">Área 8</a>
+                            </div>
+                        </div>
+
+                        <div class="box pequeno">
+                            <canvas id="graficoMeta"></canvas>
+                        </div>
+                    </section>
+                </section>
+            </div>
+        </div>
+    </body>
+
+    <script>
+        const grafPpfd = document.getElementById("graficoPPFD");
+
+        new Chart(grafPpfd, {
+            type: "line",
+            data: {
+                labels: [
+                    "3/4/2026",
+                    "4/4/2026",
+                    "5/4/2026",
+                    "6/4/2026",
+                    "7/4/2026",
+                    "8/4/2026",
+                    "9/4/2026",
+                ],
+                datasets: [
+                    {
+                        label: "PPFD Máximo",
+                        data: [2000, 2100, 2300, 2150, 600, 2100, 1500],
+                        borderColor: "blue",
+                        backgroundColor: "blue",
+                        tension: 0.3,
+                    },
+                    {
+                        label: "PPFD Mínimo",
+                        data: [800, 900, 850, 950, 200, 1100, 1050],
+                        borderColor: "orange",
+                        backgroundColor: "orange",
+                        tension: 0.3,
+                    },
+                ],
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: "Variação da incidência solar (PPFD) no decorrer da semana",
+                    },
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: "Quantidade PPFD",
+                        },
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: "Dia",
+                        },
+                    },
+                },
+            },
+        });
+
+        const grafBarraMeta = document.getElementById("graficoMeta");
+
+        let meta = 2500;
+        let atual = 1822;
+        let restante = meta - atual;
+
+        new Chart(document.getElementById("graficoMeta"), {
+            type: "doughnut",
+            data: {
+                labels: ["Atual", "Restante"],
+                datasets: [
+                    {
+                        data: [atual, restante],
+                        backgroundColor: ["green", "red"],
+                    },
+                ],
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: "Meta de PPFD",
+                    },
+                },
+            },
+        });
+    </script>
+</html>

@@ -19,7 +19,7 @@
                 <div class="div_barra"></div>
 
                 <nav class="navbar">
-                    <button class="btn_sidebar">Áreas</button>
+                    <a  href="./index.html" class="btn_sidebar">Dashboard</a>
 
                     <button class="btn_sidebar">Sensores</button>
 
@@ -37,30 +37,34 @@
                 <button class="btn_sidebar">Configurações</button>
             </aside>
 
+            <div class="header">
+                <p class="p_header">Dashboard</p>
+            </div>
+
             <div class="main">
                 <section>
                     <div class="div_cards">
                         <div class="div_card">
                             <span>Áreas(total:8)</span>
-                            <h1>8</h1>
+                            <h1 style="color: rgb(69, 221, 69);">8</h1>
                             <p>Monitoradas!</p>
                         </div>
 
                         <div class="div_card">
                             <span>Áreas inadequadas</span>
-                            <h1>2</h1>
+                            <h1 style="color: red;">2</h1>
                             <p>Para o plantil</p>
                         </div>
 
                         <div class="div_card">
                             <span>Eficiencia do PPFD</span>
-                            <h1>75%</h1>
+                            <h1 style="color: rgb(69, 221, 69);">75%</h1>
                             <p>Da área</p>
                         </div>
 
                         <div class="div_card">
                             <span>Alertas</span>
-                            <h1>2</h1>
+                            <h1 style="color: red;" >2</h1>
                             <p>Não vistos</p>
                         </div>
                     </div>
@@ -73,17 +77,18 @@
                     
                         <div class="box mapa">
                             <h3>Mapa de Calor da Propriedade</h3>
-                        
-                        <div class="grid-mapa">
-                                <div class="area">Área 6</div>
-                                <div class="area">Área 1</div>
-                                <div class="area">Área 2</div>
-                                <div class="area">Área 5</div>
-                        
-                                <div class="area">Área 7</div>
-                                <div class="area">Área 3</div>
-                                <div class="area">Área 4</div>
-                                <div class="area">Área 8</div>
+
+                            <div class="grid-mapa">
+                                <a href="./areas/area1.html" class="area ativa">Área 1</a>
+                                <a href="./areas/area2.html" class="area">Área 2</a>
+                                <a href="./areas/area3.html" class="area">Área 3</a>
+                                <a href="./areas/area4.html" class="area">Área 4</a>
+                                <a href="./areas/area5.html" class="area">Área 5</a>
+                                <a href="./areas/area6.html" class="area">Área 6</a>
+                                <a href="./areas/area7.html" class="area">Área 7</a>
+                                <a href="./areas/area8.html" class="area "
+                                    >Área 8</a
+                                >
                             </div>
                         </div>
                     
@@ -122,7 +127,7 @@
                         backgroundColor: '#e67e22'
                     },
                     {
-                        label: 'Meta',
+                        label: 'Limite Superior',
                         data: [1700,1700,1700,1700,1700,1700,1700,1700],
                         type: 'line',
                         borderColor: '#888',
@@ -130,7 +135,7 @@
                         pointRadius: 0
                     },
                     {
-                        label: 'Limite',
+                        label: 'Limite infeirior',
                         data: [600,600,600,600,600,600,600,600],
                         type: 'line',
                         borderColor: '#f1c40f',
