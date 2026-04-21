@@ -19,6 +19,8 @@ function validarEmail() {
         resposta = `E-mail inválido. O e-mail deve começar com um carácter não especial.`
     }
 
+
+
     if (emailInserido.indexOf('@') == -1 || emailInserido.indexOf('.') == -1) {
         resposta = `E-mail inválido. Deve conter os caracteres '@' e '.'.`
     } else {
@@ -48,6 +50,8 @@ function validarEmail() {
             }
         }
     }
+
+
     div_verificarEmail.innerHTML = resposta;
 }
 
@@ -168,13 +172,15 @@ function logar() {
     let emailInserido = email_input.value;
     let senhaInserida = senha_input.value;
 
-    if (emailInserido == emailFinal && senhaInserida == senhaFinal) {
+    if (emailInserido == '' || senhaInserida == '') {
+        alert( 'Preencha todos os campos para prosseguir.')
+    } else if (emailInserido == emailFinal && senhaInserida == senhaFinal) {
         setTimeout(() => { //Espera 2 segundos antes de direcionar o usuário para tela de dashboard.
             window.location.href = "Grafico.html"
         }, 2000);
     } else {
         alert('Credenciais incorretas')
     }
-
 }
+
 
