@@ -8,6 +8,20 @@ body {
     color: white
 }
 
+.cadastro{width:100v; height:100vh ;}
+
+.btn-voltar{
+    padding: 10px;
+    background-color: transparent;
+    border: black 2px solid;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+
 .login-fundo,
 .cadastro-fundo {
     width: 100%;

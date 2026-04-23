@@ -97,6 +97,11 @@ body{
 
 }
 
+.p_ppfd{
+    color: white;
+    background-color: rgb(189, 183, 105);
+}
+
 .div_card{
     background-color: white;
     padding: 15px;
@@ -219,7 +224,8 @@ body{
     height: 100px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+    
 }
 
 .p_header{

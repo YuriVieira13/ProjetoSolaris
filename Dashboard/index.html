@@ -38,28 +38,32 @@
             </aside>
 
             <div class="header">
-                <p class="p_header">Dashboard</p>
+                <p class="p_header">Primeira área de plantio</p>
+
+                 <a href="../Protótipos/Protótipo_Solaris_CSS/public/Cadastro.html" class="btn_sidebar">Cadastro</a>
             </div>
 
             <div class="main">
                 <section>
                     <div class="div_cards">
                         <div class="div_card">
-                            <span>Áreas(total:8)</span>
-                            <h1 style="color: rgb(69, 221, 69);">8</h1>
+                            <span>Áreas</span>
+                            <h1 style="color: rgb(236, 217, 11);">6/8</h1>
                             <p>Monitoradas!</p>
                         </div>
 
                         <div class="div_card">
                             <span>Áreas inadequadas</span>
                             <h1 style="color: red;">2</h1>
-                            <p>Para o plantil</p>
+                            <p>Periodo</p> <p style="font-size: 17px;">20/04 - 27/04</p>
                         </div>
 
                         <div class="div_card">
                             <span>Eficiencia do PPFD</span>
-                            <h1 style="color: rgb(69, 221, 69);">75%</h1>
+                            <h1 style="color: rgb(255, 0, 0);">25%</h1>
                             <p>Da área</p>
+
+                            <button onclick="mudarMeta()">Alterar meta</button>
                         </div>
 
                         <div class="div_card">
@@ -73,21 +77,22 @@
                     <section class="conteudo">
                         <div class="box grande">
                             <canvas id="graficoLinha"></canvas>
+                            
                         </div>
                     
                         <div class="box mapa">
                             <h3>Mapa de Calor da Propriedade</h3>
 
                             <div class="grid-mapa">
-                                <a href="./areas/area1.html" class="area ativa">Área 1</a>
-                                <a href="./areas/area2.html" class="area">Área 2</a>
-                                <a href="./areas/area3.html" class="area">Área 3</a>
-                                <a href="./areas/area4.html" class="area">Área 4</a>
-                                <a href="./areas/area5.html" class="area">Área 5</a>
-                                <a href="./areas/area6.html" class="area">Área 6</a>
-                                <a href="./areas/area7.html" class="area">Área 7</a>
-                                <a href="./areas/area8.html" class="area "
-                                    >Área 8</a
+                                <a href="./areas/area1.html" class="area" style="background-color: rgb(201, 6, 6);">hectares 1</a>
+                                <a href="./areas/area2.html" class="area" style="background-color: rgb(237, 89, 89);">hectares 2</a>
+                                <a href="./areas/area3.html" class="area" style="background-color: rgb(201, 6, 6);">hectares 3</a>
+                                <a href="./areas/area4.html" class="area"style="background-color: rgb(104, 197, 76);">hectares 4</a>
+                                <a href="./areas/area5.html" class="area" style="background-color: rgb(201, 6, 6);">hectares 5</a>
+                                <a href="./areas/area6.html" class="area"  style="background-color:rgb(201, 6, 6);">hectares 6</a>
+                                <a href="./areas/area7.html" class="area" style="background-color: rgb(104, 197, 76);" >hectares 7</a>
+                                <a href="./areas/area8.html" class="area" style="background-color: rgb(237, 89, 89)"
+                                    >hectares 8</a  
                                 >
                             </div>
                         </div>
@@ -96,6 +101,10 @@
                             <canvas id="graficoPizza"></canvas>
                         </div>
                     </section>
+
+
+
+                    <p class="p_ppfd">PPFD E UMA COISA A</p>
                 </section>
                 
             </div>
@@ -112,8 +121,8 @@
             type: 'bar',
             data: {
                 labels: [
-                    'Sensor 1','Sensor 2','Sensor 3','Sensor 4',
-                    'Sensor 5','Sensor 6','Sensor 7','Sensor 8'
+                    'Área 1','Área 2','Área 3','Área 4',
+                    'Área 5','Área 6','Área 7','Área 8'
                 ],
                 datasets: [
                     {
@@ -177,16 +186,16 @@
     type: 'pie',
     data: {
         labels: [
-            'Acima da meta',
+            'Acima da limite',
             'Normal',
             'Abaixo do limite',
         ],
         datasets: [{
             data: [4, 2, 2],
             backgroundColor: [
-                '#2ecc71',
-                '#f1c40f', 
-                '#e74c3c'  
+                'rgb(201, 6, 6)',
+                'rgb(104, 197, 76)', 
+                'rgb(237, 89, 89)'  
             ]
         }]
     },
@@ -203,6 +212,12 @@
         }
     }
 });
+
+
+    function mudarMeta(){
+        let metaAtual = prompt('Digite a nova meta desejada');
+        console.log(metaAtual);
+    }
         </script>
 
 
