@@ -47,21 +47,21 @@
                 <section>
                     <div class="div_cards">
                         <div class="div_card">
-                            <span>Áreas</span>
+                            <span>Hectares</span>
                             <h1 style="color: rgb(236, 217, 11);">6/8</h1>
                             <p>Monitoradas!</p>
                         </div>
 
                         <div class="div_card">
-                            <span>Áreas inadequadas</span>
+                            <span>Hectares inadequadas</span>
                             <h1 style="color: red;">2</h1>
                             <p>Periodo</p> <p style="font-size: 17px;">20/04 - 27/04</p>
                         </div>
 
                         <div class="div_card">
-                            <span>Eficiencia do PPFD</span>
+                            <span>Eficiencia do PPFD dos Hectares</span>
                             <h1 style="color: rgb(255, 0, 0);">25%</h1>
-                            <p>Da área</p>
+                            <p>Dos Hectares</p>
 
                             <button onclick="mudarMeta()">Alterar meta</button>
                         </div>
@@ -75,10 +75,13 @@
 
 
                     <section class="conteudo">
-                        <div class="box grande">
+                    <div class="box interogacao">
+                        <button class="btn_interogacao" onclick="SobrePFFD()"><img src="./assets/imgs/interogacao.png" alt="" class="img_interogacao"></button>
+                        <div class="grande">
                             <canvas id="graficoLinha"></canvas>
                             
                         </div>
+                    </div>
                     
                         <div class="box mapa">
                             <h3>Mapa de Calor da Propriedade</h3>
@@ -96,10 +99,13 @@
                                 >
                             </div>
                         </div>
-                    
-                        <div class="box pequeno">
+                    <div class="box interogacao">
+                        <button class="btn_interogacao" onclick="sobreMeta()"><img src="./assets/imgs/interogacao.png" alt="" class="img_interogacao"></button>
+                        <div class="pequeno">
+                            
                             <canvas id="graficoPizza"></canvas>
                         </div>
+                    </div>
                     </section>
 
 
@@ -121,8 +127,8 @@
             type: 'bar',
             data: {
                 labels: [
-                    'Área 1','Área 2','Área 3','Área 4',
-                    'Área 5','Área 6','Área 7','Área 8'
+                    'Hectare 1','Hectare 2','Hectare 3','Hectare 4',
+                    'Hectare 5','Hectare 6','Hectare 7','Hectare 8'
                 ],
                 datasets: [
                     {
@@ -207,7 +213,7 @@
             },
             title: {
                 display: true,
-                text: 'Controle das Áreas'
+                text: 'Controle das Hectare'
             }
         }
     }
@@ -218,6 +224,25 @@
         let metaAtual = prompt('Digite a nova meta desejada');
         console.log(metaAtual);
     }
+
+
+    function exemplo(){
+        let areas = ['Area1','Area2']
+        let me
+        let totalInefecientes = 0
+
+        
+    }
+
+    function SobrePFFD(){
+        console.log('Texto Sobre o PPFD')
+    }
+
+    function sobreMeta(){
+          console.log('Texto Sobre as Metas')
+    }
+
+
         </script>
 
 
