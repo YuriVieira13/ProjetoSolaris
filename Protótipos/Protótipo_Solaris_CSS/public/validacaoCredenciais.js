@@ -172,15 +172,17 @@ function logar() {
     let emailInserido = email_input.value;
     let senhaInserida = senha_input.value;
 
+    let emailFinal = 'Fernando_Brandao@gmail.com'
+    let senhaFinal = `Fernando123*`
+
     if (emailInserido == '' || senhaInserida == '') {
         alert( 'Preencha todos os campos para prosseguir.')
     } else if (emailInserido == emailFinal && senhaInserida == senhaFinal) {
         setTimeout(() => { //Espera 2 segundos antes de direcionar o usuário para tela de dashboard.
-            window.location.href = "Grafico.html"
+            window.location.href = "../../../DashBoard/index.html"
         }, 2000);
     } else {
         alert('Credenciais incorretas')
     }
 }
-
 

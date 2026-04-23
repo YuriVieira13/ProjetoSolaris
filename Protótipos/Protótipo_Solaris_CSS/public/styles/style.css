@@ -8,25 +8,11 @@ body {
     color: white
 }
 
-.cadastro{width:100v; height:100vh ;}
-
-.btn-voltar{
-    padding: 10px;
-    background-color: transparent;
-    border: black 2px solid;
-    border-radius: 10px;
-    color: white;
-    font-weight: bold;
-    font-size: 15px;
-    cursor: pointer;
-}
-
-
 .login-fundo,
-.cadastro-fundo {
+.cadastro {
     width: 100%;
     min-height: 100vh;
-    background-image: url(../asstes/imgs/campo_ensolarado.png);
+    background-image: url('../asstes/imgs/campo_ensolarado.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -101,7 +87,7 @@ body {
 
 .card-card-container {
     width: 420px;
-    height: 500px;
+    height: 400px;
     background-color: rgba(48, 107, 23, 0.86);
     border-radius: 20px;
     padding: 25px;
@@ -113,6 +99,8 @@ body {
 
 .container .card-card-cadastro p {
     color: rgb(255, 255, 255);
+    font-size: 14px;
+    font-weight: bolder;
 }
 
 .formulario {
@@ -132,7 +120,7 @@ body {
     font-weight: 600;
     margin-bottom: 5px;
     padding: 10px, 20px;
-    font-size: 9.8px;
+    font-size: 11px;
 }
 
 
@@ -245,4 +233,12 @@ body {
 .mensagem a {
     color: white;
     font-weight: bold;
+}
+
+.btn-voltar{
+
+    list-style: none;
+    color: white;
+
+    font-size: 22px;
 }

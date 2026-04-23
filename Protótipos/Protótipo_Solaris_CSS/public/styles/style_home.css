@@ -78,7 +78,8 @@ body {
 
 .navbar a {
   text-decoration: none;
-  color: white
+  font-size: 20px;
+  color: white;
 }
 
 .navbar a:hover {
@@ -131,6 +132,7 @@ body {
 
 .banner p {
   padding-bottom: 5vh;
+  font-size: 20px;
 }
 
 /* ======================= CARROSEL ======================= */
@@ -302,6 +304,7 @@ body {
 .servicos .container h3 {
   font-weight: normal;
   padding: 2vh 1vw 0 2vw;
+  font-size: 20px;
 }
 
 .topicos {
@@ -364,6 +367,11 @@ body {
   padding: 0 0.5vw 0 0;
   color: var(--cor-verde-claro);
   font-size: 25px;
+}
+
+.porque p {
+
+  text-align: justify ;
 }
 
 /* ======================= FOOTER ======================= */
