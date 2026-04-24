@@ -9,6 +9,11 @@ body{
     background-color: #3e6625;
 }
 
+.p_titulo{
+    font-size:15px;
+    color: white;
+}
+
 .sidebar{
     position: fixed;
     background: linear-gradient(180deg, #6aa84f, #4e7f35);
@@ -224,7 +229,7 @@ body{
     height: 100px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .p_header{

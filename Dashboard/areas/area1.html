@@ -38,7 +38,8 @@
             </aside>
 
             <div class="header">
-                <p class="p_header">hectar 1</p>
+                <p class="p_header">hectare</p>
+                <p class="p_titulo">Ultima medição: 1000 PPFD 23/04/2026 22;35 </p>
             </div>
 
             <div class="main">
@@ -46,20 +47,20 @@
                     <div class="div_cards">
                         <div class="div_card">
                             <span>Status Da Área</span>
-                            <h1 style="color: greenyellow">ATIVO</h1>
-                            <p>Monitoradas!</p>
+                            <div id="statusSensor"></div>
+                      
                         </div>
 
                         <div class="div_card">
                             <span>Média Máxima da Semana</span>
-                            <h1 style="color: orange">1822</h1>
-                            <p class="p_media">umol/m/s</p>
+                            <h1 style="color: orange" id="ppfdMax"></h1>
+                            <p class="p_media">PPFD</p>
                         </div>
 
                         <div class="div_card">
                             <span>Média mínima da semana</span>
-                            <h1 style="color: rgb(47, 47, 128)">835</h1>
-                            <p class="p_media">umol/m/s</p>
+                            <h1 style="color: rgb(47, 47, 128)" id="ppfdMin">835</h1>
+                            <p class="p_media">PPDF</p>
                         </div>
 
                         <div class="div_card">
@@ -101,6 +102,43 @@
     </body>
 
     <script>
+        let StatusArea = 'Ativo';
+        let PPFDMaximo = [2000, 2100, 2300, 2150, 600, 2100, 1500];
+        let PPFDMinimo = [800, 900, 850, 950, 200, 1100, 1050];
+
+        function carregarDados(){
+            mediaMaxima = 0;
+            mediaMinima = 0;
+
+            for(let i = 0; i<PPFDMaximo.length;i++){
+                mediaMaxima += PPFDMaximo[i];
+            };
+
+            mediaMaxima = mediaMaxima / PPFDMaximo.length;
+
+            for(let i = 0; i<PPFDMinimo.length;i++){
+                mediaMinima += PPFDMinimo[i];
+            }
+
+            mediaMinima = mediaMinima / PPFDMinimo.length;
+
+            ppfdMax.innerHTML = mediaMaxima.toFixed();
+
+            ppfdMin.innerHTML = mediaMinima.toFixed();
+
+            if(StatusArea == 'Ativo'){
+                statusSensor.innerHTML = `<h1 style="color: greenyellow">${StatusArea}</h1>`
+            }else{
+                 statusSensor.innerHTML = `<h1 style="color: red">${StatusArea}</h1>`
+            }
+
+
+        }
+
+        window.onload = carregarDados();
+
+       
+
         const grafPpfd = document.getElementById("graficoPPFD");
 
         new Chart(grafPpfd, {
@@ -118,14 +156,14 @@
                 datasets: [
                     {
                         label: "PPFD Máximo",
-                        data: [2000, 2100, 2300, 2150, 600, 2100, 1500],
+                        data: [PPFDMaximo[0], PPFDMaximo[1], PPFDMaximo[2], PPFDMaximo[3], PPFDMaximo[4], PPFDMaximo[5], PPFDMaximo[6]],
                         borderColor: "blue",
                         backgroundColor: "blue",
                         tension: 0.3,
                     },
                     {
                         label: "PPFD Mínimo",
-                        data: [800, 900, 850, 950, 200, 1100, 1050],
+                        data: [PPFDMinimo[0], PPFDMinimo[1], PPFDMinimo[2], PPFDMinimo[3], PPFDMinimo[4], PPFDMinimo[5], PPFDMinimo[6]],
                         borderColor: "orange",
                         backgroundColor: "orange",
                         tension: 0.3,
