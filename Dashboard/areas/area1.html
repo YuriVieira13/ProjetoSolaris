@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="./style.css" />
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <title>Document</title>
+        <title>Hectare A1</title>
     </head>
     <body>
         <div class="div_container">
@@ -33,13 +33,13 @@
                 <h4 class="titulo">Configurações da conta</h4>
 
                 <img src="../assets/imgs/Pessoa.png" class="img_perfil" />
-                <h4 class="nomeUsuario">Guilherme Cunha</h4>
+                <h4 class="nomeUsuario">Fernando Brandão</h4>
                 <button class="btn_sidebar">Configurações</button>
             </aside>
 
             <div class="header">
-                <p class="p_header">hectare</p>
-                <p class="p_titulo">Ultima medição: 1000 PPFD 23/04/2026 22;35 </p>
+                <p class="p_header">Hectare A1</p>
+                <p class="p_titulo">Ultima medição: 1000 PPFD 27/04/2026 9:55 </p>
             </div>
 
             <div class="main">
@@ -65,7 +65,7 @@
 
                         <div class="div_card">
                             <span>Alertas</span>
-                            <h1>1</h1>
+                            <h1 id="txtQtdAlertas">1</h1>
                             <p>Não vistos!</p>
                         </div>
                     </div>
@@ -103,12 +103,16 @@
 
     <script>
         let StatusArea = 'Ativo';
-        let PPFDMaximo = [2000, 2100, 2300, 2150, 600, 2100, 1500];
-        let PPFDMinimo = [800, 900, 850, 950, 200, 1100, 1050];
+        let PPFDMaximo = [800, 850, 880, 900, 920, 950, 1000];
+        let PPFDMinimo = [750, 800, 820, 835, 850, 900, 890];
+
+        let limiteMaximo = 1500;
+        let limiteMinimo = 400;
 
         function carregarDados(){
-            mediaMaxima = 0;
-            mediaMinima = 0;
+            let mediaMaxima = 0;
+            let mediaMinima = 0;
+            let qtdAlertas = 0;
 
             for(let i = 0; i<PPFDMaximo.length;i++){
                 mediaMaxima += PPFDMaximo[i];
@@ -131,6 +135,19 @@
             }else{
                  statusSensor.innerHTML = `<h1 style="color: red">${StatusArea}</h1>`
             }
+
+
+            for(let i = 0;i < PPFDMaximo.length;i++){
+
+                if(PPFDMaximo[i] > limiteMaximo || PPFDMinimo[i] < limiteMinimo ){
+                    qtdAlertas++;
+                }
+
+            }
+
+            txtQtdAlertas.innerHTML = qtdAlertas
+
+
 
 
         }
@@ -157,21 +174,23 @@
                     {
                         label: "PPFD Máximo",
                         data: [PPFDMaximo[0], PPFDMaximo[1], PPFDMaximo[2], PPFDMaximo[3], PPFDMaximo[4], PPFDMaximo[5], PPFDMaximo[6]],
-                        borderColor: "blue",
-                        backgroundColor: "blue",
+                        borderColor: "orange",
+                        backgroundColor: "orange",
                         tension: 0.3,
                     },
                     {
                         label: "PPFD Mínimo",
                         data: [PPFDMinimo[0], PPFDMinimo[1], PPFDMinimo[2], PPFDMinimo[3], PPFDMinimo[4], PPFDMinimo[5], PPFDMinimo[6]],
-                        borderColor: "orange",
-                        backgroundColor: "orange",
+
+                        borderColor: "blue",
+                        backgroundColor: "blue",
                         tension: 0.3,
                     },
                 ],
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 plugins: {
                     title: {
                         display: true,
@@ -214,10 +233,11 @@
                 ],
             },
             options: {
+                maintainAspectRatio: false,
                 plugins: {
                     title: {
                         display: true,
-                        text: "Meta de PPFD",
+                        text: "Meta da Media diaria de PPFD",
                     },
                 },
             },

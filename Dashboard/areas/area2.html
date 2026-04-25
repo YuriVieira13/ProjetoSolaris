@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="./style.css" />
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <title>Document</title>
+        <title>Hectare A1</title>
     </head>
     <body>
         <div class="div_container">
@@ -19,7 +19,7 @@
                 <div class="div_barra"></div>
 
                 <nav class="navbar">
-                    <a href="../index.html" class="btn_sidebar">Dashboard</a>
+                    <a  href="../index.html" class="btn_sidebar">Dashboard</a>
 
                     <button class="btn_sidebar">Sensores</button>
 
@@ -33,12 +33,13 @@
                 <h4 class="titulo">Configurações da conta</h4>
 
                 <img src="../assets/imgs/Pessoa.png" class="img_perfil" />
-                <h4 class="nomeUsuario">Guilherme Cunha</h4>
+                <h4 class="nomeUsuario">Fernando Brandão</h4>
                 <button class="btn_sidebar">Configurações</button>
             </aside>
 
             <div class="header">
-                <p class="p_header">hectar 2</p>
+                <p class="p_header">Hectare A2</p>
+                <p class="p_titulo">Ultima medição: 1000 PPFD 27/04/2026 9:55 </p>
             </div>
 
             <div class="main">
@@ -46,25 +47,25 @@
                     <div class="div_cards">
                         <div class="div_card">
                             <span>Status Da Área</span>
-                            <h1 style="color: greenyellow">ATIVO</h1>
-                            <p>Monitoradas!</p>
+                            <div id="statusSensor"></div>
+                      
                         </div>
 
                         <div class="div_card">
                             <span>Média Máxima da Semana</span>
-                            <h1 style="color: orange">1822</h1>
-                            <p class="p_media">umol/m/s</p>
+                            <h1 style="color: orange" id="ppfdMax"></h1>
+                            <p class="p_media">PPFD</p>
                         </div>
 
                         <div class="div_card">
                             <span>Média mínima da semana</span>
-                            <h1 style="color: rgb(47, 47, 128)">835</h1>
-                            <p class="p_media">umol/m/s</p>
+                            <h1 style="color: rgb(47, 47, 128)" id="ppfdMin">835</h1>
+                            <p class="p_media">PPDF</p>
                         </div>
 
                         <div class="div_card">
                             <span>Alertas</span>
-                            <h1>1</h1>
+                            <h1 id="txtQtdAlertas">1</h1>
                             <p>Não vistos!</p>
                         </div>
                     </div>
@@ -78,16 +79,16 @@
                             <h3>Mapa de Calor da Propriedade</h3>
 
                             <div class="grid-mapa">
-                                <a href="area1.html" class="area">Área 1</a>
-                                <a href="area2.html" class="area ativa"
-                                    >Área 2</a
+                                <a href="area1.html" class="area ">Hectare 1</a>
+                                <a href="area2.html" class="area ativa">Hectare 2</a>
+                                <a href="area3.html" class="area">Hectare 3</a>
+                                <a href="area4.html" class="area">Hectare 4</a>
+                                <a href="area5.html" class="area">Hectare 5</a>
+                                <a href="area6.html" class="area">Hectare 6</a>
+                                <a href="area7.html" class="area">Hectare 7</a>
+                                <a href="area8.html" class="area "
+                                    >Hectare 8</a
                                 >
-                                <a href="area3.html" class="area">Área 3</a>
-                                <a href="area4.html" class="area">Área 4</a>
-                                <a href="area5.html" class="area">Área 5</a>
-                                <a href="area6.html" class="area">Área 6</a>
-                                <a href="area7.html" class="area">Área 7</a>
-                                <a href="area8.html" class="area">Área 8</a>
                             </div>
                         </div>
 
@@ -101,6 +102,60 @@
     </body>
 
     <script>
+        let StatusArea = 'Ativo';
+        let PPFDMaximo = [700, 800, 900, 1000, 1100, 1200, 1300];
+        let PPFDMinimo =  [690, 790, 840, 890, 940, 990, 1090];
+
+        let limiteMaximo = 1500;
+        let limiteMinimo = 400;
+
+        function carregarDados(){
+            let mediaMaxima = 0;
+            let mediaMinima = 0;
+            let qtdAlertas = 0;
+
+            for(let i = 0; i<PPFDMaximo.length;i++){
+                mediaMaxima += PPFDMaximo[i];
+            };
+
+            mediaMaxima = mediaMaxima / PPFDMaximo.length;
+
+            for(let i = 0; i<PPFDMinimo.length;i++){
+                mediaMinima += PPFDMinimo[i];
+            }
+
+            mediaMinima = mediaMinima / PPFDMinimo.length;
+
+            ppfdMax.innerHTML = mediaMaxima.toFixed();
+
+            ppfdMin.innerHTML = mediaMinima.toFixed();
+
+            if(StatusArea == 'Ativo'){
+                statusSensor.innerHTML = `<h1 style="color: greenyellow">${StatusArea}</h1>`
+            }else{
+                 statusSensor.innerHTML = `<h1 style="color: red">${StatusArea}</h1>`
+            }
+
+
+            for(let i = 0;i < PPFDMaximo.length;i++){
+
+                if(PPFDMaximo[i] > limiteMaximo || PPFDMinimo[i] < limiteMinimo ){
+                    qtdAlertas++;
+                }
+
+            }
+
+            txtQtdAlertas.innerHTML = qtdAlertas
+
+
+
+
+        }
+
+        window.onload = carregarDados();
+
+       
+
         const grafPpfd = document.getElementById("graficoPPFD");
 
         new Chart(grafPpfd, {
@@ -118,22 +173,24 @@
                 datasets: [
                     {
                         label: "PPFD Máximo",
-                        data: [2000, 2100, 2300, 2150, 600, 2100, 1500],
-                        borderColor: "blue",
-                        backgroundColor: "blue",
+                        data: [PPFDMaximo[0], PPFDMaximo[1], PPFDMaximo[2], PPFDMaximo[3], PPFDMaximo[4], PPFDMaximo[5], PPFDMaximo[6]],
+                        borderColor: "orange",
+                        backgroundColor: "orange",
                         tension: 0.3,
                     },
                     {
                         label: "PPFD Mínimo",
-                        data: [800, 900, 850, 950, 200, 1100, 1050],
-                        borderColor: "orange",
-                        backgroundColor: "orange",
+                        data: [PPFDMinimo[0], PPFDMinimo[1], PPFDMinimo[2], PPFDMinimo[3], PPFDMinimo[4], PPFDMinimo[5], PPFDMinimo[6]],
+
+                        borderColor: "blue",
+                        backgroundColor: "blue",
                         tension: 0.3,
                     },
                 ],
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 plugins: {
                     title: {
                         display: true,
@@ -162,7 +219,7 @@
 
         let meta = 2500;
         let atual = 1822;
-        let restante = meta - atual;
+        let restante = meta - atual
 
         new Chart(document.getElementById("graficoMeta"), {
             type: "doughnut",
@@ -176,10 +233,11 @@
                 ],
             },
             options: {
+                maintainAspectRatio: false,
                 plugins: {
                     title: {
                         display: true,
-                        text: "Meta de PPFD",
+                        text: "Meta da Media diaria de PPFD",
                     },
                 },
             },

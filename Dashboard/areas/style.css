@@ -2,7 +2,7 @@
     margin:0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: "DM Sans", sans-serif;
 }
 
 body{
@@ -12,6 +12,7 @@ body{
 .p_titulo{
     font-size:15px;
     color: white;
+    font-weight: bold;
 }
 
 .sidebar{
@@ -97,24 +98,27 @@ body{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 15px;
-    margin-top: 60px;
-    padding: 10px;
+    margin-top: 20px;
+    padding: 5px;
 
 }
 
 .div_card{
     background-color: white;
-    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     border-radius: 12px;
     border: #4e7f35 1px solid;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    padding: 20px;
+    padding: 5px;
     text-align: center;
 }
 
 .div_card span{
-    font-size: 25px;
-    
+    font-size: 22px;
+    font-weight: bold;
 }
 
 .div_card h1{
@@ -193,32 +197,24 @@ body{
     display: grid;
     grid-template-columns: 2fr 2fr 1fr;
     gap: 15px;
-    margin-top: 80px;
+    margin-top: 30px;
 }
 
 
-.grande{
-    height: 320px;
+
+.box{
+        background-color: white;
+            height: 460px;
     box-shadow: 4px 0 15px rgba(0,0,0,0.2);
-    background-color: white;
     border-radius: 10px;
     border: #4e7f35 1px solid;
-    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    
 }
-
-.pequeno{
-    height: 320px;
-    box-shadow: 4px 0 15px rgba(0,0,0,0.2);
-    background-color: white;
-    border-radius: 10px;
-    border: #4e7f35 1px solid;
-    padding: 10px;
-}
-
 
 .box canvas{
-    width: 100%;
-    height: 100%;
+    flex: 1;
 }
 
 
@@ -226,19 +222,19 @@ body{
 .header{
     background-color: #6aa84f ;
     width:100%;
-    height: 100px;
+    height: 70px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 0px 40px;
 }
 
 .p_header{
-    font-size: 40px;
+    font-size: 25px;
     color: white;
     margin-left:250px;
-
+    font-weight: bold;
 }
-
 
 
 

@@ -33,7 +33,7 @@
                 <h4 class="titulo">Configurações da conta</h4>
 
                 <img src="./assets/imgs/Pessoa.png" class="img_perfil" />
-                <h4 class="nomeUsuario">Guilherme Cunha</h4>
+                <h4 class="nomeUsuario">Fernando Brandão</h4>
                 <button class="btn_sidebar">Configurações</button>
             </aside>
 
@@ -52,7 +52,7 @@
                     <div class="div_cards">
                         <div class="div_card">
                             <span>Hectares</span>
-                            <h1 style="color: rgb(236, 217, 11)" id="qtdAreas">
+                            <h1 style="color: rgb(31, 202, 31)" id="qtdAreas">
                                 8/8
                             </h1>
                             <p>Monitoradas!</p>
@@ -71,7 +71,7 @@
                             <span>Eficiencia do PPFD dos Hectares</span>
                             <div id="metaPPFD"></div>
                             <p id="metaDesejada"></p>
-                            <button onclick="mudarMeta()">Alterar meta</button>
+                            <button onclick="mudarMeta()" class="btn_alterarMeta">Alterar meta</button>
                         </div>
 
                         <div class="div_card">
@@ -131,9 +131,11 @@
                             X
                         </button>
                     </div>
+                    <div class="div_contModal">
                     <h3 class="titulo_modal" id="tituloModal"></h3>
 
                     <span class="p_modal" id="textoModal"></span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -143,7 +145,7 @@
         /* GRAFICO DE LINHA */
 
         let mediaMaxima = [900, 1000, 1300, 1200, 1550, 1880, 1564, 1400];
-        let mediaMinima = [835, 890, 850, 750, 550, 800, 813, 500];
+        let mediaMinima = [835, 890, 850, 750, 550, 800, 813, 300];
 
         let limiteMaximo = 1500;
         let limiteMinimo = 400;
@@ -184,22 +186,31 @@
 
             for (let i = 0; i < quantidadeHectares; i++) {
                 if (
-                    mediaMaxima[i] > limiteMaximo ||
-                    mediaMinima[i] < limiteMinimo
+                    mediaMaxima[i] > limiteMaximo
+                    
                 ) {
                     gridMapa.innerHTML += `                                <a
                                     href="./areas/area${i+1}.html"
                                     class="area"
                                     style="background-color: rgb(201, 6, 6)"
-                                    >hectares ${i+1}</a
+                                    >Hectare ${i+1}</a
                                 >`;
-                } else {
+                } else if(mediaMinima[i] < limiteMinimo){
+
+                    gridMapa.innerHTML += `                                <a
+                                    href="./areas/area${i+1}.html"
+                                    class="area"
+                                    style="background-color: rgb(237, 89, 89)"
+                                    >Hectare ${i+1}</a
+                                >`;
+
+                }else {
 
                     gridMapa.innerHTML += `                                <a
                                     href="./areas/area${i+1}.html"
                                     class="area"
                                     style="background-color: rgb(104, 197, 76)"
-                                    >hectares ${i+1}</a
+                                    >Hectare ${i+1}</a
                                 >`;
                 }
 
@@ -247,6 +258,7 @@
                             mediaMinima[2],
                             mediaMinima[3],
                             mediaMinima[4],
+                            mediaMinima[5],
                             mediaMinima[6],
                             mediaMinima[7],
                         ],
