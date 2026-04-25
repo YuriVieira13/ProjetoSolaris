@@ -145,45 +145,52 @@
     </body>
 
     <script>
-        /* GRAFICO DE LINHA */
 
-        let mediaMaxima = [900, 1000, 1300, 1200, 1550, 1880, 1564, 1400];
-        let mediaMinima = [835, 890, 850, 750, 550, 800, 813, 300];
+        /* GRAFICO DE BARRA */
 
-        let limiteMaximo = 1500;
-        let limiteMinimo = 400;
+        let mediaMaxima = [900, 1000, 1300, 1200, 1550, 1880, 1564, 1400];  /* Dados mocados que futuramente virão do banco de dados */
+        let mediaMinima = [835, 890, 850, 750, 550, 800, 813, 300];         /* Dados mocados que futuramente virão do banco de dados */
 
-        let meta = 30;
-        let porcentagemPPFDG = 0;
+        let limiteMaximo = 1500; /* Dados estabelecidos com base nas pesquisas feitas pelo grupo, links no modal */
+        let limiteMinimo = 400;  /* Dados estabelecidos com base nas pesquisas feitas pelo grupo, links no modal */
 
-        let quantidadeHectares = 8;
-        let acima = 0;
-            let abaixo = 0;
-            let normal = 0;
+        let meta = 0;           /* Variável que futuramente vai receber um valor via prompt do cliente.*/
+        let porcentagemPPFDG = 0; /* Variável que futuramente vai receber uma equação da relação entre as áreas adequadas e o total de áreas.*/
 
-        function carregarDados() {
+        let quantidadeHectares = 8; /* Variável que recebe a quantidade de hectares da área de plantil, futuramente será via BD.*/
+
+        /* GRAFICO DE PIZZA */
+
+        let acima = 0; /* Variáveis de contagem que serão usadas na produção do gráfico de pizza.*/
+        let abaixo = 0;
+        let normal = 0;
+
+        function carregarDados() {     /* Carregadar os dados na tela ao iniciar a página */
 
             let contadorAreasInadequadas = 0;
 
+            /* for utilizado para determinar a quantidade de áreas inadequadas / alertas */
             for (let i = 0; i < quantidadeHectares; i++) {
                 if (
                     mediaMaxima[i] > limiteMaximo ||
                     mediaMinima[i] < limiteMinimo
                 ) {
-                    contadorAreasInadequadas++;
+                    contadorAreasInadequadas++;    
                 }
             }
 
             qtdAreasInadequadas.innerHTML = `${contadorAreasInadequadas}`;
 
+            /* calculo utilizado para gerar a porcentagem de aproveitamento da área, sendo o total de áreas adquadas dividido pelo total */
+
             let porcentagemPPFD =
-                ((quantidadeHectares - contadorAreasInadequadas) /
+                ((quantidadeHectares - contadorAreasInadequadas) /  
                     quantidadeHectares) *
                 100;
 
             porcentagemPPFDG = porcentagemPPFD;
 
-            if (porcentagemPPFD < meta) {
+            if (porcentagemPPFD < meta) {   /* estilizar a cor da porcentagem com base na meta estabelecida via prompt */
                 metaPPFD.innerHTML = `<h1 style="color: rgb(255, 0, 0)">${porcentagemPPFD}%</h1>`;
             } else {
                 metaPPFD.innerHTML = `<h1 style="color:green">${porcentagemPPFD}%</h1>`;
@@ -191,7 +198,9 @@
 
             metaDesejada.innerHTML = `meta desejada: ${meta}%`;
 
-            for (let i = 0; i < quantidadeHectares; i++) {
+
+            /* for que gera o nosso mapa de calor, já com as cores equivalentes */
+            for (let i = 0; i < quantidadeHectares; i++) {              
                 if (mediaMaxima[i] > limiteMaximo) {
                     gridMapa.innerHTML += `                                <a
                                     href="./areas/area${i + 1}.html"
@@ -219,7 +228,7 @@
 
             }
 
-            
+            /* for para fazer a contagem dos valores que serão utilizados no dado de pizza */
             for (let qtdAreasPizza = 0; qtdAreasPizza < quantidadeHectares; qtdAreasPizza++) {
                     if (mediaMaxima[qtdAreasPizza] > limiteMaximo) {
                         acima++;
@@ -344,7 +353,7 @@
         new Chart(grafPizza, {
             type: "pie",
             data: {
-                labels: ["Acima da limite", "Normal", "Abaixo do limite"],
+                labels: ["Acima da limite", "Adequado", "Abaixo do limite"],
                 datasets: [
                     {
                         data: [acima, normal, abaixo],
@@ -370,6 +379,8 @@
             },
         });
 
+        /* Função que deixa a opção do cliente estipular a meta adequada para ele da produtividade desejada */
+
         function mudarMeta() {
             let metaAtual = prompt("Digite a nova meta desejada");
             meta = metaAtual;
@@ -383,28 +394,30 @@
             metaDesejada.innerHTML = `meta desejada: ${meta}%`;
         }
 
-        function exemplo() {
-            let areas = ["Area1", "Area2"];
-            let me;
-            let totalInefecientes = 0;
-        }
-
         function SobrePFFD() {
             document.getElementById("modal").style.display = "flex";
 
             tituloModal.innerHTML = "O que é o PPFD";
             textoModal.innerHTML =
-                "Traduzindo do inglês, PPFD significa 'Densidade de Fluxo de Fótons Fotossintéticos' De forma simples, é a medida da intensidade da luz que realmente pode ser utilizada pelas plantas no processo de fotossíntese. Ou seja, indica quanta “luz útil” está disponível para o desenvolvimento da planta.";
+                `Traduzindo do inglês, PPFD significa 'Densidade de Fluxo de Fótons Fotossintéticos' De forma simples, é a medida da intensidade da luz que realmente pode ser utilizada pelas plantas no processo de fotossíntese. Ou seja, indica quanta “luz útil” está disponível para o desenvolvimento da planta. <br> <br>
+                
+                Saiba mais: <a href="https://masterplants.com.br/o-que-e-dli-e-ppfd-qual-a-sua-relacao-e-importancia-em-cultivos/"> Mais detalhes sobre o PPFD </a>`;
         }
 
         function sobreMeta() {
             document.getElementById("modal").style.display = "flex";
             tituloModal.innerHTML = "O que as metas siginicam";
             textoModal.innerHTML = `O PPFD representa a quantidade de luz útil que a soja recebe para realizar a fotossíntese.
-Quando está abaixo do ideal, a planta cresce menos e produz pouca energia.
-Na faixa adequada, há desenvolvimento saudável e boa produtividade.
-Já acima do limite, o excesso de luz causa estresse e prejudica o funcionamento da planta.
-Em casos extremos, pode ocorrer fotoinibição e até “queima” das folhas.`;
+            Quando está abaixo do ideal, a planta cresce menos e produz pouca energia.
+            Na faixa adequada, há desenvolvimento saudável e boa produtividade.
+            Já acima do limite, o excesso de luz causa estresse e prejudica o funcionamento da planta.
+            Em casos extremos, pode ocorrer fotoinibição e até “queima” das folhas. <br> <br>
+            
+            Fontes: <br> <a href="https://www.mdpi.com/2073-4395/15/5/1037"> Artigo 1 (Impactos da quantidade abaixo de 400 PPFD) </a>
+            <br> <a href="https://www.sciencedirect.com/science/article/abs/pii/037842909390053P"> Artigo 2 (Ineficiência acima do limite) </a>
+            <br> <a href="    https://www.mdpi.com/2073-4395/9/8/428"> Artigo 3 (Testes na fase adquada) </a>
+            
+            `;
         }
 
         function fecharModal() {
