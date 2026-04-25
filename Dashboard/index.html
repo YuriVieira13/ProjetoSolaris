@@ -71,7 +71,12 @@
                             <span>Eficiencia do PPFD dos Hectares</span>
                             <div id="metaPPFD"></div>
                             <p id="metaDesejada"></p>
-                            <button onclick="mudarMeta()" class="btn_alterarMeta">Alterar meta</button>
+                            <button
+                                onclick="mudarMeta()"
+                                class="btn_alterarMeta"
+                            >
+                                Alterar meta
+                            </button>
                         </div>
 
                         <div class="div_card">
@@ -101,9 +106,7 @@
                         <div class="box mapa">
                             <h3>Mapa de Calor da Propriedade</h3>
 
-                            <div class="grid-mapa" id="gridMapa">
-                          
-                            </div>
+                            <div class="grid-mapa" id="gridMapa"></div>
                         </div>
                         <div class="box interogacao">
                             <button
@@ -132,9 +135,9 @@
                         </button>
                     </div>
                     <div class="div_contModal">
-                    <h3 class="titulo_modal" id="tituloModal"></h3>
+                        <h3 class="titulo_modal" id="tituloModal"></h3>
 
-                    <span class="p_modal" id="textoModal"></span>
+                        <span class="p_modal" id="textoModal"></span>
                     </div>
                 </div>
             </div>
@@ -154,8 +157,12 @@
         let porcentagemPPFDG = 0;
 
         let quantidadeHectares = 8;
+        let acima = 0;
+            let abaixo = 0;
+            let normal = 0;
 
         function carregarDados() {
+
             let contadorAreasInadequadas = 0;
 
             for (let i = 0; i < quantidadeHectares; i++) {
@@ -185,37 +192,43 @@
             metaDesejada.innerHTML = `meta desejada: ${meta}%`;
 
             for (let i = 0; i < quantidadeHectares; i++) {
-                if (
-                    mediaMaxima[i] > limiteMaximo
-                    
-                ) {
+                if (mediaMaxima[i] > limiteMaximo) {
                     gridMapa.innerHTML += `                                <a
-                                    href="./areas/area${i+1}.html"
+                                    href="./areas/area${i + 1}.html"
                                     class="area"
                                     style="background-color: rgb(201, 6, 6)"
-                                    >Hectare ${i+1}</a
+                                    >Hectare ${i + 1}</a
                                 >`;
-                } else if(mediaMinima[i] < limiteMinimo){
-
+                } else if (mediaMinima[i] < limiteMinimo) {
                     gridMapa.innerHTML += `                                <a
-                                    href="./areas/area${i+1}.html"
+                                    href="./areas/area${i + 1}.html"
                                     class="area"
                                     style="background-color: rgb(237, 89, 89)"
-                                    >Hectare ${i+1}</a
+                                    >Hectare ${i + 1}</a
                                 >`;
-
-                }else {
-
+                } else {
                     gridMapa.innerHTML += `                                <a
-                                    href="./areas/area${i+1}.html"
+                                    href="./areas/area${i + 1}.html"
                                     class="area"
                                     style="background-color: rgb(104, 197, 76)"
-                                    >Hectare ${i+1}</a
+                                    >Hectare ${i + 1}</a
                                 >`;
                 }
 
-                qtdAlertas.innerHTML = contadorAreasInadequadas
+                qtdAlertas.innerHTML = contadorAreasInadequadas;
+
             }
+
+            
+            for (let qtdAreasPizza = 0; qtdAreasPizza < quantidadeHectares; qtdAreasPizza++) {
+                    if (mediaMaxima[qtdAreasPizza] > limiteMaximo) {
+                        acima++;
+                    } else if (mediaMinima[qtdAreasPizza] < limiteMinimo) {
+                        abaixo++;
+                    } else {
+                        normal++;
+                    }
+                }
         }
 
         window.onload = carregarDados();
@@ -334,7 +347,7 @@
                 labels: ["Acima da limite", "Normal", "Abaixo do limite"],
                 datasets: [
                     {
-                        data: [4, 2, 2],
+                        data: [acima, normal, abaixo],
                         backgroundColor: [
                             "rgb(201, 6, 6)",
                             "rgb(104, 197, 76)",

@@ -108,11 +108,11 @@
 
         let limiteMaximo = 1500;
         let limiteMinimo = 400;
+        let mediaMaxima = 0;
+        let mediaMinima = 0;
+        let qtdAlertas = 0;
 
         function carregarDados(){
-            let mediaMaxima = 0;
-            let mediaMinima = 0;
-            let qtdAlertas = 0;
 
             for(let i = 0; i<PPFDMaximo.length;i++){
                 mediaMaxima += PPFDMaximo[i];
@@ -217,9 +217,9 @@
 
         const grafBarraMeta = document.getElementById("graficoMeta");
 
-        let meta = 2500;
-        let atual = 1822;
-        let restante = meta - atual
+        let meta = 1500;
+        let atual = (mediaMaxima + mediaMinima) / 2;
+        let restante = meta - atual;
 
         new Chart(document.getElementById("graficoMeta"), {
             type: "doughnut",
