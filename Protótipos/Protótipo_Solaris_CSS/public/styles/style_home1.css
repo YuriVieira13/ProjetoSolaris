@@ -1,0 +1,227 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@200;300;400;600;700&display=swap');
+@import url('https://fonts.cdnfonts.com/css/codec-pro');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
+
+
+
+:root {
+  --cor-verde: #306b17;
+  --cor-verde-claro: #449920;
+  --cor-verde-escuro: #2f5d1c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  color: white;
+  min-height: 100vh;
+  background-color: var(--cor-verde-escuro);
+}
+
+.home-fundo {
+  height: 100vh;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../asstes/imgs/background_home.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+  .titles_icons {
+  display: flex;
+  align-items: center;
+}
+
+.titles_icons i {
+  font-size: 40px;
+  color: var(--cor-verde-claro);
+}
+
+/* ======================= HEADER ======================= */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 40px 15vh;
+}
+
+.header img {
+  width: 200px;
+  height: 200px;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 30px;
+  padding-right: 40px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white
+}
+
+.navbar li {
+  list-style: none;
+  color: white
+}
+
+.login {
+  background: #fda70f;
+  padding: 6px 20px;
+  border-radius: 6px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.login:hover {
+  background: #d48b0c;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.banner {
+  width: 75%;
+  margin-left: 15%;
+  text-align: start;
+}
+
+.banner h2 {
+  text-align: center;
+  padding-bottom: 10vh;
+  letter-spacing: 0.75em;
+  font-family: "Codec Pro", sans-serif;
+}
+
+.banner h1 {
+  font-size: 56px;
+  padding-bottom: 5vh;
+  font-weight: normal;
+}
+
+.banner p {
+  padding-bottom: 5vh;
+}
+
+/* ======================= CARROSEL ======================= */
+
+.carrosel {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  max-width: 100vw;
+  height: 40vh;
+}
+
+.img1 {
+  background: url("../asstes/imgs/plantio_soja.png") no-repeat center;
+  background-size: cover;
+  width: 25vw;
+  height: 40vh;
+  padding: 0 0 0 5vw;
+}
+
+.img2 {
+  background: url("../asstes/imgs/plantio_soja2.png") no-repeat center;
+  background-size: cover;
+  width: 15vw;
+  height: 40vh;
+  padding: 0 5vw 0 5vw;
+}
+
+.img3 {
+  background: url("../asstes/imgs/plantio_soja4.png") no-repeat center;
+  background-size: cover;
+  width: 25vw;
+  height: 40vh;
+  padding: 0 5vw 0 0;
+}
+
+/* ======================= CONTEUDO 1 ======================= */
+
+.conteudo1 {
+  background-color: var(--cor-verde-escuro);
+  text-align: center;
+  padding: 40vh 0 15vh 0;
+}
+
+/* ======================= CONTEUDO 2 ======================= */
+
+.sobre {
+  background-color: var(--cor-verde-escuro);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+  padding: 15vh 15vw 15vh 15vw;
+  height: 65vh;
+}
+
+.sobre h1 {
+  font-size: 56px;
+  padding-bottom: 5vh;
+}
+
+.sobre .titles_icons {
+  padding: 0 0 5vh 0;
+}
+
+/* ======================= CONTEUDO 3 ======================= */
+
+
+.solucoes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--cor-verde-escuro);
+  height: 100vh;
+}
+
+.solucoes_img {
+  display: flex;
+  background: url("../asstes/imgs/plantio_soja5.png") no-repeat center;
+  width: 35vw;
+  height: 85vh;
+  border-radius: 10px 10px 0 10px;
+}
+
+.solucoes .container {
+  width: 35vw;
+  height: 85vh;
+  background-color: var(--cor-verde);
+  border-radius: 0 10px 10px 0;
+}
+
+.solucoes .container .titles_icons {
+  padding: 5vh 2.5vw 2.5vh 2.5vw;
+}
+
+.solucoes .container p {
+  font-weight: bold;
+}
+
+.solucoes .container h1 {
+  padding: 0 2.5vw 2.5vh 2.5vw;
+}
+
+.solucoes .container h2 {
+  padding: 1vh 2.5vw 0 2.5vw;
+  font-weight: normal;
+}

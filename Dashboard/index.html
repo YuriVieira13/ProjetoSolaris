@@ -369,16 +369,17 @@
 
             tituloModal.innerHTML = "O que é o PPFD";
             textoModal.innerHTML =
-                " Traduzindo a sigla do inglês, PPFD significa “Densidade de Fluxo de Fótons Fotossintéticos”. Para entender melhor: o PPFD é um termo que se refere à densidade (intensidade) da luz que de fato é útil para fotossíntese das plantas. ";
+                "Traduzindo do inglês, PPFD significa 'Densidade de Fluxo de Fótons Fotossintéticos' De forma simples, é a medida da intensidade da luz que realmente pode ser utilizada pelas plantas no processo de fotossíntese. Ou seja, indica quanta “luz útil” está disponível para o desenvolvimento da planta.";
         }
 
         function sobreMeta() {
             document.getElementById("modal").style.display = "flex";
             tituloModal.innerHTML = "O que as metas siginicam";
-            textoModal.innerHTML = `400 < Ruim <br>
-            800-1500 Ideal <br>
-            1500-1800 saturaração<br>
-            >1800 - 2000 pode dar estresse`;
+            textoModal.innerHTML = `O PPFD representa a quantidade de luz útil que a soja recebe para realizar a fotossíntese.
+Quando está abaixo do ideal, a planta cresce menos e produz pouca energia.
+Na faixa adequada, há desenvolvimento saudável e boa produtividade.
+Já acima do limite, o excesso de luz causa estresse e prejudica o funcionamento da planta.
+Em casos extremos, pode ocorrer fotoinibição e até “queima” das folhas.`;
         }
 
         function fecharModal() {
