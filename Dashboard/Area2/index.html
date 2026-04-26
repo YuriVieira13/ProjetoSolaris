@@ -53,7 +53,7 @@
                         <div class="div_card">
                             <span>Hectares</span>
                             <h1 style="color: rgb(31, 202, 31)" id="qtdAreas">
-                                8/8
+                                10/10
                             </h1>
                             <p>Monitorados!</p>
                         </div>
@@ -148,8 +148,8 @@
 
         /* GRAFICO DE BARRA */
 
-        let mediaMaxima = [900, 1000, 1300, 1200, 1550, 1880, 1564, 1400];  /* Dados mocados que futuramente virão do banco de dados */
-        let mediaMinima = [835, 890, 850, 750, 550, 800, 813, 300];         /* Dados mocados que futuramente virão do banco de dados */
+        let mediaMaxima = [1250, 1494, 940, 1514, 1661, 870, 1420, 1593, 1330, 1020]; /* Dados mocados que futuramente virão do banco de dados */
+        let mediaMinima = [620, 450, 780, 579, 704, 540, 397, 509, 483, 373];         /* Dados mocados que futuramente virão do banco de dados */
 
         let limiteMaximo = 1500; /* Dados estabelecidos com base nas pesquisas feitas pelo grupo, links no modal */
         let limiteMinimo = 400;  /* Dados estabelecidos com base nas pesquisas feitas pelo grupo, links no modal */
@@ -157,7 +157,7 @@
         let meta = 0;           /* Variável que futuramente vai receber um valor via prompt do cliente.*/
         let porcentagemPPFDG = 0; /* Variável que futuramente vai receber uma equação da relação entre as áreas adequadas e o total de áreas.*/
 
-        let quantidadeHectares = 8; /* Variável que recebe a quantidade de hectares da área de plantil, futuramente será via BD.*/
+        let quantidadeHectares = 10; /* Variável que recebe a quantidade de hectares da área de plantil, futuramente será via BD.*/
 
         /* GRAFICO DE PIZZA */
 
@@ -256,6 +256,8 @@
                     "Hectare 6",
                     "Hectare 7",
                     "Hectare 8",
+                    "Hectare 9",
+                    "Hectare 10",
                 ],
                 datasets: [
                     {
@@ -269,6 +271,8 @@
                             mediaMaxima[5],
                             mediaMaxima[6],
                             mediaMaxima[7],
+                            mediaMaxima[8],
+                            mediaMaxima[9],
                         ],
                         backgroundColor: "#3b6cb7",
                     },
@@ -283,12 +287,16 @@
                             mediaMinima[5],
                             mediaMinima[6],
                             mediaMinima[7],
+                            mediaMinima[8],
+                            mediaMinima[9],
                         ],
                         backgroundColor: "#e67e22",
                     },
                     {
                         label: "Limite Superior",
                         data: [
+                            limiteMaximo,
+                            limiteMaximo,
                             limiteMaximo,
                             limiteMaximo,
                             limiteMaximo,
@@ -307,6 +315,8 @@
                     {
                         label: "Limite infeirior",
                         data: [
+                            limiteMinimo,
+                            limiteMinimo,
                             limiteMinimo,
                             limiteMinimo,
                             limiteMinimo,
