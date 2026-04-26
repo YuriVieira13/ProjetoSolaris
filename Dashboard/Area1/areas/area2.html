@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="./style.css" />
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <title>Hectare B1</title>
+        <title>Hectare A1</title>
     </head>
     <body>
         <div class="div_container">
@@ -19,13 +19,13 @@
                 <div class="div_barra"></div>
 
                 <nav class="navbar">
-                    <a  href="../index.html" class="btn_sidebar">Dashboard</a>
+                    <a href="../index.html" class="btn_sidebar">Dashboard</a>
 
-                    <button class="btn_sidebar">Sensores</button>
+                    <a class="btn_sidebar">Alertas</a>
 
-                    <button class="btn_sidebar">Relatorios</button>
+                    <a class="btn_sidebar">Relatorios</a>
 
-                    <button class="btn_sidebar">Alertas</button>
+                    <a href="../../index.html" class="btn_sidebar">Selecionar Área</a>
                 </nav>
 
                 <div class="div_barra"></div>
@@ -38,7 +38,7 @@
             </aside>
 
             <div class="header">
-                <p class="p_header">Hectare B1</p>
+                <p class="p_header">Hectare A2</p>
                 <p class="p_titulo">Ultima medição: 1000 PPFD 27/04/2026 9:55 </p>
             </div>
 
@@ -80,10 +80,10 @@
 
                             <div class="grid-mapa">
                                 <a href="area1.html" class="area ">Hectare 1</a>
-                                <a href="area2.html" class="area ">Hectare 2</a>
-                                <a href="area3.html" class="area ">Hectare 3</a>
-                                <a href="area4.html" class="area ">Hectare 4</a>
-                                <a href="area5.html" class="area ativa">Hectare 5</a>
+                                <a href="area2.html" class="area ativa">Hectare 2</a>
+                                <a href="area3.html" class="area">Hectare 3</a>
+                                <a href="area4.html" class="area">Hectare 4</a>
+                                <a href="area5.html" class="area">Hectare 5</a>
                                 <a href="area6.html" class="area">Hectare 6</a>
                                 <a href="area7.html" class="area">Hectare 7</a>
                                 <a href="area8.html" class="area "
@@ -103,17 +103,18 @@
 
     <script>
         let StatusArea = 'Ativo';
-        let PPFDMaximo = [1250, 1350, 1450, 1550, 1650, 1750, 1850];
-        let PPFDMinimo =         [350, 450, 500, 550, 600, 650, 750];
+        let PPFDMaximo = [700, 800, 900, 1000, 1100, 1200, 1300];
+        let PPFDMinimo =  [690, 790, 840, 890, 940, 990, 1090];
 
         let limiteMaximo = 1500;
         let limiteMinimo = 400;
         let mediaMaxima = 0;
-        let mediaMinima = 0;
-        let qtdAlertas = 0;
+            let mediaMinima = 0;
+            let qtdAlertas = 0;
 
         function carregarDados(){
-        
+
+
             for(let i = 0; i<PPFDMaximo.length;i++){
                 mediaMaxima += PPFDMaximo[i];
             };
@@ -253,8 +254,8 @@
         const grafBarraMeta = document.getElementById("graficoMeta");
 
         let meta = 1500;
-        let atual = (mediaMaxima + mediaMinima) / 2;
-        let restante = meta - atual;
+        let atual = 1822;
+        let restante = meta - atual
 
         new Chart(document.getElementById("graficoMeta"), {
             type: "doughnut",

@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="./style.css" />
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <title>Hectare A3</title>
+        <title>Hectare A4</title>
     </head>
     <body>
         <div class="div_container">
@@ -17,15 +17,14 @@
                 />
 
                 <div class="div_barra"></div>
-
                 <nav class="navbar">
-                    <a  href="../index.html" class="btn_sidebar">Dashboard</a>
+                    <a href="../index.html" class="btn_sidebar">Dashboard</a>
 
-                    <button class="btn_sidebar">Sensores</button>
+                    <a class="btn_sidebar">Alertas</a>
 
-                    <button class="btn_sidebar">Relatorios</button>
+                    <a class="btn_sidebar">Relatorios</a>
 
-                    <button class="btn_sidebar">Alertas</button>
+                    <a href="../../index.html" class="btn_sidebar">Selecionar Área</a>
                 </nav>
 
                 <div class="div_barra"></div>
@@ -38,7 +37,7 @@
             </aside>
 
             <div class="header">
-                <p class="p_header">Hectare A3</p>
+                <p class="p_header">Hectare A4</p>
                 <p class="p_titulo">Ultima medição: 1000 PPFD 27/04/2026 9:55 </p>
             </div>
 
@@ -81,8 +80,8 @@
                             <div class="grid-mapa">
                                 <a href="area1.html" class="area ">Hectare 1</a>
                                 <a href="area2.html" class="area ">Hectare 2</a>
-                                <a href="area3.html" class="area ativa">Hectare 3</a>
-                                <a href="area4.html" class="area">Hectare 4</a>
+                                <a href="area3.html" class="area ">Hectare 3</a>
+                                <a href="area4.html" class="area ativa">Hectare 4</a>
                                 <a href="area5.html" class="area">Hectare 5</a>
                                 <a href="area6.html" class="area">Hectare 6</a>
                                 <a href="area7.html" class="area">Hectare 7</a>
@@ -103,8 +102,8 @@
 
     <script>
         let StatusArea = 'Ativo';
-        let PPFDMaximo = [1000, 1100, 1200, 1300, 1400, 1500, 1600];
-        let PPFDMinimo =    [650, 750, 800, 850, 900, 950, 1050];
+        let PPFDMaximo = [900, 1000, 1100, 1200, 1300, 1400, 1500];
+        let PPFDMinimo =        [550, 650, 700, 750, 800, 850, 950];
 
         let limiteMaximo = 1500;
         let limiteMinimo = 400;
@@ -186,7 +185,8 @@
                         backgroundColor: "blue",
                         tension: 0.3,
                     },
-                    {
+
+                       {
                         label: "Limite Superior",
                         data: [
                             limiteMaximo,

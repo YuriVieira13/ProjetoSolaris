@@ -19,31 +19,128 @@
                 <div class="div_barra"></div>
 
                 <nav class="navbar">
-                    <h4 class="nomeUsuario">SELECIONE A ÁREA DESEJADA</h4>
-                    
-                    <a href="./Area1/index.html" class="btn_sidebar">Área de Plantio 1</a>
+                    <a href="./index.html" class="btn_sidebar">Dashboard</a>
 
-                    <a href="./Area2/index.html" class="btn_sidebar">Área de Plantio 2</a>
+                    <a class="btn_sidebar">Alertas</a>
+
+                    <a class="btn_sidebar">Relatorios</a>
+
+                    <a href="../index.html" class="btn_sidebar">Selecionar Àrea</a>
                 </nav>
 
-               
+                <div class="div_barra"></div>
 
+                <h4 class="titulo">Configurações da conta</h4>
 
+                <img src="./assets/imgs/Pessoa.png" class="img_perfil" />
+                <h4 class="nomeUsuario">Fernando Brandão</h4>
+                <button class="btn_sidebar">Configurações</button>
             </aside>
 
-            
+            <div class="header">
+                <p class="p_header">Segunda área de plantio</p>
 
-
-
-            <div class="main">
-                <h4 class="tituloMapa">Clique no mapa na area desejada</h4>
-                <a href="./Area1/index.html" class="btn_area area1"></a>
-
-                <a href="./Area2/index.html" class="btn_area area2"></a>
-
+                <a
+                    href="../Protótipos/Protótipo_Solaris_CSS/public/Cadastro.html"
+                    class="btn_sidebar"
+                    >Cadastro</a
+                >
             </div>
 
-  
+            <div class="main">
+                <section>
+                    <div class="div_cards">
+                        <div class="div_card">
+                            <span>Hectares</span>
+                            <h1 style="color: rgb(31, 202, 31)" id="qtdAreas">
+                                8/8
+                            </h1>
+                            <p>Monitorados!</p>
+                        </div>
+
+                        <div class="div_card">
+                            <span>Hectares inadequadas</span>
+                            <h1 style="color: red" id="qtdAreasInadequadas">
+                                2
+                            </h1>
+                            <p>Periodo</p>
+                            <p style="font-size: 17px">20/04 - 27/04</p>
+                        </div>
+
+                        <div class="div_card">
+                            <span>Eficiencia do PPFD dos Hectares</span>
+                            <div id="metaPPFD"></div>
+                            <p id="metaDesejada"></p>
+                            <button
+                                onclick="mudarMeta()"
+                                class="btn_alterarMeta"
+                            >
+                                Alterar meta
+                            </button>
+                        </div>
+
+                        <div class="div_card">
+                            <span>Alertas</span>
+                            <h1 style="color: red" id="qtdAlertas"></h1>
+                            <p>Não vistos</p>
+                        </div>
+                    </div>
+
+                    <section class="conteudo">
+                        <div class="box interogacao">
+                            <button
+                                class="btn_interogacao"
+                                onclick="SobrePFFD()"
+                            >
+                                <img
+                                    src="./assets/imgs/interogacao.png"
+                                    alt=""
+                                    class="img_interogacao"
+                                />
+                            </button>
+                            <div class="grande">
+                                <canvas id="graficoLinha"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="box mapa">
+                            <h3>Mapa de Calor da Propriedade</h3>
+
+                            <div class="grid-mapa" id="gridMapa"></div>
+                        </div>
+                        <div class="box interogacao">
+                            <button
+                                class="btn_interogacao"
+                                onclick="sobreMeta()"
+                            >
+                                <img
+                                    src="./assets/imgs/interogacao.png"
+                                    alt=""
+                                    class="img_interogacao"
+                                />
+                            </button>
+                            <div class="pequeno">
+                                <canvas id="graficoPizza"></canvas>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+            </div>
+
+            <div class="div_modal" id="modal">
+                <div class="div_caixaModal">
+                    <div class="interogacao">
+                        <button class="btn_fechar" onclick="fecharModal()">
+                            X
+                        </button>
+                    </div>
+                    <div class="div_contModal">
+                        <h3 class="titulo_modal" id="tituloModal"></h3>
+
+                        <span class="p_modal" id="textoModal"></span>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 
