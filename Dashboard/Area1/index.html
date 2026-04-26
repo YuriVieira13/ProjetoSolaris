@@ -166,6 +166,8 @@
 
             let contadorAreasInadequadas = 0;
 
+
+
             /* for utilizado para determinar a quantidade de áreas inadequadas / alertas */
             for (let i = 0; i < quantidadeHectares; i++) {
                 if (
@@ -175,6 +177,9 @@
                     contadorAreasInadequadas++;    
                 }
             }
+
+         
+
 
             qtdAreasInadequadas.innerHTML = `${contadorAreasInadequadas}`;
 
@@ -235,6 +240,9 @@
                         normal++;
                     }
                 }
+
+
+            
         }
 
         window.onload = carregarDados();

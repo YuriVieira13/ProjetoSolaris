@@ -114,6 +114,7 @@
         let mediaMaxima = 0;
             let mediaMinima = 0;
             let qtdAlertas = 0;
+        let diasBons = 0
       
         let metaAtual = 2500;
 
@@ -150,6 +151,8 @@
                     qtdAlertas++;
                 }
             }
+
+        
 
             txtQtdAlertas.innerHTML = qtdAlertas;
         }
@@ -269,34 +272,30 @@
 
         const grafBarraMeta = document.getElementById("graficoMeta");
 
-        let meta = 1500;
-        let atual = (mediaMaxima + mediaMinima) / 2;
-        let restante = meta - atual;
 
-        if (restante < 0) {
-            restante = 0;
-        }
+       diasBons = 7 - qtdAlertas
+  
 
-        new Chart(document.getElementById("graficoMeta"), {
-            type: "doughnut",
-            data: {
-                labels: ["Atual", "Restante"],
-                datasets: [
-                    {
-                        data: [atual, restante],
-                        backgroundColor: ["green", "red"],
-                    },
-                ],
-            },
-            options: {
-                maintainAspectRatio: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: "Meta da Media diaria de PPFD",
-                    },
-                },
-            },
-        });
+       new Chart(document.getElementById("graficoMeta"), {
+      type: "doughnut",
+      data: {
+          labels: ["sem incidentes", "com incidentes"],
+          datasets: [
+              {
+                  data: [diasBons, qtdAlertas],
+                  backgroundColor: ["green", "red"],
+              },
+          ],
+      },
+      options: {
+          maintainAspectRatio: false,
+          plugins: {
+              title: {
+                  display: true,
+                  text: "Dias com incidentes de PPFD",
+              },
+          },
+      },
+  });
     </script>
 </html>
