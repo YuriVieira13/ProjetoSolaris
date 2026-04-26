@@ -131,3 +131,12 @@ body{
     padding: 5px;
 }
 
+.div_btnCadastro{
+    display: flex;
+    align-items: end;
+    height: 100%;
+}
+
+.btn_cadastroSide{
+    margin-top: 20px;
+}
