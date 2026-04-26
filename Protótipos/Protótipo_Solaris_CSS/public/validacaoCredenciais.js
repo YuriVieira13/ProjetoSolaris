@@ -163,7 +163,7 @@ function cadastrar() {
         alert(`Por favor, preencha todos os campos para prosseguir.`)
     } else {
         setTimeout(() => { //Espera 2 segundos antes de direcionar o usuário para tela de login
-            window.location.href = "Login.html"
+            window.location.href = "../../../Dashboard/index.html"
         }, 2000);
     }
 }
@@ -179,7 +179,7 @@ function logar() {
         alert( 'Preencha todos os campos para prosseguir.')
     } else if (emailInserido == emailFinal && senhaInserida == senhaFinal) {
         setTimeout(() => { //Espera 2 segundos antes de direcionar o usuário para tela de dashboard.
-            window.location.href = "../../../DashBoard/index.html"
+            window.location.href = "../../../Dashboard/index.html"
         }, 2000);
     } else {
         alert('Credenciais incorretas')
