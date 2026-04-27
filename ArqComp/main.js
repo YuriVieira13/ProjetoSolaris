@@ -12,16 +12,28 @@ const HABILITAR_OPERACAO_INSERIR = true;
 
 // função para comunicação serial
 const serial = async (
+<<<<<<< HEAD
     valoresSensorLuminosidade,
+=======
+    valoresSensorAnalogico,
+    //valoresSensorDigital,
+>>>>>>> 7aa608601eb69e4a958f66c0d69bd1c98b775407
 ) => {
 
     // conexão com o banco de dados MySQL
     let poolBancoDados = mysql.createPool(
         {
+<<<<<<< HEAD
             host: '10.18.32.173',
             user: 'UsuarioInserirApi',
             password: 'Solaris123@',
             database: 'solaris',
+=======
+            host: '127.0.0.1',
+            user: 'aluno',
+            password: 'Sptech#2024',
+            database: 'teste_solaris',
+>>>>>>> 7aa608601eb69e4a958f66c0d69bd1c98b775407
             port: 3307
         }
     ).promise();
@@ -50,20 +62,36 @@ const serial = async (
     arduino.pipe(new serialport.ReadlineParser({ delimiter: '\r\n' })).on('data', async (data) => {
         console.log(data);
         const valores = data.split(';');
+<<<<<<< HEAD
         const sensorLuminosidade = parseFloat(valores[0]);
 
         // armazena os valores dos sensores nos arrays correspondentes
         valoresSensorLuminosidade.push(sensorLuminosidade);
+=======
+        //const sensorDigital = parseInt(valores[1]);
+        const sensorAnalogico = parseFloat(valores[0]);
+
+        // armazena os valores dos sensores nos arrays correspondentes
+        valoresSensorAnalogico.push(sensorAnalogico);
+        //valoresSensorDigital.push(sensorDigital);
+>>>>>>> 7aa608601eb69e4a958f66c0d69bd1c98b775407
 
         // insere os dados no banco de dados (se habilitado)
         if (HABILITAR_OPERACAO_INSERIR) {
 
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
+<<<<<<< HEAD
                 'INSERT INTO leitura (fkSensor, ValorLeitura) VALUES (1, ?)',
                 [sensorLuminosidade]
             );
             console.log("valores inseridos no banco: ", sensorLuminosidade);
+=======
+                'INSERT INTO sensor (valor_sensor) VALUES (?)',
+                [sensorAnalogico]
+            );
+            console.log("valores inseridos no banco: ", sensorAnalogico);
+>>>>>>> 7aa608601eb69e4a958f66c0d69bd1c98b775407
 
         }
 
@@ -77,7 +105,12 @@ const serial = async (
 
 // função para criar e configurar o servidor web
 const servidor = (
+<<<<<<< HEAD
     valoresSensorLuminosidade,
+=======
+    valoresSensorAnalogico,
+    //valoresSensorDigital
+>>>>>>> 7aa608601eb69e4a958f66c0d69bd1c98b775407
 ) => {
     const app = express();
 
@@ -94,23 +127,47 @@ const servidor = (
     });
 
     // define os endpoints da API para cada tipo de sensor
+<<<<<<< HEAD
     app.get('/sensores/luminosidade', (_, response) => {
         return response.json(valoresSensorLuminosidade);
     });
+=======
+    app.get('/sensores/analogico', (_, response) => {
+        return response.json(valoresSensorAnalogico);
+    });
+    // app.get('/sensores/digital', (_, response) => {
+    //     return response.json(valoresSensorDigital);
+    // });
+>>>>>>> 7aa608601eb69e4a958f66c0d69bd1c98b775407
 }
 
 // função principal assíncrona para iniciar a comunicação serial e o servidor web
 (async () => {
     // arrays para armazenar os valores dos sensores
+<<<<<<< HEAD
     const valoresSensorLuminosidade = [];
 
     // inicia a comunicação serial
     await serial(
         valoresSensorLuminosidade
+=======
+    const valoresSensorAnalogico = [];
+    //const valoresSensorDigital = [];
+
+    // inicia a comunicação serial
+    await serial(
+        valoresSensorAnalogico,
+        //valoresSensorDigital
+>>>>>>> 7aa608601eb69e4a958f66c0d69bd1c98b775407
     );
 
     // inicia o servidor web
     servidor(
+<<<<<<< HEAD
         valoresSensorLuminosidade
+=======
+        valoresSensorAnalogico,
+        //valoresSensorDigital
+>>>>>>> 7aa608601eb69e4a958f66c0d69bd1c98b775407
     );
 })();

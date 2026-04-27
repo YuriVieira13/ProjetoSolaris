@@ -11,7 +11,11 @@
     <h1>Gráfico de Luminosidade</h1>
     <div style="display: flex;">
         <div style="width: 100%;">
+<<<<<<< HEAD
             <canvas id="sensorLuminosidade"></canvas>
+=======
+            <canvas id="sensorAnalogico"></canvas>
+>>>>>>> 7aa608601eb69e4a958f66c0d69bd1c98b775407
         </div>
         <!-- <div style="width: 50%;">
             <canvas id="sensorDigital"></canvas>
@@ -19,7 +23,11 @@
     </div>
 
     <script>
+<<<<<<< HEAD
         var sensorLuminosidade = new Chart(document.getElementById('sensorLuminosidade').getContext('2d'), {
+=======
+        var sensorAnalogico = new Chart(document.getElementById('sensorAnalogico').getContext('2d'), {
+>>>>>>> 7aa608601eb69e4a958f66c0d69bd1c98b775407
             type: 'line',
             data: {
                 datasets: [{
@@ -44,6 +52,34 @@
             }
         });
 
+<<<<<<< HEAD
+=======
+        // var sensorDigital = new Chart(document.getElementById('sensorDigital').getContext('2d'), {
+        //     type: 'line',
+        //     data: {
+        //         datasets: [{
+        //             label: 'Digital',
+        //             borderColor: '#63B1BC',
+        //             backgroundColor: '#0762C8'
+        //         }]
+        //     },
+        //     options: {
+        //         scales: {
+        //             x: {
+        //                 beginAtZero: true
+        //             },
+        //             y: {
+        //                 title: {
+        //                     display: true,
+        //                     text: '(0-1)'
+        //                 },
+        //                 beginAtZero: true
+        //             }
+        //         }
+        //     }
+        // });
+
+>>>>>>> 7aa608601eb69e4a958f66c0d69bd1c98b775407
         var paginacao = {};
         var tempo = {};
 
@@ -77,7 +113,12 @@
         }
 
         setInterval(() => {
+<<<<<<< HEAD
             obterDados(sensorLuminosidade, 'luminosidade');
+=======
+            obterDados(sensorAnalogico, 'analogico');
+            //obterDados(sensorDigital, 'digital');
+>>>>>>> 7aa608601eb69e4a958f66c0d69bd1c98b775407
         }, 1000);
 
     </script>

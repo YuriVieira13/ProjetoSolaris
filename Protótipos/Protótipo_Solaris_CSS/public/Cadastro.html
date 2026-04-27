@@ -9,71 +9,68 @@
     <link rel="stylesheet" href="styles/style.css" />
     <link rel="icon" href="assets/icons" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
-
+    <script src="validacaoCredenciais.js"></script>
 </head>
 
 <body>
 
     <!-- Início Header -->
+    <div class="cadastro">
+        <div class="header" id="header">
+            <a  href="../../../Dashboard/index.html" class="btn-voltar"><- Voltar</a>
+         
 
-    <div class="header">
-        <div class="titulo">Solaris</div>
-        <ul class="navbar">
-            <li class="sumario">
-                <a href="#">Home</a>
-            </li>
-            <li>
-                <a href="Grafico.html">Gráfico</a>
-            </li>
-            <li>
-                <a href="Avalicao.html">Avaliação</a>
-            </li>
-            <li>
-                <a href="Contato.html">Contato</a>
-            </li>
-            </li>
-            <li>
-                <a href="Login.html">Login</a>
-            </li>
-        </ul>
-    </div>
 
-    <!-- Fim Header -->
-
-    <!-- Início Cadastro -->
-
-    <div class="login">
-        <div class="card card-cadastro">
-            <h2>Bem-vindo!</h2>
-            <div class="formulario">
-            </div>
-            <div class="campo">
-                <span>Nome:</span>
-                <input id="nome_input" type="text" placeholder="Seu nome" />
-            </div>
-            <div class="campo">
-                <span>E-mail:</span>
-                <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
-            </div>
-            <div class="campo">
-                <span>Senha:</span>
-                <input id="senha_input" type="password" placeholder="******" />
-            </div>
-            <div class="campo">
-                <span>Confirmação da Senha:</span>
-                <input id="confirmacao_senha_input" type="password" placeholder="******" />
-            </div>
-            <button class="botao">Cadastrar</button>
-        </div>
-        <div class="mensagem"> Já possui uma conta? <a href="Login.html" class="link-login">Faça login!</a>
 
         </div>
 
-    </div>
+        <!-- Fim Header -->
 
+        <!-- Início Cadastro -->
+
+        <div class="container">
+            <div class="card-card-cadastro">
+                <h2>Cadastre um novo funcionario</h2>
+                <div class="formulario">
+                </div>
+                <div class="campo">
+                    <div class="linha-esquerda">
+                        <span>Nome:</span>
+                    </div>
+                    <input id="nome_input" type="text" placeholder="Seu nome" oninput="verificarNome()" />
+                    <p id="div_verificarNome"></p>
+                </div>
+                <div class="campo">
+                    <div class="linha-esquerda">
+                        <span>E-mail:</span>
+                    </div>
+                    <input id="email_input" type="text" placeholder="meuemail@provedor.com" oninput="validarEmail()" />
+                    <p id="div_verificarEmail"></p>
+                </div>
+                <div class="campo">
+                    <div class="linha-esquerda">
+                        <span>Senha:</span>
+                    </div>
+                    <input id="senha_input" type="password" placeholder="******" oninput="verificarSenha()" />
+                    <p id="div_verificarSenha"></p>
+                </div>
+                <div class="campo">
+                    <div class="linha-esquerda">
+                        <span>Confirmação da Senha:</span>
+                    </div>
+                    <input id="confirmacao_senha_input" type="password" placeholder="******"
+                        oninput="confirmacaoDeSenha()" />
+                    <p id="div_verificarConfirmacao"></p>
+                </div>
+                <button class="botao-Cadastrar" onclick="cadastrar()">CADASTRAR</button>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
     <!-- Fim Cadastro -->
-
-
 </body>
 
 </html>

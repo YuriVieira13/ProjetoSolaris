@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./style.css" />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <title>Hectare B3</title>
+    </head>
+    <body>
+        <div class="div_container">
+            <aside class="sidebar">
+                <img
+                    src="../assets/imgs/logo.png"
+                    alt="Logo solaris"
+                    class="img_logo"
+                />
+
+                <div class="div_barra"></div>
+
+                <nav class="navbar">
+                    <a href="../index.html" class="btn_sidebar">Dashboard</a>
+
+                    <a class="btn_sidebar">Alertas</a>
+
+                    <a class="btn_sidebar">Relatorios</a>
+
+                    <a href="../../index.html" class="btn_sidebar">Selecionar Área</a>
+                </nav>
+
+                <div class="div_barra"></div>
+
+                <h4 class="titulo">Configurações da conta</h4>
+
+                <img src="../assets/imgs/Pessoa.png" class="img_perfil" />
+                <h4 class="nomeUsuario">Fernando Brandão</h4>
+                <button class="btn_sidebar">Configurações</button>
+            </aside>
+
+            <div class="header">
+                <p class="p_header">Hectare B3</p>
+                <p class="p_titulo">Ultima medição: 1000 PPFD 27/04/2026 9:55 </p>
+            </div>
+
+            <div class="main">
+                <section>
+                    <div class="div_cards">
+                        <div class="div_card">
+                            <span>Status do Hectare</span>
+                            <div id="statusSensor"></div>
+                      
+                        </div>
+
+                        <div class="div_card">
+                            <span>Média Máxima da Semana</span>
+                            <h1 style="color: orange" id="ppfdMax"></h1>
+                            <p class="p_media">PPFD</p>
+                        </div>
+
+                        <div class="div_card">
+                            <span>Média mínima da semana</span>
+                            <h1 style="color: rgb(47, 47, 128)" id="ppfdMin">835</h1>
+                            <p class="p_media">PPDF</p>
+                        </div>
+
+                        <div class="div_card">
+                            <span>Alertas</span>
+                            <h1 id="txtQtdAlertas">1</h1>
+                            <p>Não vistos!</p>
+                        </div>
+                    </div>
+
+                    <section class="conteudo">
+                        <div class="box grande">
+                            <canvas id="graficoPPFD"></canvas>
+                        </div>
+
+                        <div class="box mapa">
+                            <h3>Mapa de Localização da Propriedade</h3>
+
+                            <div class="grid-mapa">
+                                <a href="area1.html" class="area ">Hectare 1</a>
+                                <a href="area2.html" class="area ">Hectare 2</a>
+                                <a href="area3.html" class="area ">Hectare 3</a>
+                                <a href="area4.html" class="area ">Hectare 4</a>
+                                <a href="area5.html" class="area ">Hectare 5</a>
+                                <a href="area6.html" class="area ">Hectare 6</a>
+                                <a href="area7.html" class="area">Hectare 7</a>
+                                <a href="area8.html" class="area ativa"
+                                    >Hectare 8</a
+                                >
+                            </div>
+                        </div>
+
+                        <div class="box pequeno">
+                            <canvas id="graficoMeta"></canvas>
+                        </div>
+                    </section>
+                </section>
+            </div>
+        </div>
+    </body>
+
+    <script>
+        let StatusArea = 'Ativo';
+        let PPFDMaximo =    [1100, 1200, 1300, 1400, 1500, 1600, 1700];
+        let PPFDMinimo =        [300, 400, 450, 500, 550, 600, 700];
+
+        let limiteMaximo = 1500;
+        let limiteMinimo = 400;
+        let mediaMaxima = 0;
+        let mediaMinima = 0;
+        let qtdAlertas = 0;
+
+        function carregarDados(){
+
+            for(let i = 0; i<PPFDMaximo.length;i++){
+                mediaMaxima += PPFDMaximo[i];
+            };
+
+            mediaMaxima = mediaMaxima / PPFDMaximo.length;
+
+            for(let i = 0; i<PPFDMinimo.length;i++){
+                mediaMinima += PPFDMinimo[i];
+            }
+
+            mediaMinima = mediaMinima / PPFDMinimo.length;
+
+            ppfdMax.innerHTML = mediaMaxima.toFixed();
+
+            ppfdMin.innerHTML = mediaMinima.toFixed();
+
+            if(StatusArea == 'Ativo'){
+                statusSensor.innerHTML = `<h1 style="color: greenyellow">${StatusArea}</h1>`
+            }else{
+                 statusSensor.innerHTML = `<h1 style="color: red">${StatusArea}</h1>`
+            }
+
+
+            for(let i = 0;i < PPFDMaximo.length;i++){
+
+                if(PPFDMaximo[i] > limiteMaximo || PPFDMinimo[i] < limiteMinimo ){
+                    qtdAlertas++;
+                }
+
+            }
+
+            txtQtdAlertas.innerHTML = qtdAlertas
+
+
+
+
+        }
+
+        window.onload = carregarDados();
+
+       
+
+        const grafPpfd = document.getElementById("graficoPPFD");
+
+        new Chart(grafPpfd, {
+            type: "line",
+            data: {
+                labels: [
+                    "3/4/2026",
+                    "4/4/2026",
+                    "5/4/2026",
+                    "6/4/2026",
+                    "7/4/2026",
+                    "8/4/2026",
+                    "9/4/2026",
+                ],
+                datasets: [
+                    {
+                        label: "PPFD Máximo",
+                        data: [PPFDMaximo[0], PPFDMaximo[1], PPFDMaximo[2], PPFDMaximo[3], PPFDMaximo[4], PPFDMaximo[5], PPFDMaximo[6]],
+                        borderColor: "orange",
+                        backgroundColor: "orange",
+                        tension: 0.3,
+                    },
+                    {
+                        label: "PPFD Mínimo",
+                        data: [PPFDMinimo[0], PPFDMinimo[1], PPFDMinimo[2], PPFDMinimo[3], PPFDMinimo[4], PPFDMinimo[5], PPFDMinimo[6]],
+
+                        borderColor: "blue",
+                        backgroundColor: "blue",
+                        tension: 0.3,
+                    },
+                       {
+                        label: "Limite Superior",
+                        data: [
+                            limiteMaximo,
+                            limiteMaximo,
+                            limiteMaximo,
+                            limiteMaximo,
+                            limiteMaximo,
+                            limiteMaximo,
+                            limiteMaximo,
+                            limiteMaximo,
+                            limiteMaximo,
+                        ],
+                        type: "line",
+                        borderColor: "#888",
+                        borderWidth: 2,
+                        pointRadius: 0,
+                    },
+                    {
+                        label: "Limite infeirior",
+                        data: [
+                            limiteMinimo,
+                            limiteMinimo,
+                            limiteMinimo,
+                            limiteMinimo,
+                            limiteMinimo,
+                            limiteMinimo,
+                            limiteMinimo,
+                            limiteMinimo,
+                        ],
+                        type: "line",
+                        borderColor: "#f1c40f",
+                        borderWidth: 2,
+                        pointRadius: 0,
+                    },
+                ],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: "Variação da incidência solar (PPFD) no decorrer da semana",
+                    },
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: "Quantidade PPFD",
+                        },
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: "Dia",
+                        },
+                    },
+                },
+            },
+        });
+
+        const grafBarraMeta = document.getElementById("graficoMeta");
+
+        diasBons = 7 - qtdAlertas
+  
+
+        new Chart(document.getElementById("graficoMeta"), {
+      type: "doughnut",
+      data: {
+          labels: ["sem incidentes", "com incidentes"],
+          datasets: [
+              {
+                  data: [diasBons, qtdAlertas],
+                  backgroundColor: ["green", "red"],
+              },
+          ],
+      },
+      options: {
+          maintainAspectRatio: false,
+          plugins: {
+              title: {
+                  display: true,
+                  text: "Dias com incidentes de PPFD",
+              },
+          },
+      },
+  });
+    </script>
+</html>

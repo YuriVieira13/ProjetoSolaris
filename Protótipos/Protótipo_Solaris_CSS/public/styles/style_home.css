@@ -1,0 +1,422 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@200;300;400;600;700&display=swap');
+@import url('https://fonts.cdnfonts.com/css/codec-pro');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
+
+
+:root {
+  --cor-verde: #306b17;
+  --cor-verde-claro: #449920;
+  --cor-verde-escuro: #2f5d1c;
+  --cor-verde-mais-escuro: #24361c;
+  --cor-footer: #1d4310;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  color: white;
+  min-height: 100vh;
+  background-color: var(--cor-verde-escuro);
+}
+
+.home-fundo {
+  height: 100vh;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(../asstes/imgs/background_home.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.titles_icons {
+  display: flex;
+  align-items: center;
+}
+
+.titles_icons p{
+  font-size: 22px;
+}
+
+.titles_icons i {
+  font-size: 40px;
+  color: var(--cor-verde-claro);
+}
+
+/* ======================= HEADER ======================= */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px 15vh;
+}
+
+.header img {
+  width: 5vw;
+  height: auto;
+  padding: 0 0 0 2.5vw;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 30px;
+  padding-right: 40px;
+}
+
+.navbar a {
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+}
+
+.navbar a:hover {
+  color: rgb(214, 214, 214);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.navbar li {
+  list-style: none;
+  color: white
+}
+
+.login {
+  background: #fda70f;
+  padding: 6px 20px;
+  border-radius: 6px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.login:hover {
+  background: #d48b0c;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+/* ======================= BANNER ======================= */
+
+.banner {
+  width: 75%;
+  margin-left: 15%;
+  text-align: start;
+  padding-bottom: 5vh;
+}
+
+.banner h2 {
+  text-align: center;
+  padding-bottom: 10vh;
+  letter-spacing: 0.75em;
+  font-family: "Codec Pro", sans-serif;
+}
+
+.banner h1 {
+  font-size: 56px;
+  padding-bottom: 5vh;
+  font-weight: normal;
+}
+
+.banner p {
+  padding-bottom: 5vh;
+  font-size: 20px;
+}
+
+/* ======================= CARROSEL ======================= */
+
+.carrosel {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  max-width: 100vw;
+  height: 40vh;
+}
+
+.img1 {
+  background: url("../asstes/imgs/plantio_soja.png") no-repeat center;
+  background-size: cover;
+  width: 33vw;
+  height: 40vh;
+  padding: 0 0 0 3vw;
+}
+
+.img2 {
+  background: url("../asstes/imgs/plantio_soja2.png") no-repeat center;
+  background-size: cover;
+  width: 20vw;
+  height: 40vh;
+  padding: 0 2vw 0 2vw;
+}
+
+.img3 {
+  background: url("../asstes/imgs/plantio_soja4.png") no-repeat center;
+  background-size: cover;
+  width: 33vw;
+  height: 40vh;
+  padding: 0 2vw 0 0;
+}
+
+/* ======================= CONTEUDO 1 ======================= */
+
+.conteudo1 {
+  background-color: var(--cor-verde-escuro);
+  text-align: center;
+  padding: 40vh 0 15vh 0;
+}
+
+.conteudo1 h2 {
+  font-size: 24px;
+  letter-spacing: 0.75em;
+}
+
+.conteudo1 img {
+  width: 30vw;
+  height: auto;
+}
+
+/* ======================= CONTEUDO 2 ======================= */
+
+
+.sobre {
+  background-color: var(--cor-verde-escuro);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+  padding: 0 15vw 15vh 15vw;
+  height: 50vh;
+}
+
+.sobre h1 {
+  font-size: 56px;
+  padding-bottom: 5vh;
+}
+
+.sobre .titles_icons p {
+  padding: 5vh 0 5vh 0;
+}
+
+/* ======================= CONTEUDO 3 ======================= */
+
+.solucoes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--cor-verde-escuro);
+  height: 75vh;
+  padding: 10vh 0 15vh 0;
+}
+
+.solucoes_img {
+  display: flex;
+  background: url("../asstes/imgs/plantio_soja5.png") no-repeat center;
+  width: 35vw;
+  height: 85vh;
+  border-radius: 10px 0 0 10px;
+}
+
+.solucoes .container {
+  width: 35vw;
+  height: 85vh;
+  background-color: var(--cor-verde);
+  border-radius: 0 10px 10px 0;
+}
+
+.solucoes .container .titles_icons {
+  padding: 5vh 2.5vw 2.5vh 2.5vw;
+}
+
+.solucoes .container p {
+  font-weight: bold;
+}
+
+.solucoes .container h1 {
+  padding: 0 2.5vw 2.5vh 2.5vw;
+}
+
+.solucoes .container h2 {
+  padding: 1vh 2.5vw 0 2.5vw;
+  font-weight: normal;
+}
+
+.solucoes .titles_icons p {
+  padding: 2.5vh 0 2.5vh 0;
+}
+
+/* ======================= CONTEUDO 4 ======================= */
+
+.servicos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.servicos p {
+  padding: 5vh 0 5vh 0;
+  font-weight: bold;
+}
+
+.servicos h1 {
+  padding: 0 0 5vh 0;
+  font-size: 56px;
+}
+
+.servicos .container {
+  background-color: var(--cor-verde);
+  width: 25vw;
+  height: 65vh;
+  margin: 0 2.5vw 0 0;
+  border-radius: 5px;
+  transition: 0.5s;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.servicos .container img {
+  height: 30vh;
+  width: 25vw;
+} 
+
+.servicos .container:hover {
+  scale: 1.1;
+}
+
+.servicos .container h1 {
+  font-size: 28px;
+  padding: 2vh 0 0 2vw;
+}
+
+.servicos .container h3 {
+  font-weight: normal;
+  padding: 2vh 1vw 0 2vw;
+  font-size: 20px;
+}
+
+.topicos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ======================= CONTEUDO 5 ======================= */
+
+.diferencial {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--cor-verde-escuro);
+  height: max-content;
+  padding: 20vh 0 0 0;
+}
+
+.diferencial p {
+  padding: 2.5vh 0 5vh 0;
+  font-size: 22px;
+}
+
+.diferencial h1 {
+  padding-bottom: 5vh;
+  font-size: 48px;
+}
+
+.diferencial h2 {
+  font-size: 26px;
+}
+
+.diferencial_img {
+  width: 50vw;
+  height: 140vh;
+  background: url("../asstes/imgs/plantio_soja8.png") center center;
+  background-size: cover;
+}
+
+.porque {
+  position: relative;
+  overflow: hidden;
+  width: 40vw;
+  height: 140vh;
+  padding: 0 10vw 0 3vw;
+  background-color: var(--cor-verde-mais-escuro);
+}
+
+.porque .titles_icons {
+  padding: 10vh 0 5vh 0;
+}
+
+.topicos_icons {
+  display: flex;
+  align-items: center;
+}
+
+.porque i {
+  padding: 0 0.5vw 0 0;
+  color: var(--cor-verde-claro);
+  font-size: 25px;
+}
+
+.porque p {
+
+  text-align: justify ;
+}
+
+/* ======================= FOOTER ======================= */
+
+.footer {
+  height: 60vh;
+  background-color: var(--cor-footer);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer img {
+  width: 20vw;
+  height: auto;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+}
+
+.info {
+  display: flex;
+  justify-content: space-evenly;
+  width: 50vw;
+  padding: 10vh 0 0 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 0 2vw 0 2vw;
+}
+
+.content h1 {
+  color: var(--cor-verde-claro);
+  padding: 2vh 0 0 0;
+}
+
+.content a, p {
+  padding: 1vh 0 0 0;
+  text-decoration: none;
+  color: white;
+}

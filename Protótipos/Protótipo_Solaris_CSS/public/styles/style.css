@@ -5,63 +5,64 @@ body {
     padding: 0;
     box-sizing: border-box;
     font-family: 'DM Sans', sans-serif;
-    color:white
-
+    color: white
 }
 
-.login-fundo {
-
+.login-fundo,
+.cadastro {
     width: 100%;
-    height: 100vh;
-    background-image:url(../asstes/imgs/background_log_cad.png.png);
-    background-size: cover;        
-    background-position: center;   
-    background-repeat: no-repeat;  
-    background-attachment: fixed; 
-
+    min-height: 100vh;
+    background-image: url('../asstes/imgs/campo_ensolarado.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
 }
 
+
+/* ======================= HEADER ======================= */
 
 .header {
     display: flex;
-    justify-content: space-between; 
-    align-items: center;           
-    padding: 20px 40px;             
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
 }
 
-.titulo {
-
-    font-size: 26.5px;
-    padding-left: 50px;
-
-    
+.header img {
+    width: 5vw;
+    height: auto;
+    padding: 0 0 0 2.5vw;
 }
 
 .navbar {
-
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    gap:30px;
-
+    gap: 30px;
     padding-right: 40px;
-
 }
 
 .navbar a {
     text-decoration: none;
-    color:white
+    color: white
+}
 
+.navbar a:hover {
+    color: rgb(214, 214, 214);
+    transition: 0.3s;
+    cursor: pointer;
 }
 
 .navbar li {
     list-style: none;
-    color:white
-
+    color: white
 }
-    
-.agora {
+
+.login {
     background: #fda70f;
     padding: 6px 20px;
     border-radius: 6px;
@@ -70,38 +71,41 @@ body {
     font-weight: 500;
 }
 
-.login {
+.login:hover {
+    background: #d48b0c;
+    transition: 0.3s;
+    cursor: pointer;
+}
 
+.container {
     width: 100%;
-    height: 600px;
+    min-height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
 
-.card-card-login {
-
-  
+.card-card-container {
     width: 420px;
-    height: 500px;
-
+    height: 400px;
     background-color: rgba(48, 107, 23, 0.86);
     border-radius: 20px;
     padding: 25px;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items:center;
+    align-items: center;
+}
 
+.container .card-card-cadastro p {
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    font-weight: bolder;
 }
 
 .formulario {
-  
     gap: 15px;
     width: 100%;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -116,24 +120,19 @@ body {
     font-weight: 600;
     margin-bottom: 5px;
     padding: 10px, 20px;
-
-    font-size: 9.8px;
+    font-size: 11px;
 }
 
 
 .campo .linha-esquerda {
-    margin-bottom:8px;
+    margin-bottom: 8px;
     margin-top: 4px;
-    
     width: 88%;
-
 }
 
 .campo .linha-direita {
     margin-top: 4px;
     padding-left: 270px;
-   
-
 }
 
 
@@ -142,52 +141,54 @@ body {
 .campo input {
     height: 50px;
     width: 90%;
-
     background-color: #eaeae5;
-
     justify-self: center;
-
     border-radius: 10px;
     border: none;
     box-sizing: border-box;
-
     text-align: center;
 }
 
-.botaoEntrar {
+.botaoEntrar, .botao-Cadastrar {
     margin-top: 15px;
     height: 50px;
-    width: 95%;
+    width: 90%;
     margin-bottom: 20px;
-
     background-color: rgba(253, 167, 15, 0.83);
-
     border-radius: 10px;
     border: none;
     box-sizing: border-box;
-
-
     font-size: 15.4px;
-    color:white;
+    color: white;
     text-align: center;
-
+    cursor: pointer;
+    transition: 0.5s;
 }
+
+.botaoEntrar:hover, .botao-Cadastrar:hover {
+    background-color: rgba(216, 142, 13, 0.83);
+    color: #eaeae5;
+} 
 
 .botaoCadastrar {
     margin-top: 10px;
     height: 45px;
     width: 95%;
-
     background: transparent;
     border-radius: 10px;
     border: 2px solid white;
     box-sizing: border-box;
-
-
     font-size: 15.4px;
-    color:white;
+    color: white;
     text-align: center;
+    transition: 0.5s;
+}
 
+.botaoCadastrar:hover {
+    border-color: #eaeae5;
+    background-color: #eaeae5;
+    color: #000000;
+    cursor: pointer;
 }
 
 .ou {
@@ -207,4 +208,37 @@ body {
 
 .ou span {
     font-size: 12px;
+}
+
+/*Cadastro*/
+
+.card-card-cadastro {
+    width: 420px;
+    min-height: 500px;
+    background-color: rgba(48, 107, 23, 0.86);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.mensagem {
+    color: white;
+    font-weight: bold;
+}
+
+.mensagem a {
+    color: white;
+    font-weight: bold;
+}
+
+.btn-voltar{
+
+    list-style: none;
+    color: white;
+
+    font-size: 22px;
 }
