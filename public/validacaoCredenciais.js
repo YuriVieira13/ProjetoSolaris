@@ -161,28 +161,115 @@ function confirmacaoDeSenha() {
 function cadastrar() {
     if (emailFinal == '' || senhaFinal == '' || nomeFinal == '' || senhaConfirmacao == '') {
         alert(`Por favor, preencha todos os campos para prosseguir.`)
-    } else {
-        setTimeout(() => { //Espera 2 segundos antes de direcionar o usuário para tela de login
-            window.location.href = "../../../Dashboard/index.html"
-        }, 2000);
+        return false
     }
+    fetch("/usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            nomeServer: nomeFinal,
+            emailServer: emailFinal,
+            senhaServer: senhaFinal,
+            //fkEmpresaServer : fkEmpresa,
+        }),
+    })
+        .then(function (resposta) {
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+
+                setTimeout(() => {
+                    window.location = "login.html";
+                }, "2000");
+
+                limparFormulario();
+
+            } else {
+                throw "Houve um erro ao tentar realizar o cadastro!";
+            }
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+
+    //setTimeout(() => { //Espera 2 segundos antes de direcionar o usuário para tela de login
+    //    window.location.href = "../../../Dashboard/index.html"
+    //}, 2000);
 }
+
 
 function logar() {
-    let emailInserido = email_input.value;
-    let senhaInserida = senha_input.value;
+    let emailVar = email_input.value;
+    let senhaVar = senha_input.value;
 
-    let emailFinal = 'Fernando_Brandao@gmail.com'
-    let senhaFinal = `Fernando123*`
+    if (emailVar == "" || senhaVar == "") {
 
-    if (emailInserido == '' || senhaInserida == '') {
-        alert( 'Preencha todos os campos para prosseguir.')
-    } else if (emailInserido == emailFinal && senhaInserida == senhaFinal) {
-        setTimeout(() => { //Espera 2 segundos antes de direcionar o usuário para tela de dashboard.
-            window.location.href = "../../../Dashboard/index.html"
-        }, 2000);
-    } else {
-        alert('Credenciais incorretas')
+        alert("Erro! Preencha todos os campos corretamente");
+        //finalizarAguardar();
+        return false;
+    } else if (!(emailVar.includes('@') && emailVar.includes('.'))) {
+
+        alert("Email Inválido! Preencha o campo corretamente");
+        //finalizarAguardar();
+        return false;
     }
+    else {
+        setInterval(sumirMensagem, 5000)
+    }
+
+    console.log("FORM LOGIN: ", emailVar);
+    console.log("FORM SENHA: ", senhaVar);
+
+    fetch("/usuarios/autenticar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            emailServer: emailVar,
+            senhaServer: senhaVar
+        })
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!")
+
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                sessionStorage.ID_USUARIO = json.idUsuario;
+                sessionStorage.NOME_USUARIO = json.nome;
+                sessionStorage.EMAIL_USUARIO = json.email;
+
+                setTimeout(function () {
+                    alert("Login realizado com sucesso!");
+                    window.location.href = "./index.html";
+                }, 1000);
+            });
+
+        } else {
+            alert("Email e/ou senha inválidos!")
+            console.log("Email e/ou senha inválidos!");
+
+            resposta.text().then(texto => {
+                console.error(texto);
+                //finalizarAguardar(texto);
+            });
+        }
+
+    }).catch(function (erro) {
+        console.log(erro);
+    })
+
+    return false;
 }
+
+function sumirMensagem() {
+    cardErro.style.display = "none"
+}
+
 
