@@ -247,7 +247,7 @@ function logar() {
 
                 setTimeout(function () {
                     alert("Login realizado com sucesso!");
-                    window.location.href = "./index.html";
+                    window.location.href = "../Dashboard/dashboard.html";
                 }, 1000);
             });
 
