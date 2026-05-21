@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="./style.css" />
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="/js/transporte.js"></script>
         <title>Document</title>
     </head>
     <body onload="verificarCargo()">
@@ -21,9 +22,9 @@
                 <nav class="navbar">
                     <h4 class="nomeUsuario">SELECIONE A ÁREA DESEJADA</h4>
                     
-                    <a href="./Area1/index.html" class="btn_sidebar">Área de Plantio 1</a>
+                    <a href="#" class="btn_sidebar" onclick="direcionar(1)">Área de Plantio 1</a>
 
-                    <a href="./Area2/index.html" class="btn_sidebar">Área de Plantio 2</a>
+                    <a href="#" class="btn_sidebar" onclick="direcionar(2)"> Área de Plantio 2</a>
                 </nav>
 
                 <div class="div_barra"></div>
@@ -39,15 +40,12 @@
 
             </aside>
 
-            
-
-
-
+        
             <div class="main">
                 <h4 class="tituloMapa">Clique no mapa na area desejada</h4>
-                <a href="./Area1/index.html" class="btn_area area1"></a>
+                <a href="./Area1/index.html" class="btn_area area1" onclick=""></a>
 
-                <a href="./Area2/index.html" class="btn_area area2"></a>
+                <a href="./Area2/index.html" class="btn_area area2" onclick=""></a>
 
             </div>
 

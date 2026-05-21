@@ -1,148 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="./style.css" />
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <title>Hectare A1</title>
-    </head>
-    <body>
-        <div class="div_container">
-            <aside class="sidebar">
-                <img
-                    src="../assets/imgs/logo.png"
-                    alt="Logo solaris"
-                    class="img_logo"
-                />
 
-                <div class="div_barra"></div>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Hectare A1</title>
+</head>
 
-                <nav class="navbar">
-                    <a href="../index.html" class="btn_sidebar">Dashboard</a>
+<body>
+    <div class="div_container">
+        <aside class="sidebar">
+            <img src="../assets/imgs/logo.png" alt="Logo solaris" class="img_logo" />
 
-                    <a class="btn_sidebar">Alertas</a>
+            <div class="div_barra"></div>
 
-                    <a class="btn_sidebar">Relatorios</a>
+            <nav class="navbar">
+                <a href="../index.html" class="btn_sidebar">Dashboard</a>
 
-                    <a href="../../index.html" class="btn_sidebar">Selecionar Área</a>
-                </nav>
+                <a class="btn_sidebar">Alertas</a>
 
-                <div class="div_barra"></div>
+                <a class="btn_sidebar">Relatorios</a>
 
-                <h4 class="titulo">Configurações da conta</h4>
+                <a href="../../dashboard.html" class="btn_sidebar">Selecionar Área</a>
+            </nav>
 
-                <img src="../assets/imgs/Pessoa.png" class="img_perfil" />
-                <h4 class="nomeUsuario">Fernando Brandão</h4>
-                <button class="btn_sidebar">Configurações</button>
-            </aside>
+            <div class="div_barra"></div>
 
-            <div class="header">
-                <p class="p_header">Hectare A1</p>
-                <p class="p_titulo">
-                    Ultima medição: 1000 PPFD 27/04/2026 9:55
-                </p>
-            </div>
+            <h4 class="titulo">Configurações da conta</h4>
 
-            <div class="main">
-                <section>
-                    <div class="div_cards">
-                        <div class="div_card">
-                            <span>Status do Hectare</span>
-                            <div id="statusSensor"></div>
-                        </div>
+            <img src="../assets/imgs/Pessoa.png" class="img_perfil" />
+            <h4 class="nomeUsuario">Fernando Brandão</h4>
+            <button class="btn_sidebar">Configurações</button>
+        </aside>
 
-                        <div class="div_card">
-                            <span>Média Máxima da Semana</span>
-                            <h1 style="color: orange" id="ppfdMax"></h1>
-                            <p class="p_media">PPFD</p>
-                        </div>
+        <div class="header">
+            <p class="p_header" id="tituloArea">Hectare A1</p>
+            <p class="p_titulo">
+                Ultima medição: 1000 PPFD 27/04/2026 9:55
+            </p>
+        </div>
 
-                        <div class="div_card">
-                            <span>Média mínima da semana</span>
-                            <h1 style="color: rgb(47, 47, 128)" id="ppfdMin">
-                                835
-                            </h1>
-                            <p class="p_media">PPDF</p>
-                        </div>
+        <div class="main">
+            <section>
+                <div class="div_cards">
+                    <div class="div_card">
+                        <span>Status do Hectare</span>
+                        <div id="statusSensor"></div>
 
-                        <div class="div_card">
-                            <span>Alertas</span>
-                            <h1 id="txtQtdAlertas">1</h1>
-                            <p>Não vistos!</p>
+                    </div>
+
+                    <div class="div_card">
+                        <span>Média Máxima da Semana</span>
+                        <h1 style="color: orange" id="ppfdMax"></h1>
+                        <p class="p_media">PPFD</p>
+                    </div>
+
+                    <div class="div_card">
+                        <span>Média mínima da semana</span>
+                        <h1 style="color: rgb(47, 47, 128)" id="ppfdMin">
+                            835
+                        </h1>
+                        <p class="p_media">PPDF</p>
+                    </div>
+
+                    <div class="div_card">
+                        <span>Alertas</span>
+                        <h1 id="txtQtdAlertas">1</h1>
+                        <p>Não vistos!</p>
+                    </div>
+                </div>
+
+                <section class="conteudo">
+                    <div class="box grande">
+                        <canvas id="graficoPPFD"></canvas>
+                    </div>
+
+                    <div class="box mapa">
+                        <h3>Mapa de Localização da Propriedade</h3>
+
+                        <div class="grid-mapa">
+                            <a href="area1.html" class="area ativa" onclick="listarDados(1)">Hectare 1</a>
+                            <a href="#" class="area" onclick="listarDados(2)">Hectare 2</a>
+                            <a href="#" class="area" onclick="listarDados(3)">Hectare 3</a>
+                            <a href="#" class="area" onclick="listarDados(4)">Hectare 4</a>
+                            <a href="#" class="area" onclick="listarDados(5)">Hectare 5</a>
+                            <a href="#" class="area" onclick="listarDados(6)">Hectare 6</a>
+                            <a href="#" class="area" onclick="listarDados(7)">Hectare 7</a>
+                            <a href="#" class="area" onclick="listarDados(8)">Hectare 8</a>
                         </div>
                     </div>
 
-                    <section class="conteudo">
-                        <div class="box grande">
-                            <canvas id="graficoPPFD"></canvas>
-                        </div>
-
-                        <div class="box mapa">
-                            <h3>Mapa de Localização da Propriedade</h3>
-
-                            <div class="grid-mapa">
-                                <a href="area1.html" class="area ativa"
-                                    >Hectare 1</a
-                                >
-                                <a href="area2.html" class="area">Hectare 2</a>
-                                <a href="area3.html" class="area">Hectare 3</a>
-                                <a href="area4.html" class="area">Hectare 4</a>
-                                <a href="area5.html" class="area">Hectare 5</a>
-                                <a href="area6.html" class="area">Hectare 6</a>
-                                <a href="area7.html" class="area">Hectare 7</a>
-                                <a href="area8.html" class="area">Hectare 8</a>
-                            </div>
-                        </div>
-
-                        <div class="box pequeno">
-                            <canvas id="graficoMeta"></canvas>
-                        </div>
-                    </section>
+                    <div class="box pequeno">
+                        <canvas id="graficoMeta"></canvas>
+                    </div>
                 </section>
-            </div>
+            </section>
         </div>
-    </body>
+    </div>
 
     <script>
-        let StatusArea = "Ativo";
-        let PPFDMaximo = [800, 850, 880, 900, 920, 950, 1000];
-        let PPFDMinimo = [750, 800, 820, 835, 850, 900, 890];
 
-        let limiteMaximo = 1500;
-        let limiteMinimo = 400;
-        let mediaMaxima = 0;
+        // carregar os dados
+        window.onload = function () {
+            listarDados(1);
+        }
+
+        // Variáveis Globais
+        let PPFDMaximo = [];
+        let PPFDMinimo = [];
+        let statusArea = ""
+
+        // função para transformar em PPFD
+        function transformarPPFD(valor) {
+
+        let valorBits = Number(valor);
+
+        let valorLux = (valorBits / 1023) * 100000;
+
+        let valorPPFD = Math.floor(valorLux * 0.0185);
+
+        return valorPPFD
+
+        }
+
+        function listarDados(valorHectare) {
+
+            let hectare = Number(valorHectare); // deixar dinâmico
+            let areaPlantil = Number(sessionStorage.getItem("ID_AREA_PLANTIL"));
+            console.log(areaPlantil)
+
+            // busca os dados para alimentar dash e criar os vetores PPFDMaximo e PPFDMINIMO
+            fetch(`/area/listar/${areaPlantil}/${hectare}`)
+                .then(res => res.json())
+                .then(dados => {
+                    console.log(dados);
+
+                    // Título do hectare
+                    tituloArea.innerHTML = `Hectare: ${dados[0].Hectare}`
+
+                    // Definindo o Status
+                    statusArea = dados[0].Status
+
+                    if (dados[0].Status == "Ativo") {
+                        statusSensor.innerHTML =
+                            `<h1 style="color: greenyellow">${dados[0].Status}</h1>`;
+                    } else {
+                        statusSensor.innerHTML =
+                            `<h1 style="color: red">${dados[0].Status}</h1>`;
+                    }
+
+                    // criando vetor Máximo PPFD
+
+                    for (let i = 0; i < dados.length; i++) {
+
+                        let maximoDia = transformarPPFD(dados[i].Valor_maximo)
+                        PPFDMaximo.push(maximoDia)
+                    }
+
+                      // criando vetor Máximo PPFD
+                      for (let i = 0; i < dados.length; i++) {
+
+                        let minimoDia = transformarPPFD(dados[i].Valor_minimo)
+                        PPFDMinimo.push(minimoDia)
+                    }
+
+                    carregarDados()
+                    criarGraficos()
+
+                })
+                .catch(erro => {
+                    console.log("Erro:", erro);
+                });
+        }
+
+            console.log(PPFDMaximo)
+            console.log(PPFDMinimo)
+
+            // variáveis globais
+
+            let limiteMaximo = 1500;
+            let limiteMinimo = 400;
+            let mediaMaxima = 0;
             let mediaMinima = 0;
             let qtdAlertas = 0;
-        let diasBons = 0
-      
-        let metaAtual = 2500;
+            let diasBons = 0
+    
+            let metaAtual = 2500;
 
-        function carregarDados() {
-          
 
+            function carregarDados() {
+    
+            // gerando média máxima
             for (let i = 0; i < PPFDMaximo.length; i++) {
                 mediaMaxima += PPFDMaximo[i];
             }
-
             mediaMaxima = mediaMaxima / PPFDMaximo.length;
-
+    
+            // gerando média mínima
             for (let i = 0; i < PPFDMinimo.length; i++) {
                 mediaMinima += PPFDMinimo[i];
             }
-
+    
             mediaMinima = mediaMinima / PPFDMinimo.length;
-
+    
             ppfdMax.innerHTML = mediaMaxima.toFixed();
-
+    
             ppfdMin.innerHTML = mediaMinima.toFixed();
-
-            if (StatusArea == "Ativo") {
-                statusSensor.innerHTML = `<h1 style="color: greenyellow">${StatusArea}</h1>`;
-            } else {
-                statusSensor.innerHTML = `<h1 style="color: red">${StatusArea}</h1>`;
-            }
-
+    
+    
             for (let i = 0; i < PPFDMaximo.length; i++) {
                 if (
                     PPFDMaximo[i] > limiteMaximo ||
@@ -151,16 +218,15 @@
                     qtdAlertas++;
                 }
             }
-
-        
+    
 
             txtQtdAlertas.innerHTML = qtdAlertas;
         }
-
-        window.onload = carregarDados();
-
+    
+        function criarGraficos() {
+    
         const grafPpfd = document.getElementById("graficoPPFD");
-
+    
         new Chart(grafPpfd, {
             type: "line",
             data: {
@@ -200,7 +266,7 @@
                             PPFDMinimo[5],
                             PPFDMinimo[6],
                         ],
-
+    
                         borderColor: "blue",
                         backgroundColor: "blue",
                         tension: 0.3,
@@ -240,7 +306,7 @@
                         borderWidth: 2,
                         pointRadius: 0,
                     },
-                    
+    
                 ],
             },
             options: {
@@ -269,33 +335,38 @@
                 },
             },
         });
-
+    
         const grafBarraMeta = document.getElementById("graficoMeta");
+    
+    
+        diasBons = 7 - qtdAlertas
+    
+    
+        new Chart(document.getElementById("graficoMeta"), {
+            type: "doughnut",
+            data: {
+                labels: ["sem incidentes", "com incidentes"],
+                datasets: [
+                    {
+                        data: [diasBons, qtdAlertas],
+                        backgroundColor: ["green", "red"],
+                    },
+                ],
+            },
+            options: {
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: "Dias com incidentes de PPFD",
+                    },
+                },
+            },
+        });
 
-
-       diasBons = 7 - qtdAlertas
-  
-
-       new Chart(document.getElementById("graficoMeta"), {
-      type: "doughnut",
-      data: {
-          labels: ["sem incidentes", "com incidentes"],
-          datasets: [
-              {
-                  data: [diasBons, qtdAlertas],
-                  backgroundColor: ["green", "red"],
-              },
-          ],
-      },
-      options: {
-          maintainAspectRatio: false,
-          plugins: {
-              title: {
-                  display: true,
-                  text: "Dias com incidentes de PPFD",
-              },
-          },
-      },
-  });
+        }
     </script>
+
+</body>
+
 </html>
