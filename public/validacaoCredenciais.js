@@ -1,6 +1,7 @@
 //Variáveis globais usadas na função 'cadastrar()'
 let emailFinal = '';
 let senhaFinal = '';
+let cargoFinal = '';
 let senhaConfirmacao = '';
 let nomeFinal = '';
 
@@ -158,8 +159,18 @@ function confirmacaoDeSenha() {
     div_verificarConfirmacao.innerHTML = resposta;
 }
 
+function verificarCargo(){
+
+    let cargo = cargo_input.value
+    let resposta = `Confirmado`
+
+    cargoFinal = cargo;
+
+    div_verificarCargo.innerHTML = resposta
+}
+
 function cadastrar() {
-    if (emailFinal == '' || senhaFinal == '' || nomeFinal == '' || senhaConfirmacao == '') {
+    if (emailFinal == '' || senhaFinal == '' || nomeFinal == '' || senhaConfirmacao == '' || cargoFinal == '') {
         alert(`Por favor, preencha todos os campos para prosseguir.`)
         return false
     }
@@ -171,6 +182,7 @@ function cadastrar() {
         body: JSON.stringify({
             nomeServer: nomeFinal,
             emailServer: emailFinal,
+            cargoServer: cargoFinal,
             senhaServer: senhaFinal,
             //fkEmpresaServer : fkEmpresa,
         }),
@@ -238,16 +250,18 @@ function logar() {
         console.log("ESTOU NO THEN DO entrar()!")
 
         if (resposta.ok) {
-            console.log(resposta);
-
+            
             resposta.json().then(json => {
                 sessionStorage.ID_USUARIO = json.idUsuario;
                 sessionStorage.NOME_USUARIO = json.nome;
                 sessionStorage.EMAIL_USUARIO = json.email;
+                sessionStorage.CARGO_USUARIO = json.cargo;
+                
+                console.log(json);
 
                 setTimeout(function () {
                     alert("Login realizado com sucesso!");
-                    window.location.href = "./index.html";
+                    window.location.href = "../Dashboard/index.html";
                 }, 1000);
             });
 

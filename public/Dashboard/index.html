@@ -7,7 +7,7 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <title>Document</title>
     </head>
-    <body>
+    <body onload="verificarCargo()">
         <div class="div_container">
             <aside class="sidebar">
                 <img
@@ -30,8 +30,8 @@
                 <div class="div_btnCadastro">
 
                 <a
-                href="../Protótipos/Protótipo_Solaris_CSS/public/Cadastro.html"
-                class="btn_sidebar btn_cadastroSide"
+                href="../Cadastro.html"
+                class="btn_sidebar btn_cadastroSide btn_cadastrar"
                 >Cadastrar Funcionario</a>
 
             </div>
@@ -333,6 +333,14 @@
 
         function fecharModal() {
             document.getElementById("modal").style.display = "none";
+        }
+
+        function verificarCargo(){
+
+            if(sessionStorage.CARGO_USUARIO != `Administrador`){
+
+                document.querySelector(".btn_cadastrar").style.display = `none`
+            }
         }
     </script>
 </html>
