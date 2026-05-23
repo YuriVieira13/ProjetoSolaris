@@ -32,7 +32,7 @@ body {
   height: 100vh;
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url(../asstes/imgs/background_home.png);
+    url(../assets/imgs/background_home.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -146,7 +146,7 @@ body {
 }
 
 .img1 {
-  background: url("../asstes/imgs/plantio_soja.png") no-repeat center;
+  background: url("../assets/imgs/plantio_soja.png") no-repeat center;
   background-size: cover;
   width: 33vw;
   height: 40vh;
@@ -154,7 +154,7 @@ body {
 }
 
 .img2 {
-  background: url("../asstes/imgs/plantio_soja2.png") no-repeat center;
+  background: url("../assets/imgs/plantio_soja2.png") no-repeat center;
   background-size: cover;
   width: 20vw;
   height: 40vh;
@@ -162,7 +162,7 @@ body {
 }
 
 .img3 {
-  background: url("../asstes/imgs/plantio_soja4.png") no-repeat center;
+  background: url("../assets/imgs/plantio_soja4.png") no-repeat center;
   background-size: cover;
   width: 33vw;
   height: 40vh;
@@ -224,7 +224,7 @@ body {
 
 .solucoes_img {
   display: flex;
-  background: url("../asstes/imgs/plantio_soja5.png") no-repeat center;
+  background: url("../assets/imgs/plantio_soja5.png") no-repeat center;
   width: 35vw;
   height: 85vh;
   border-radius: 10px 0 0 10px;
@@ -341,7 +341,7 @@ body {
 .diferencial_img {
   width: 50vw;
   height: 140vh;
-  background: url("../asstes/imgs/plantio_soja8.png") center center;
+  background: url("../assets/imgs/plantio_soja8.png") center center;
   background-size: cover;
 }
 
