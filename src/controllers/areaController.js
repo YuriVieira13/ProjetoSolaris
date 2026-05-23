@@ -11,7 +11,17 @@ function listar(req, res) {
     })
 }
 
+function buscarAlertas(req, res) {
+    var idUsuario = req.params.idUsuario;
+    var idFazenda = req.params.idFazenda;
+    areaModel.buscarAlertas(idUsuario, idFazenda).then(function (resultado) {
+        res.status(200).json(resultado);
+    }).catch(function (erro) {
+        res.status(500).json(erro.sqlMessage);
+    })
+}
 
 module.exports = {
-    listar
+    listar,
+    buscarAlertas
 }
