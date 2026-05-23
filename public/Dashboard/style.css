@@ -88,7 +88,7 @@ body{
 }
 
 .main{
-    background-image: url('./assets/imgs/mapa.png');
+    background-image: url('./assets/imgs/1.png');
     margin-left: 250px;
     width: calc(100vw - 250px);
     height: 100vh;
@@ -101,7 +101,6 @@ body{
     top: 29%;
     left: 34%;
 }
-
 
 
 .btn_area{
