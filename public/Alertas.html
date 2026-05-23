@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alertas</title>
+    <link rel="stylesheet" href="styles/alertas.css" />
+    <link rel="icon" href="assets/icons" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+</head>
+
+<body onload="carregarAlertas()">
+    <div id="div_container">
+        <div id="main">
+        </div>
+    </div>
+
+</body>
+<script>
+    function carregarAlertas() {
+        // let idUsuario = sessionStorage.ID_USUARIO;
+        let idUsuario = 1;
+        let idFazenda = 1;
+        // let idFazenda = Number(sessionStorage.ID_FAZENDA);
+
+
+        fetch(`/area/buscarAlertas/${idUsuario}/${idFazenda}`, {
+            method: "GET"
+        })
+            .then(res => res.json())
+            .then(json => {
+                for (let i = 0; i < json.length; i++) {
+                    main.innerHTML += `<div class="alerta">
+                     <p> ${json[i].nome} ${json[i].Alerta} HECTARE ${json[i].idHectare} </p>
+                     </div>`
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
+    }
+</script>
+
+</html>
