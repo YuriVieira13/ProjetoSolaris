@@ -12,12 +12,35 @@
 
 <body onload="carregarAlertas()">
     <div id="div_container">
+        <aside class="sidebar">
+            <img src="./assets/imgs/logo.png" alt="Logo solaris" class="img_logo" />
+
+            <div class="div_barra"></div>
+
+            <nav class="navbar">
+                <h4 class="nomeUsuario">SELECIONE A ÁREA DESEJADA</h4>
+
+                <a href="#" class="btn_sidebar" onclick="direcionar(1)">Área de Plantio 1</a>
+
+                <a href="#" class="btn_sidebar" onclick="direcionar(2)"> Área de Plantio 2</a>
+            </nav>
+
+            <div class="div_barra"></div>
+            <div class="div_btnCadastro">
+
+                <a href="../Cadastro.html" class="btn_sidebar btn_cadastroSide btn_cadastrar">Cadastrar Funcionario</a>
+
+            </div>
+        </aside>
         <div id="main">
+            <div id="alertas"></div>
+            <div id="modal"></div>
         </div>
     </div>
 
 </body>
 <script>
+    let listaAlertas = [];
     function carregarAlertas() {
         // let idUsuario = sessionStorage.ID_USUARIO;
         let idUsuario = 1;
@@ -30,16 +53,40 @@
         })
             .then(res => res.json())
             .then(json => {
+                listaAlertas = json;
                 for (let i = 0; i < json.length; i++) {
-                    main.innerHTML += `<div class="alerta">
-                     <p> ${json[i].nome} ${json[i].Alerta} HECTARE ${json[i].idHectare} </p>
-                     </div>`
+                    alertas.innerHTML += `<button class="alerta" onclick="abrirModal(${i})">
+                     ${json[i].nome} <span>${json[i].Alerta} </span> HECTARE ${json[i].idHectare}
+                     </button>`
                 }
             })
             .catch(err => {
                 console.log(err);
             })
 
+    }
+    function abrirModal(i) {
+        let alerta = listaAlertas[i];
+
+        let modal = document.getElementById("modal"); 
+        modal.style.display = "flex";
+
+        modal.innerHTML = `<div class="conteudo">
+      <h2>DETALHES DO ALERTA</h2>
+      <p><strong>MOTIVO:</strong> ${alerta.Alerta}</p>
+      <p><strong>FAZENDA:</strong> ${alerta.nome_fazenda}</p>
+      <p><strong>ÁREA:</strong> ${alerta.nome}</p>
+      <p><strong>HECTARE:</strong> HECTARE ${alerta.idHectare}</p>
+      <h3>ESPECIFICAÇÃO DO ALERTA</h3>
+      <div class="especificacao">
+        ${alerta.descricao}
+      </div>
+      <button onclick="fecharModal()">MARCAR COMO VISTO</button>
+    </div>`
+    }
+
+    function fecharModal() {
+        document.getElementById("modal").style.display = "none";
     }
 </script>
 
