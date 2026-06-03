@@ -90,7 +90,7 @@ CREATE TABLE alerta (
   idAlerta INT PRIMARY KEY AUTO_INCREMENT,
   situacao VARCHAR(45) NOT NULL,
   dtAlerta DATE,
-  descricao VARCHAR(150),
+  visto BOOLEAN,
   fkHectare INT NOT NULL,
   FOREIGN KEY (fkHectare) REFERENCES hectare(idHectare)
 );
@@ -147,3 +147,4 @@ AND l.dataHora >= NOW() - INTERVAL 7 DAY
 GROUP BY
     ap.idAreaPlantio,
     h.idHectare;
+    
