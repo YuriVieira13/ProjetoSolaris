@@ -6,13 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alertas</title>
     <link rel="stylesheet" href="styles/alertas.css" />
+    <link rel="stylesheet" href="./dashboard/sidebar.css">
+    
     <link rel="icon" href="assets/icons" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
 
 <body onload="carregarAlertas()">
-    <div id="div_container">
-        <aside class="sidebar">
+    <div class="div_container">
+        <aside class="sidebar" >
             <img src="./assets/imgs/logo.png" alt="Logo solaris" class="img_logo" />
 
             <div class="div_barra"></div>
@@ -32,7 +34,7 @@
 
             </div>
         </aside>
-        <div id="main">
+        <div id="main" style="background-color: red;">
             <div id="alertas"></div>
             <div id="modal"></div>
         </div>
