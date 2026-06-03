@@ -182,7 +182,7 @@
                 console.log(areaPlantil);
 
                 // busca os dados para alimentar dash e criar os vetores PPFDMaximo e PPFDMINIMO
-                fetch(`/area/listar/${areaPlantil}/${hectare}`)
+                fetch(`/area/listarLuz/${areaPlantil}/${hectare}`)
                     .then((res) => res.json())
                     .then((dados) => {
                         console.log(dados);
