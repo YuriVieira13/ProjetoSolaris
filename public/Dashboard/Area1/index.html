@@ -124,7 +124,6 @@
 
   <script>
     window.onload = carregarDados();
-    /* GRAFICO DE BARRA */
 
     let mediaMaxima = [];
     let mediaMinima = [];
@@ -134,7 +133,6 @@
     let limiteMaximo = [];
     let limiteMinimo = [];
 
-    let meta = 0; /* Variável que futuramente vai receber um valor via prompt do cliente.*/
     let porcentagemPPFDG = 0; /* Variável que futuramente vai receber uma equação da relação entre as áreas adequadas e o total de áreas.*/
 
     let quantidadeHectares = 0;
@@ -146,6 +144,8 @@
     let abaixo = 0;
     let normal = 0;
 
+    let meta = 0;
+
     function carregarDados() {
       /* Carregadar os dados na tela ao iniciar a página */
 
@@ -155,6 +155,16 @@
         .then((res) => res.json())
         .then((dados) => {
           plotarHectares(dados);
+        })
+        .catch((erro) => {
+          console.log("Erro: ", erro);
+        });
+
+      fetch(`/dashboard/listarMeta/${idAreaPlantio}`)
+        .then((res) => res.json())
+        .then((dados) => {
+          meta = dados[0].meta;
+          console.log(dados[0].meta)
         })
         .catch((erro) => {
           console.log("Erro: ", erro);
@@ -208,7 +218,10 @@
 
       /* for utilizado para determinar a quantidade de áreas inadequadas / alertas */
       for (let i = 0; i < quantidadeHectares; i++) {
-        if (mediaMaxima[i] > limiteMaximo[0] || mediaMinima[i] < limiteMinimo[0]) {
+        if (
+          mediaMaxima[i] > limiteMaximo[0] ||
+          mediaMinima[i] < limiteMinimo[0]
+        ) {
           contadorAreasInadequadas++;
         }
       }
@@ -352,16 +365,20 @@
     /* Função que deixa a opção do cliente estipular a meta adequada para ele da produtividade desejada */
 
     function mudarMeta() {
-      let metaAtual = prompt("Digite a nova meta desejada");
-      meta = metaAtual;
+      let meta = prompt("Digite a nova meta desejada");
+      let idAreaPlantio = sessionStorage.getItem("ID_AREA_PLANTIL");
 
-      if (porcentagemPPFDG < meta) {
-        metaPPFD.innerHTML = `<h1 style="color: rgb(255, 0, 0)">${porcentagemPPFDG}%</h1>`;
-      } else {
-        metaPPFD.innerHTML = `<h1 style="color:green">${porcentagemPPFDG}%</h1>`;
-      }
+      fetch(`/dashboard/mudarMeta/${idAreaPlantio}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          meta: meta,
+        }),
+      });
 
-      metaDesejada.innerHTML = `meta desejada: ${meta}%`;
+      window.location.reload();
     }
 
     function SobrePFFD() {
@@ -395,7 +412,7 @@
 
     function salvarIdHectare(idHectare) {
       sessionStorage.ID_HECTARE = idHectare;
-      console.log(sessionStorage.ID_HECTARE)
+      console.log(sessionStorage.ID_HECTARE);
     }
   </script>
 </html>
