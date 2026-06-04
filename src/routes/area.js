@@ -8,7 +8,7 @@ router.get("/listarArea/:idUsuario", function (req, res) {
     areaController.listarArea(req, res);
 });
 
-router.get("/listarLuz/:areaPlantil/:hectare", function (req, res) {
+router.get("/listarLuz/:idAreaPlantio/:idHectare", function (req, res) {
     areaController.listarLuz(req, res);
 });
 

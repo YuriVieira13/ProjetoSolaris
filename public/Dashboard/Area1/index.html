@@ -198,17 +198,17 @@
       for (let i = 0; i < quantidadeHectares; i++) {
         if (mediaMaxima[i] > limiteMaximo[0]) {
           gridMapa.innerHTML += `<a
-            href="./areas/area1.html"
+            href="./areas/hectare.html"
             class="area"
             style="background-color: rgb(201, 6, 6)" onclick='salvarIdHectare(${dados[i].idHectare})'>Hectare ${i + 1}</a>`;
         } else if (mediaMinima[i] < limiteMinimo[0]) {
           gridMapa.innerHTML += `<a
-            href="./areas/area1.html"
+            href="./areas/hectare.html"
             class="area"
             style="background-color: rgb(237, 89, 89)" onclick='salvarIdHectare(${dados[i].idHectare})'>Hectare ${i + 1}</a>`;
         } else {
           gridMapa.innerHTML += `<a
-            href="./areas/area1.html"
+            href="./areas/hectare.html"
             class="area"
             style="background-color: rgb(104, 197, 76)" onclick='salvarIdHectare(${dados[i].idHectare})'>Hectare ${i + 1}</a>`;
         }

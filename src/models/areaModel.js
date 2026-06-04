@@ -13,11 +13,11 @@ function listarArea(idUsuario) {
     return database.executar(instrucao);
 }
 
-function listarLuz(areaPlantil, hectare) {
+function listarLuz(idAreaPlantio, idHectare) {
     var instrucao = `
      SELECT * FROM vw_leitura_min_max_semanal
-    WHERE idAreaPlantio = ${areaPlantil}
-    AND idHectare = ${hectare}
+    WHERE idAreaPlantio = ${idAreaPlantio}
+    AND idHectare = ${idHectare}
     LIMIT 7;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
