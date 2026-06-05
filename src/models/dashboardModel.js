@@ -27,8 +27,34 @@ function mudarMeta(idAreaPlantio, meta) {
   return database.executar(instrucao);
 }
 
+function listarFuncionarios(fkFazenda) {
+  const instrucao = `
+      SELECT
+          idUsuario,
+          nome,
+          email,
+          cargo
+      FROM funcionario
+      WHERE fkFazenda = ${fkFazenda};
+  `;
+
+  return database.executar(instrucao);
+}
+
+function deletarFuncionario(idUsuario){
+
+  const instrucao = `
+      DELETE FROM funcionario
+      WHERE idUsuario = ${idUsuario};
+  `;
+
+  return database.executar(instrucao);
+}
+
 module.exports = {
   listar,
   listarMeta,
   mudarMeta,
+  listarFuncionarios,
+  deletarFuncionario
 };
