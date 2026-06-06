@@ -24,4 +24,12 @@ router.put("/visualizarAlerta/:idAlerta", function (req, res) {
     areaController.visualizarAlerta(req, res);
 });
 
+router.get("/listarFazendas/:idUsuario", function (req, res) {
+    areaController.listarFazendas(req, res);
+});
+
+router.get("/listarAreaPorFazenda/:idFazenda", function (req, res) {
+    areaController.listarAreaPorFazenda(req, res);
+});
+
 module.exports = router;
