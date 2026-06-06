@@ -261,7 +261,7 @@ function logar() {
 
                 setTimeout(function () {
                     alert("Login realizado com sucesso!");
-                    window.location.href = "../Dashboard/dashboard.html";
+                    window.location.href = "../Dashboard/fazendas.html";
                 }, 1000);
             });
 
