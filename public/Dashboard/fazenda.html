@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./global.css" />
+    <link rel="stylesheet" href="./sidebar.css" />
+    <title>Solaris - Fazenda</title>
+    <style>
+      .main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .header {
+        width: 100%;
+        background: linear-gradient(180deg, #6aa84f, #4e7f35);
+        padding: 14px 30px;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+      }
+
+      .header-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: white;
+        flex-shrink: 0;
+      }
+
+      .header-info {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .header-nome {
+        color: white;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+        padding-bottom: 2px;
+      }
+
+      .header-endereco {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .mapa-container {
+        flex: 1;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .img-mapa {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .sidebar .btn_sidebar.ativo {
+        background: rgba(255, 255, 255, 0.28);
+        border-color: rgba(255, 255, 255, 0.4);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="div_container">
+      <aside class="sidebar">
+        <img
+          src="./assets/imgs/logo.png"
+          alt="Logo Solaris"
+          class="img_logo"
+        />
+
+        <div class="div_barra"></div>
+
+        <nav class="navbar">
+          <a href="./dashboard.html" class="btn_sidebar">Áreas</a>
+          <a href="../../Alertas.html" class="btn_sidebar">Alertas</a>
+          <a href="#" class="btn_sidebar">Relatórios</a>
+          <a href="./fazendas.html" class="btn_sidebar">Fazendas</a>
+        </nav>
+
+        <div class="div_barra"></div>
+
+        <h4 class="titulo">Configurações da conta</h4>
+
+        <img
+          src="./assets/imgs/Pessoa.png"
+          alt="Foto de perfil"
+          class="img_perfil"
+        />
+        <h4 class="nomeUsuario" id="nomeUsuario">—</h4>
+        <button class="btn_sidebar">Configurações</button>
+        <button class="btn_sidebar" onclick="sessionStorage.clear(); window.location.href='/index.html';" style="background:rgba(220,50,50,0.25);border-color:rgba(220,50,50,0.5);">Sair</button>
+      </aside>
+
+      <div class="main">
+        <div class="header">
+          <div class="header-dot"></div>
+          <div class="header-info">
+            <span class="header-nome" id="header-nome">FAZENDA</span>
+            <span class="header-endereco">
+              <i class="bi bi-geo-alt-fill"></i>
+              <span id="header-endereco">—</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="mapa-container">
+          <img
+            src="./assets/imgs/1.png"
+            alt="Mapa da fazenda"
+            class="img-mapa"
+          />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      window.onload = function () {
+        var idUsuario = sessionStorage.getItem("ID_USUARIO");
+        if (!idUsuario) {
+          window.location.href = "../Login.html";
+          return;
+        }
+
+        var idFazenda = sessionStorage.getItem("ID_FAZENDA");
+        if (!idFazenda) {
+          window.location.href = "./fazendas.html";
+          return;
+        }
+
+        var nomeUsuario = sessionStorage.getItem("NOME_USUARIO") || "—";
+        var nomeFazenda =
+          sessionStorage.getItem("NOME_FAZENDA") || "Fazenda";
+        var enderecoFazenda =
+          sessionStorage.getItem("ENDERECO_FAZENDA") || "—";
+
+        document.getElementById("nomeUsuario").innerText = nomeUsuario;
+        document.getElementById("header-nome").innerText =
+          nomeFazenda.toUpperCase();
+        document.getElementById("header-endereco").innerText = enderecoFazenda;
+      };
+    </script>
+  </body>
+</html>
