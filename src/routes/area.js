@@ -16,4 +16,8 @@ router.get("/buscarAlertas/:idUsuario/:idFazenda", function (req, res) {
     areaController.buscarAlertas(req, res);
 });
 
+router.post("/criarAlerta/:motivo/:idHectare", function (req, res) {
+    areaController.criarAlerta(req, res);
+})
+
 module.exports = router;

@@ -30,8 +30,20 @@ function buscarAlertas(req, res) {
     })
 }
 
+function criarAlerta(req, res) {
+    var motivo  = req.params.motivo;
+    var idHectare  = req.params.idHectare;
+
+    areaModel.criarAlerta(motivo, idHectare).then(function (resultado) {
+        res.status(200).json(resultado);
+    }).catch(function (erro) {
+        res.status(500).json(erro.sqlMessage);
+    })
+}
+
 module.exports = {
     listarArea,
     listarLuz,
-    buscarAlertas
+    buscarAlertas, 
+    criarAlerta
 }

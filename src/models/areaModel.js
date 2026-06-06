@@ -45,10 +45,16 @@ function buscarAlertas(idUsuario, idFazenda) {
     return database.executar(instrucao);
 }
 
-
+function criarAlerta(motivo, idHectare) {
+    var instrucao = `INSERT INTO alerta (situacao, dtAlerta, visto, fkHectare)
+    VALUES (${motivo}, DEFAULT, 0, ${idHectare});`
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+} 
 
 module.exports = {
     listarArea,
     listarLuz,
-    buscarAlertas
+    buscarAlertas,
+    criarAlerta
 };
