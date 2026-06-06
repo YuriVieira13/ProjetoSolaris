@@ -52,10 +52,41 @@ function visualizarAlerta(idAlerta) {
     return database.executar(instrucao);
 }
 
+function listarFazendas(idUsuario) {
+    var instrucao = `
+        SELECT 
+            f.idFazenda,
+            f.nome,
+            f.cib,
+            f.area,
+            e.cidade,
+            e.uf,
+            e.estrada,
+            e.km
+        FROM fazenda f
+        JOIN funcionario func ON f.fkEmpresa = func.fkEmpresa
+        JOIN endereco e ON f.fkEndereco = e.idEndereco
+        WHERE func.idUsuario = ${idUsuario};`
+    
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function listarAreaPorFazenda(idFazenda) {
+    var instrucao = `
+    SELECT idAreaPlantio, nome FROM areaplantio
+    WHERE fkFazenda" = ${idFazenda};`
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
 module.exports = {
     listarArea,
     listarLuz,
     buscarAlertas,
     criarAlerta,
-    visualizarAlerta
+    visualizarAlerta,
+    listarFazendas,
+    listarAreaPorFazenda
 };
