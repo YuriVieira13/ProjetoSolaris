@@ -51,11 +51,32 @@ function visualizarAlerta(req, res) {
     })
 }
 
+function listarFazendas(req, res) {
+    var idUsuario = req.params.idUsuario;
+    areaModel.listarFazendas(idUsuario).then(function (resultado) {
+        res.status(200).json(resultado);
+    }).catch(function (erro) {
+        console.error("ERRO listarFazendas:", erro.sqlMessage || erro);
+        res.status(500).json(erro.sqlMessage || "Erro interno");
+    });
+}
+
+function listarAreaPorFazenda(req, res) {
+    var idFazenda = req.params.idFazenda;
+    areaModel.listarAreaPorFazenda(idFazenda).then(function (resultado) {
+        res.status(200).json(resultado);
+    }).catch(function (erro) {
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 
 module.exports = {
     listarArea,
     listarLuz,
     buscarAlertas, 
     criarAlerta,
-    visualizarAlerta
+    visualizarAlerta,
+    listarFazendas,
+    listarAreaPorFazenda
 }
