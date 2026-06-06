@@ -20,4 +20,8 @@ router.post("/criarAlerta/:motivo/:idHectare", function (req, res) {
     areaController.criarAlerta(req, res);
 })
 
+router.put("/visualizarAlerta/:idAlerta", function (req, res) {
+    areaController.visualizarAlerta(req, res);
+});
+
 module.exports = router;

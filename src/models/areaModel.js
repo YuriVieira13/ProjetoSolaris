@@ -52,9 +52,16 @@ function criarAlerta(motivo, idHectare) {
     return database.executar(instrucao);
 } 
 
+function visualizarAlerta(idAlerta) {
+    var instrucao = `UPDATE alerta SET visto = 1 WHERE idAlerta = ${idAlerta};`
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     listarArea,
     listarLuz,
     buscarAlertas,
-    criarAlerta
+    criarAlerta,
+    visualizarAlerta
 };

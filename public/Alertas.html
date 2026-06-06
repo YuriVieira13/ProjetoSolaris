@@ -7,14 +7,14 @@
     <title>Alertas</title>
     <link rel="stylesheet" href="styles/alertas.css" />
     <link rel="stylesheet" href="./dashboard/sidebar.css">
-    
+
     <link rel="icon" href="assets/icons" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
 
 <body onload="carregarAlertas()">
     <div class="div_container">
-        <aside class="sidebar" >
+        <aside class="sidebar">
             <img src="./assets/imgs/logo.png" alt="Logo solaris" class="img_logo" />
 
             <div class="div_barra"></div>
@@ -49,7 +49,6 @@
         let idFazenda = 1;
         // let idFazenda = Number(sessionStorage.ID_FAZENDA);
 
-
         fetch(`/area/buscarAlertas/${idUsuario}/${idFazenda}`, {
             method: "GET"
         })
@@ -65,12 +64,12 @@
             .catch(err => {
                 console.log(err);
             })
-
     }
+
     function abrirModal(i) {
         let alerta = listaAlertas[i];
 
-        let modal = document.getElementById("modal"); 
+        let modal = document.getElementById("modal");
         modal.style.display = "flex";
 
         modal.innerHTML = `<div class="conteudo">
@@ -83,12 +82,23 @@
       <div class="especificacao">
         ${alerta.descricao}
       </div>
-      <button onclick="fecharModal()">MARCAR COMO VISTO</button>
+      <button onclick="visualizarAlerta(${alerta.idAlerta})">MARCAR COMO VISTO</button>
     </div>`
     }
 
-    function fecharModal() {
+    function visualizarAlerta(idAlerta) {
         document.getElementById("modal").style.display = "none";
+
+        fetch(`/area/visualizarAlerta/${idAlerta}`, {
+            method: "PUT"
+        })
+            .then(() => {
+                alertas.innerHTML = "";
+                carregarAlertas();
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 </script>
 

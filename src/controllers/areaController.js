@@ -41,9 +41,21 @@ function criarAlerta(req, res) {
     })
 }
 
+function visualizarAlerta(req, res) {
+    var idAlerta = req.params.idAlerta;
+
+    areaModel.visualizarAlerta(idAlerta).then(function (resultado) {
+        res.status(200).json(resultado);
+    }).catch(function (erro) {
+        res.status(500).json(erro.sqlMessage);
+    })
+}
+
+
 module.exports = {
     listarArea,
     listarLuz,
     buscarAlertas, 
-    criarAlerta
+    criarAlerta,
+    visualizarAlerta
 }
