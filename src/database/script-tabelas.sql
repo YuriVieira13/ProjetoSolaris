@@ -86,6 +86,7 @@ CREATE TABLE alerta (
   situacao VARCHAR(45) NOT NULL,
   dtAlerta DATE,
   descricao VARCHAR(150),
+  visto BOOLEAN,
   fkHectare INT NOT NULL,
   FOREIGN KEY (fkHectare) REFERENCES hectare(idHectare)
 );
