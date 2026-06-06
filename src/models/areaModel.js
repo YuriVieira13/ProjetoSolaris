@@ -26,21 +26,15 @@ function listarLuz(idAreaPlantio, idHectare) {
 
 function buscarAlertas(idUsuario, idFazenda) {
     var instrucao = `
-    SELECT h.idHectare, l.ValorLeitura, ap.nome, faz.nome as nome_fazenda, alerta.descricao,
-        CASE 
-            WHEN l.ValorLeitura < 800 THEN 'BAIXA LUMINOSIDADE'
-            WHEN l.ValorLeitura > 1500 THEN 'ALTA LUMINOSIDADE'
-            ELSE 'LUMINOSIDADE IDEAL'
-            END AS 'Alerta'
-        FROM funcionario func
-        JOIN empresa e ON func.fkEmpresa = e.idEmpresa
-        JOIN fazenda faz ON faz.fkEmpresa = e.idEmpresa
-        JOIN areaplantio ap ON ap.fkFazenda = faz.idFazenda
-        JOIN hectare h ON h.fkAreaPlantio = ap.idAreaPlantio
-        JOIN sensor s ON s.fkHectare = h.idHectare
-        JOIN leitura l ON l.fkSensor = s.idSensor
-        JOIN alerta ON alerta.fkHectare = h.idHectare
-        WHERE func.idUsuario = ${idUsuario} AND faz.fkEmpresa = ${idFazenda};`;
+    SELECT alerta.idAlerta, h.idHectare, ap.nome, faz.nome as nome_fazenda, alerta.situacao, alerta.idAlerta, alerta.visto
+    FROM funcionario func
+    JOIN fazenda faz ON func.fkFazenda = faz.idFazenda
+    JOIN empresa e ON faz.fkEmpresa = e.idEmpresa
+    JOIN areaplantio ap ON ap.fkFazenda = faz.idFazenda
+    JOIN hectare h ON h.fkAreaPlantio = ap.idAreaPlantio
+    JOIN sensor s ON s.fkHectare = h.idHectare
+    JOIN alerta ON alerta.fkHectare = h.idHectare
+    WHERE func.idUsuario = ${idUsuario} AND faz.idFazenda = ${idFazenda} AND alerta.visto = 0;`
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
@@ -50,7 +44,7 @@ function criarAlerta(motivo, idHectare) {
     VALUES (${motivo}, DEFAULT, 0, ${idHectare});`
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
-} 
+}
 
 function visualizarAlerta(idAlerta) {
     var instrucao = `UPDATE alerta SET visto = 1 WHERE idAlerta = ${idAlerta};`
