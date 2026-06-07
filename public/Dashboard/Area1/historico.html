@@ -20,24 +20,22 @@
 
         <div class="div_barra"></div>
 
-        <nav class="navbar">
-          <a href="./index.html" class="btn_sidebar">Dashboard</a>
-
-          <a class="btn_sidebar" href="./funcionariosDash.html">Usuarios</a>
-
-          <a class="btn_sidebar" href="./historico.html">Historico</a>
-
-          <a href="../dashboard.html" class="btn_sidebar">Selecionar Àrea</a>
-        </nav>
+      <nav class="navbar">
+        <a href="./index.html" class="btn_sidebar">Dashboard</a>
+        <a class="btn_sidebar" href="./historico.html" style="background:rgba(255,255,255,0.22);border-color:rgba(255,255,255,0.4);">Histórico</a>
+        <a class="btn_sidebar" href="./funcionariosDash.html" id="btn_usuarios">Usuários</a>
+        <a href="../dashboard.html" class="btn_sidebar">Selecionar Área</a>
+      </nav>
 
         <div class="div_barra"></div>
 
         <h4 class="titulo">Configurações da conta</h4>
 
-        <img src="./assets/imgs/Pessoa.png" class="img_perfil" />
-        <h4 class="nomeUsuario">Fernando Brandão</h4>
-        <button class="btn_sidebar">Configurações</button>
-      </aside>
+      <img src="./assets/imgs/Pessoa.png" class="img_perfil" />
+      <h4 class="nomeUsuario" id="nomeUsuario">—</h4>
+      <button class="btn_sidebar">Configurações</button>
+      <button class="btn_sidebar" onclick="sessionStorage.clear(); window.location.href='/index.html';" style="background:rgba(220,50,50,0.25);border-color:rgba(220,50,50,0.5);">Sair</button>
+    </aside>
 
       <div class="div_conteudo">
         <div class="header">
@@ -105,9 +103,14 @@
     </div>
   </body>
 
-  <script>
+<script>
 
-    window.onload = verificarSuporte(), esconderGraficos()
+window.onload = function () {
+  var nome = sessionStorage.getItem("NOME_USUARIO");
+  if (nome) document.getElementById("nomeUsuario").innerText = nome;
+  verificarBotaoUsuarios();
+  verificarSuporte();
+};
 
 
     let mediaMaxima = [];

@@ -26,16 +26,12 @@
                 <nav class="navbar">
                     <a href="./index.html" class="btn_sidebar">Dashboard</a>
 
-                    <a class="btn_sidebar">Alertas</a>
-
-                    <a class="btn_sidebar">Relatorios</a>
-
-                    <a href="../dashboard.html" class="btn_sidebar"
-                        >Selecionar Àrea</a
-                    >
-                </nav>
-
-                <div class="div_barra"></div>
+            <nav class="navbar">
+                <a href="./index.html" class="btn_sidebar">Dashboard</a>
+                <a href="./historico.html" class="btn_sidebar">Histórico</a>
+                <a href="./funcionariosDash.html" class="btn_sidebar" id="btn_usuarios" style="background:rgba(255,255,255,0.22);border-color:rgba(255,255,255,0.4);">Usuários</a>
+                <a href="../dashboard.html" class="btn_sidebar">Selecionar Área</a>
+            </nav>
 
                 <h4 class="titulo">Configurações da conta</h4>
 
@@ -44,9 +40,42 @@
                 <button class="btn_sidebar">Configurações</button>
             </aside>
 
-            <div class="div_conteudo">
-                <div class="header">
-                    <p class="p_header">Primeira área de plantio</p>
+            <img src="./assets/imgs/Pessoa.png" class="img_perfil" />
+            <h4 class="nomeUsuario" id="nomeUsuario">—</h4>
+            <button class="btn_sidebar">Configurações</button>
+            <button class="btn_sidebar" onclick="sessionStorage.clear(); window.location.href='/index.html';" style="background:rgba(220,50,50,0.25);border-color:rgba(220,50,50,0.5);">Sair</button>
+        </aside>
+
+        <div class="div_conteudo">
+            <div class="header">
+                <p class="p_header">Primeira área de plantio</p>
+            </div>
+
+            <div class="main">
+                <div class="div_cards">
+                    <div class="div_card">
+                        <span>Total de Usuários</span>
+                        <h1 id="qtdUsuarios">0</h1>
+                        <p>Cadastrados</p>
+                    </div>
+
+                    <div class="div_card">
+                        <span>Administradores</span>
+                        <h1 id="qtdAdministradores">0</h1>
+                        <p>Usuários</p>
+                    </div>
+
+                    <div class="div_card">
+                        <span>Suportes</span>
+                        <h1 id="qtdSuportes">0</h1>
+                        <p>Usuários</p>
+                    </div>
+
+                    <div class="div_card">
+                        <span>Funcionários</span>
+                        <h1 id="qtdFuncionarios">0</h1>
+                        <p>Usuários</p>
+                    </div>
                 </div>
 
                 <div class="main">
@@ -127,14 +156,17 @@
         </div>
     </body>
 
-    <script>
-        (window.onload = listarFuncionarios()), verificarSuporte();
+<script>
+    window.onload = function () {
+        var nome = sessionStorage.getItem("NOME_USUARIO");
+        if (nome) document.getElementById("nomeUsuario").innerText = nome;
+        verificarBotaoUsuarios();
+        verificarSuporte();
+        listarFuncionarios();
+    };
 
         let listaFuncionarios = [];
-
-        function listarFuncionarios() {
-            let fkFazenda = sessionStorage.getItem('ID_FAZENDA');
-
+    
             fetch(`/dashboard/listarFuncionarios/${fkFazenda}`)
                 .then((res) => res.json())
                 .then((dados) => {
@@ -144,7 +176,6 @@
                 .catch((erro) => {
                     console.log(erro);
                 });
-        }
 
         function exibirFuncionarios(lista) {
             tbodyFuncionarios.innerHTML = "";
