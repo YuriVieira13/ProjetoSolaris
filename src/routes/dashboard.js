@@ -23,6 +23,10 @@ router.get("/periodo/", function (req, res) {
   dashboardController.periodo(req, res);
 });
 
+router.get("/ultimaMedicao/:idHectare", function (req, res) {
+  dashboardController.ultimaMedicao(req, res);
+});
+
 router.delete("/deletarFuncionario/:idUsuario", function(req, res){
   dashboardController.deletarFuncionario(req, res);
 });

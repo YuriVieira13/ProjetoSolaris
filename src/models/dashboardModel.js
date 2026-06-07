@@ -59,6 +59,21 @@ function periodo() {
   return database.executar(instrucao);
 }
 
+function ultimaMedicao(idHectare) {
+  var instrucao = `
+    SELECT 
+        ValorLeitura as valor,
+        DATE_FORMAT(dataHora, '%d/%m/%Y %H:%i') as data
+    FROM leitura l
+    JOIN sensor s
+        ON l.fkSensor = s.idSensor
+    WHERE fkHectare = ${idHectare}
+    ORDER BY dataHora DESC
+    LIMIT 1;`;
+  console.log("Executando a instrução SQL: \n" + instrucao);
+  return database.executar(instrucao);
+}
+
 module.exports = {
   listar,
   listarMeta,
@@ -66,4 +81,5 @@ module.exports = {
   listarFuncionarios,
   deletarFuncionario,
   periodo,
+  ultimaMedicao,
 };

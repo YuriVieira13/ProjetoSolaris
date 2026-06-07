@@ -76,6 +76,20 @@ function deletarFuncionario(req, res) {
     });
 }
 
+function ultimaMedicao(req, res) {
+  const idHectare = req.params.idHectare;
+
+  dashboardModel
+    .ultimaMedicao(idHectare)
+    .then((resultado) => {
+      res.status(200).json(resultado);
+    })
+    .catch((erro) => {
+      console.log(erro);
+      res.status(500).json(erro);
+    });
+}
+
 module.exports = {
   listarHectare,
   listarMeta,
@@ -83,4 +97,5 @@ module.exports = {
   listarFuncionarios,
   deletarFuncionario,
   periodo,
+  ultimaMedicao,
 };
