@@ -30,7 +30,7 @@
                     <a class="btn_sidebar" href="./funcionariosDash.html"
                         >Usuários</a
                     >
-
+                    <a href="../../Alertas.html" class="btn_sidebar">Alertas</a>
                     <a href="../dashboard.html" class="btn_sidebar"
                         >Selecionar Àrea</a
                     >
@@ -263,86 +263,96 @@
                 mediaMaxima.push(mediaMaximaPPFD);
                 mediaMinima.push(mediaMinimaPPFD);
 
-                for (let i = 0; i < quantidadeHectares; i++) {
-                    if (mediaMaxima[i] > limiteMaximo[0]) {
-                        criarAlerta(
-                            "Média semanal da área passou do limite máximo de PPFD",
-                            dados[i].idHectare
-                        );
-                        gridMapa.innerHTML += `<a
+                hectaresLabel.push(`Hectare ${i + 1}`);
+                limiteMaximo.push(1500);
+                limiteMinimo.push(400);
+            }
+            quantidadeHectares = dados.length;
+
+            for (let i = 0; i < quantidadeHectares; i++) {
+                if (mediaMaxima[i] > limiteMaximo[0]) {
+                    criarAlerta(
+                        "Média semanal da área passou do limite máximo de PPFD",
+                        dados[i].idHectare
+                    );
+                    gridMapa.innerHTML += `<a
             href="./areas/hectare.html"
             class="area"
             style="background-color: rgb(201, 6, 6)" onclick='salvarIdHectare(${
                 dados[i].idHectare
             })'>Hectare ${i + 1}</a>`;
-                    } else if (mediaMinima[i] < limiteMinimo[0]) {
-                        criarAlerta(
-                            "Média semanal da área não atingiu quantidade mínima de PPFD",
-                            dados[i].idHectare
-                        );
-                        gridMapa.innerHTML += `<a
+                } else if (mediaMinima[i] < limiteMinimo[0]) {
+                    criarAlerta(
+                        "Média semanal da área não atingiu quantidade mínima de PPFD",
+                        dados[i].idHectare
+                    );
+                    gridMapa.innerHTML += `<a
             href="./areas/hectare.html"
             class="area"
             style="background-color: rgb(237, 89, 89)" onclick='salvarIdHectare(${
                 dados[i].idHectare
             })'>Hectare ${i + 1}</a>`;
-                    } else {
-                        gridMapa.innerHTML += `<a
+                } else {
+                    gridMapa.innerHTML += `<a
             href="./areas/hectare.html"
             class="area"
             style="background-color: rgb(104, 197, 76)" onclick='salvarIdHectare(${
                 dados[i].idHectare
             })'>Hectare ${i + 1}</a>`;
-                    }
                 }
-
-                let contadorAreasInadequadas = 0;
-
-                /* for utilizado para determinar a quantidade de áreas inadequadas / alertas */
-
-                qtdAreasInadequadas.innerHTML = `${contadorAreasInadequadas}`;
-
-                /* calculo utilizado para gerar a porcentagem de aproveitamento da área, sendo o total de áreas adquadas dividido pelo total */
-
-                let porcentagemPPFD =
-                    ((quantidadeHectares - contadorAreasInadequadas) /
-                        quantidadeHectares) *
-                    100;
-
-                porcentagemPPFDG = porcentagemPPFD;
-
-                if (porcentagemPPFD < meta) {
-                    /* estilizar a cor da porcentagem com base na meta estabelecida via prompt */
-                    metaPPFD.innerHTML = `<h1 style="color: rgb(255, 0, 0)">${porcentagemPPFD}%</h1>`;
-                } else {
-                    metaPPFD.innerHTML = `<h1 style="color:green">${porcentagemPPFD}%</h1>`;
-                }
-
-                metaDesejada.innerHTML = `meta desejada: ${meta}%`;
-
-                /* for que gera o nosso mapa de calor, já com as cores equivalentes */
-
-                qtdAlertas.innerHTML = contadorAreasInadequadas;
-                //   }
-
-                /* for para fazer a contagem dos valores que serão utilizados no dado de pizza */
-                for (
-                    let qtdAreasPizza = 0;
-                    qtdAreasPizza < quantidadeHectares;
-                    qtdAreasPizza++
-                ) {
-                    if (mediaMaxima[qtdAreasPizza] > limiteMaximo[0]) {
-                        acima++;
-                    } else if (mediaMinima[qtdAreasPizza] < limiteMinimo[0]) {
-                        abaixo++;
-                    } else {
-                        normal++;
-                    }
-                }
-
-                plotarGraficos();
             }
+
+            let contadorAreasInadequadas = 0;
+
+            /* for utilizado para determinar a quantidade de áreas inadequadas / alertas */
+
+            qtdAreasInadequadas.innerHTML = `${contadorAreasInadequadas}`;
+
+            /* calculo utilizado para gerar a porcentagem de aproveitamento da área, sendo o total de áreas adquadas dividido pelo total */
+
+            let porcentagemPPFD =
+                ((quantidadeHectares - contadorAreasInadequadas) /
+                    quantidadeHectares) *
+                100;
+
+            porcentagemPPFDG = porcentagemPPFD;
+
+            if (porcentagemPPFD < meta) {
+                /* estilizar a cor da porcentagem com base na meta estabelecida via prompt */
+                metaPPFD.innerHTML = `<h1 style="color: rgb(255, 0, 0)">${porcentagemPPFD}%</h1>`;
+            } else {
+                metaPPFD.innerHTML = `<h1 style="color:green">${porcentagemPPFD}%</h1>`;
+            }
+
+            metaDesejada.innerHTML = `meta desejada: ${meta}%`;
+
+            /* for que gera o nosso mapa de calor, já com as cores equivalentes */
+
+            qtdAlertas.innerHTML = contadorAreasInadequadas;
+            //   }
+
+            /* for para fazer a contagem dos valores que serão utilizados no dado de pizza */
+            for (
+                let qtdAreasPizza = 0;
+                qtdAreasPizza < quantidadeHectares;
+                qtdAreasPizza++
+            ) {
+                if (mediaMaxima[qtdAreasPizza] > limiteMaximo[0]) {
+                    acima++;
+                } else if (mediaMinima[qtdAreasPizza] < limiteMinimo[0]) {
+                    abaixo++;
+                } else {
+                    normal++;
+                }
+            }
+
+            setTimeout(() => {
+                carregarAlertasNaoVistosArea();
+            }, 500);
+
+            plotarGraficos();
         }
+
         function criarAlerta(motivo, idHectare) {
             fetch(`/area/criarAlerta/${motivo}/${idHectare}`, {
                 method: "POST",
@@ -363,27 +373,63 @@
         function plotarGraficos() {
             const grafLinha = document.getElementById("graficoLinha");
 
-            setTimeout(() => {
-                carregarAlertasNaoVistosArea();
-            }, 500);
-
-            plotarGraficos();
-        }
-        function criarAlerta(motivo, idHectare) {
-            fetch(`/area/criarAlerta/${motivo}/${idHectare}`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
+            new Chart(grafLinha, {
+                type: "bar",
+                data: {
+                    labels: hectaresLabel,
+                    datasets: [
+                        {
+                            label: "Média do PPFD Máximo",
+                            data: mediaMaxima,
+                            backgroundColor: "#3b6cb7",
+                            borderColor: "#3b6cb7",
+                        },
+                        {
+                            label: "Média do PPFD Mínimo",
+                            data: mediaMinima,
+                            backgroundColor: "#e67e22",
+                            borderColor: "#e67e22",
+                        },
+                        {
+                            label: "Limite Superior",
+                            data: limiteMaximo,
+                            type: "line",
+                            borderColor: "#888",
+                            borderWidth: 2,
+                            pointRadius: 0,
+                        },
+                        {
+                            label: "Limite infeirior",
+                            data: limiteMinimo,
+                            type: "line",
+                            borderColor: "#f1c40f",
+                            borderWidth: 2,
+                            pointRadius: 0,
+                        },
+                    ],
                 },
-                body: JSON.stringify({
-                    motivo: motivo,
-                }),
-            })
-                .then((res) => res.json())
-                .then((data) => console.log(data))
-                .catch((err) => {
-                    console.log(err);
-                });
+                options: {
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: "bottom",
+                        },
+                        title: {
+                            display: true,
+                            text: "Média Semanal de incidência solar (PPFD) por Sensor",
+                        },
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: "PPFD",
+                            },
+                        },
+                    },
+                },
+            });
 
             /* GRAFICO DE PIZZA */
 
@@ -418,6 +464,7 @@
                 },
             });
         }
+
         /* Função que deixa a opção do cliente estipular a meta adequada para ele da produtividade desejada */
 
         function mudarMeta() {
