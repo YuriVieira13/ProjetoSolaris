@@ -223,7 +223,7 @@
 
         //Chamando função de criar alertas caso o ppfd passe de 1700
         if (PPFDMaximo[i] > 1700) {
-          criarAlerta("Hectare passou do PPFD Máximo", dados[i].idHectare);
+          criarAlerta("Hectare passou do PPFD Máximo", idHectare);
         }
       }
       mediaMaxima = mediaMaxima / PPFDMaximo.length;
@@ -234,7 +234,7 @@
 
         //Chamando função de criar alertas caso o ppfd não atinja 400
         if (PPFDMinimo[i] < 400) {
-          criarAlerta("Hectare não atingiu o PPFD Mínimo", dados[i].idHectare);
+          criarAlerta("Hectare não atingiu o PPFD Mínimo", idHectare);
         }
       }
 
