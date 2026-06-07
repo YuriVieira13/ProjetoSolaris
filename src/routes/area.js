@@ -36,4 +36,8 @@ router.get("/filtrarData/:idAreaPlantio/:dataFormatada", function (req, res) {
     areaController.filtrarData(req, res);
 });
 
+router.get("/buscarAlertasNaoVistosArea/:idAreaPlantio", function (req, res) {
+    areaController.carregarAlertasNaoVistosArea(req, res);
+});
+
 module.exports = router;

@@ -81,6 +81,25 @@ function filtrarData(req, res) {
     });
 }
 
+function carregarAlertasNaoVistosArea(req, res) {
+    var idAreaPlantio = req.params.idAreaPlantio;
+
+    areaModel.carregarAlertasNaoVistosArea(idAreaPlantio).then(function (resultado) {
+        res.status(200).json(resultado);
+    }).catch(function (erro) {
+        res.status(500).json(erro.sqlMessage);
+    })
+}
+
+function carregarAlertasNaoVistosHectare(req, res) {
+    var idAreaPlantio = req.params.idAreaPlantio;
+
+    areaModel.carregarAlertasNaoVistosHectare(idAreaPlantio).then(function (resultado) {
+        res.status(200).json(resultado);
+    }).catch(function (erro) {
+        res.status(500).json(erro.sqlMessage);
+    })
+}
 
 module.exports = {
     listarArea,
@@ -90,5 +109,7 @@ module.exports = {
     visualizarAlerta,
     listarFazendas,
     listarAreaPorFazenda,
-    filtrarData
+    filtrarData,
+    carregarAlertasNaoVistosArea,
+    carregarAlertasNaoVistosHectare
 }
