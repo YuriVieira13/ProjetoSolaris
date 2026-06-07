@@ -424,7 +424,7 @@
     })
       .then(res => res.json())
       .then(json => {
-        qtdAlertas.innerHTML = `${json[0].hectares_com_problema}`
+        qtdAlertas.innerHTML = `${json[0].qtd_alertas_nao_vistos_area}`
       })
       .catch(err => {
         console.log(err);
