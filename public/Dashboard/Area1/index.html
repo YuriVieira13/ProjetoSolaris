@@ -53,7 +53,7 @@
                 <span>Hectares inadequadas</span>
                 <h1 style="color: red" id="qtdAreasInadequadas">2</h1>
                 <p>Periodo</p>
-                <p style="font-size: 17px">20/04 - 27/04</p>
+                <p style="font-size: 17px" id="periodo">20/04 - 27/04</p>
               </div>
 
               <div class="div_card">
@@ -165,6 +165,15 @@
         .then((dados) => {
           meta = dados[0].meta;
           console.log(dados[0].meta)
+        })
+        .catch((erro) => {
+          console.log("Erro: ", erro);
+        });
+
+      fetch(`/dashboard/periodo/`)
+        .then((res) => res.json())
+        .then((dados) => {
+          periodo.innerHTML = `${dados[0].comeco} - ${dados[0].fim}`
         })
         .catch((erro) => {
           console.log("Erro: ", erro);
