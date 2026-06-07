@@ -114,14 +114,15 @@
       </div>
 
       <div class="mapa-container">
-        <img src="./assets/imgs/1.png" alt="Mapa da fazenda" class="img-mapa" />
+        <img src="./assets/imgs/1.png" alt="Mapa da fazenda" class="img-mapa" id="mapa" />
       </div>
     </div>
   </div>
 
   <script>
     window.onload = function () {
-
+      var imagemFazenda = sessionStorage.getItem("IMAGEM_FAZENDA");
+    document.getElementById("mapa").src = `./assets/imgs/${imagemFazenda}`
     };
 
     function irCadastro(){
