@@ -135,7 +135,7 @@ function carregarAlertasNaoVistos(fkAreaPlantio) {
 } */
 
 function carregarAlertasNaoVistosArea(fkAreaPlantio) {
-    var instrucao = ` SELECT COUNT(DISTINCT alerta.idAlerta) AS qtd_alertas_nao_vistos_area
+    var instrucao = ` SELECT COUNT(*) AS qtd_alertas_nao_vistos_area
     FROM alerta JOIN hectare 
     ON alerta.fkHectare = hectare.idHectare
     WHERE hectare.fkAreaPlantio = ${fkAreaPlantio} AND alerta.visto = 0 AND alerta.situacao LIKE 'Média%';`
