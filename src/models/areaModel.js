@@ -41,7 +41,7 @@ function buscarAlertas(idUsuario, idFazenda) {
 
 function criarAlerta(motivo, idHectare) {
     var instrucao = `INSERT INTO alerta (situacao, dtAlerta, visto, fkHectare)
-    VALUES (${motivo}, DEFAULT, 0, ${idHectare});`;
+    VALUES ('${motivo}', CURRENT_DATE(), 0, ${idHectare});`;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
@@ -120,6 +120,17 @@ GROUP BY
     return database.executar(instrucao);
 }
 
+function carregarAlertasNaoVistos(fkAreaPlantio) {
+    var instrucao = `SELECT COUNT(DISTINCT h.idHectare) AS hectares_com_problema
+    FROM alerta a
+    JOIN hectare h ON a.fkHectare = h.idHectare
+    WHERE a.visto = 0
+    AND h.fkAreaPlantio = ${fkAreaPlantio} AND a.situacao LIKE 'Hectare%';`
+        console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
 module.exports = {
     listarArea,
     listarLuz,
@@ -128,5 +139,6 @@ module.exports = {
     visualizarAlerta,
     listarFazendas,
     listarAreaPorFazenda,
-    filtrarData
+    filtrarData,
+    carregarAlertasNaoVistos
 };

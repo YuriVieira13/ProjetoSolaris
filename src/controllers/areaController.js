@@ -81,6 +81,16 @@ function filtrarData(req, res) {
     });
 }
 
+function carregarAlertasNaoVistos(req, res) {
+    var idAreaPlantio = req.params.idAreaPlantio;
+
+    areaModel.carregarAlertasNaoVistos(idAreaPlantio).then(function (resultado) {
+        res.status(200).json(resultado);
+    }).catch(function (erro) {
+        res.status(500).json(erro.sqlMessage);
+    })
+}
+
 
 module.exports = {
     listarArea,
@@ -90,5 +100,6 @@ module.exports = {
     visualizarAlerta,
     listarFazendas,
     listarAreaPorFazenda,
-    filtrarData
+    filtrarData,
+    carregarAlertasNaoVistos
 }
