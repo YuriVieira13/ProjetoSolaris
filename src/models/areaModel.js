@@ -82,7 +82,7 @@ function listarAreaPorFazenda(idFazenda) {
     return database.executar(instrucao);
 }
 
-function filtrarData(idAreaPlantio,DataFormatada) {
+function filtrarData(idAreaPlantio, DataFormatada) {
     var instrucao = `
 SELECT 
     ap.idAreaPlantio,
@@ -120,6 +120,7 @@ GROUP BY
     return database.executar(instrucao);
 }
 
+/*
 function carregarAlertasNaoVistos(fkAreaPlantio) {
     var instrucao = `SELECT COUNT(DISTINCT h.idHectare) AS hectares_com_problema
     FROM alerta a
@@ -128,7 +129,26 @@ function carregarAlertasNaoVistos(fkAreaPlantio) {
     AND h.fkAreaPlantio = ${fkAreaPlantio} AND a.situacao LIKE 'Hectare%';`
         console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
+} */
+
+function carregarAlertasNaoVistosArea(fkAreaPlantio) {
+    var instrucao = ` SELECT COUNT(DISTINCT alerta.idAlerta) 
+    FROM alerta JOIN hectare 
+    ON alerta.fkHectare = hectare.idHectare
+    WHERE hectare.fkAreaPlantio = ${fkAreaPlantio} AND alerta.visto = 0 AND alerta.situacao LIKE 'Média%';`
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
 }
+
+function carregarAlertasNaoVistosHectare(idHectare) {
+    var instrucao = ` SELECT COUNT(DISTINCT alerta.idAlerta) 
+    FROM alerta JOIN hectare 
+    ON alerta.fkHectare = hectare.idHectare
+    WHERE hectare.idHectare = ${idHectare} AND alerta.visto = 0 AND alerta.situacao LIKE 'Hectare%';`
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 
 
 module.exports = {
@@ -140,5 +160,6 @@ module.exports = {
     listarFazendas,
     listarAreaPorFazenda,
     filtrarData,
-    carregarAlertasNaoVistos
+    carregarAlertasNaoVistosArea,
+    carregarAlertasNaoVistosHectare
 };

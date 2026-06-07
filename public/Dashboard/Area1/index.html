@@ -27,7 +27,7 @@
         <title>Document</title>
       </head>
 
-      <body onload="carregarAlertasNaoVistos()">
+      <body onload="carregarAlertasNaoVistosArea()">
         <div class="div_container">
           <aside class="sidebar">
             <img src="./assets/imgs/logo.png" alt="Logo solaris" class="img_logo" />
@@ -244,12 +244,12 @@
           for (let i = 0; i < quantidadeHectares; i++) {
             if (mediaMaxima[i] > limiteMaximo[0]) {
               contadorAreasInadequadas++;
-              criarAlerta('Hectare passou do limite máximo de PPFD', dados[i].idHectare);
+              criarAlerta('Média semanal da área passou do limite máximo de PPFD', dados[i].idHectare);
             }
 
             if (mediaMinima[i] < limiteMinimo[0]) {
               contadorAreasInadequadas++;
-              criarAlerta('Hectare não atingiu quantidade mínima de PPFD', dados[i].idHectare);
+              criarAlerta('Média semanal da área não atingiu quantidade mínima de PPFD', dados[i].idHectare);
             }
           }
 
@@ -459,9 +459,10 @@
           console.log(sessionStorage.ID_HECTARE);
         }
 
-        function carregarAlertasNaoVistos() {
+        function carregarAlertasNaoVistosArea() {
           let idAreaPlantio = sessionStorage.getItem("ID_AREA_PLANTIL");
-          fetch(`/area/buscarAlertasNaoVistos/${idAreaPlantio}`, {
+
+          fetch(`/area/buscarAlertasNaoVistosArea/${idAreaPlantio}`, {
             method: "GET"
           })
             .then(res => res.json())
