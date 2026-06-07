@@ -44,9 +44,7 @@
       <div class="div_conteudo">
         <div class="header">
           <p class="p_header" id="tituloArea">Hectare A1</p>
-          <p class="p_titulo" id="ultima_medicao">
-            Ultima medição: 1000 PPFD 27/04/2026 9:55
-          </p>
+          <p class="p_titulo" id="ultima_medicao"></p>
         </div>
 
         <div class="main">
@@ -197,12 +195,12 @@
         for (let i = 0; i < quantidadeHectares; i++) {
           if (dados[i].idHectare == idHectare) {
             gridMapa.innerHTML += `<a
-            href='#'
-            class="area ativa"  onclick='salvarIdHectare(${dados[i].idHectare})'>Hectare ${i + 1}</a>`;
+              href='#'
+              class="area ativa"  onclick='salvarIdHectare(${dados[i].idHectare})'>Hectare ${i + 1}</a>`;
           } else {
             gridMapa.innerHTML += `<a
-            href='#'
-            class="area" onclick='salvarIdHectare(${dados[i].idHectare})'>Hectare ${i + 1}</a>`;
+              href='#'
+              class="area" onclick='salvarIdHectare(${dados[i].idHectare})'>Hectare ${i + 1}</a>`;
           }
         }
       }
