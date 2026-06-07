@@ -55,6 +55,7 @@ function visualizarAlerta(idAlerta) {
 function listarFazendas(idUsuario) {
     var instrucao = `
 SELECT 
+    func.nome,
     f.idFazenda,
     f.nome,
     f.cib,
@@ -64,8 +65,10 @@ SELECT
     e.estrada,
     e.km
 FROM fazenda f
+JOIN funcionarioFazenda funcfazenda
+    ON funcfazenda.fkFazenda = f.idFazenda
 JOIN funcionario func
-    ON func.fkFazenda = f.idFazenda
+    ON funcfazenda.fkFuncionario = func.idUsuario
 JOIN endereco e
     ON f.fkEndereco = e.idEndereco
 WHERE func.idUsuario = ${idUsuario};`;

@@ -159,7 +159,7 @@ function confirmacaoDeSenha() {
     div_verificarConfirmacao.innerHTML = resposta;
 }
 
-function verificarCargo(){
+function verificarCargo() {
 
     let cargo = cargo_input.value
     let resposta = `Confirmado`
@@ -250,13 +250,13 @@ function logar() {
         console.log("ESTOU NO THEN DO entrar()!")
 
         if (resposta.ok) {
-            
+
             resposta.json().then(json => {
                 sessionStorage.ID_USUARIO = json.idUsuario;
                 sessionStorage.NOME_USUARIO = json.nome;
                 sessionStorage.EMAIL_USUARIO = json.email;
                 sessionStorage.CARGO_USUARIO = json.cargo;
-                
+
                 console.log(json);
 
                 setTimeout(function () {
@@ -286,4 +286,57 @@ function sumirMensagem() {
     cardErro.style.display = "none"
 }
 
+function pegarFazendas() {
 
+    let idUsuario = sessionStorage.getItem("ID_USUARIO")
+
+    fetch(`/area/listarFazendas/${idUsuario}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+
+        .then(function (resposta) {
+
+            if (resposta.ok) {
+                return resposta.json();
+            }
+        })
+
+        .then(function (json) {
+
+            mostrarFazendas(json)
+        })
+
+        .catch(function (erro) {
+
+            console.error(`Erro no fetch: ${erro.message}`);
+        })
+
+}
+
+function mostrarFazendas(json){
+
+    console.log(json)
+
+    let fazendas = []
+    let idFazenda = []
+
+    for(let i = 0; i < json.length; i++){
+
+        fazendas.push(json[i].nome)
+        idFazenda.push(json[i].idFazenda)
+    }
+
+    console.log(`Fazendas: ${fazendas}`)
+
+    let mensagem = ``
+
+    for(let i = 0; i < fazendas.length; i ++){
+
+        mensagem += `${fazendas[i]} - <input class="checkbox" type="checkbox" value="${idFazenda[i]}"><br>`
+    }
+
+    div_exibirFazendas.innerHTML = mensagem;
+}
