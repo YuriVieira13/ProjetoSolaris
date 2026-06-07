@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../sidebar.css" />
     <link rel="stylesheet" href="../global.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../../js/verificarCargo.js"></script>
     <title>Document</title>
   </head>
   <body>
@@ -119,11 +120,16 @@
           </div>
         </div>
       </div>
+      
+      <div class="icon-bob-AI">
+      <a href="../bobAI.html"><img src="../../assets/icons/icon-bob-ai.png" alt=""></a>
+    </div>
+
     </div>
   </body>
 
   <script>
-    window.onload = carregarDados();
+    window.onload = carregarDados(), verificarSuporte();
 
     let mediaMaxima = [];
     let mediaMinima = [];

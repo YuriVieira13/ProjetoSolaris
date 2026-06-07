@@ -1,0 +1,253 @@
+ * {
+
+   margin: 0;
+   padding: 0;
+ }
+
+ .header {
+
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+
+   background-color: #306b17;
+   /* #1E3F10*/
+   padding: 10px 40px;
+ }
+
+ .header img {
+
+   width: 5vw;
+   height: auto;
+   padding: 0 0 0 2.5vw;
+ }
+
+ .navbar {
+
+   display: flex;
+   flex-direction: row;
+   justify-content: flex-end;
+   align-items: center;
+
+   gap: 30px;
+   padding-right: 40px;
+ }
+
+ .navbar a {
+
+   text-decoration: none;
+   font-size: 24px;
+   color: white;
+ }
+
+ .navbar a:hover {
+
+   color: rgb(214, 214, 214);
+   transition: 0.3s;
+   cursor: pointer;
+ }
+
+ .navbar li {
+
+   list-style: none;
+   color: white
+ }
+
+ /* ===================== BobIa =================== */
+
+
+
+ .fundo-bobAI {
+
+   display: flex;
+
+   justify-content: center;
+   align-items: center;
+
+   min-height: calc(100vh - 95px);
+   width: 100%;
+
+   background-color: rgba(15, 124, 17, 0.86);
+
+ }
+
+ .card-bobAI {
+
+   min-height: 300px;
+   height: auto;
+   width: 600px;
+
+   border-radius: 15px;
+
+ }
+
+ .card-bobAI img {
+
+   height: 60px;
+   width: 60px;
+
+   margin-left: 15px;
+ }
+
+ .titulo-bobAI {
+
+   display: flex;
+   align-items: center;
+   flex-direction: row;
+
+
+   height: 70px;
+   width: 100%;
+
+   background-color: rgb(1, 120, 11);
+   color: white;
+   font-weight: bolder;
+
+   border-radius: 15px 15px 0 0;
+ }
+
+ .titulo-texto-bobAI {
+
+   display: flex;
+   flex-direction: column;
+
+   gap: 2px;
+ }
+
+ .introducao-bobAI {
+
+   display: flex;
+   align-items: flex-start;
+   flex-direction: column;
+
+   min-height: 250px;
+   height: auto;
+   width: 100%;
+
+   background-color: #fefbf7;
+  
+ }
+
+ .introducao-bobAI p {
+
+   margin-top: 35px;
+   margin-left: 20px;
+
+   font-size: 20px;
+
+   color: #306b17
+ }
+
+ .inputPergunta-bobAI {
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+   gap: 10px;
+
+   height: 70px;
+   width: 100%;
+
+   background-color: #fefbf7;
+
+   border-radius: 0 0 15px 15px;
+ }
+
+ .inputPergunta-bobAI input {
+
+   height: 35px;
+   width: 480px;
+
+   border: 1px solid #449920;
+
+   border-radius: 5px;
+
+ }
+
+ .inputPergunta-bobAI button:hover{
+
+  transition: 0.5s;
+  background-color: #c07f10;
+ }
+
+ .inputPergunta-bobAI button {
+
+   height: 35px;
+   width: 50px;
+
+   background-color: #fda70f;
+   color: white;
+
+   border: none;
+   border-radius: 5px;
+
+   cursor: pointer;
+ }
+
+ .divResposta-bobAI {
+
+   margin: 20px 20px;
+   text-align: justify;
+ }
+
+ /* ===================== MODAL =================== */
+
+ .modal-bobAI {
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   position: fixed;
+
+   height: 100%;
+   width: 100%;
+
+   background-color: rgba(0, 0, 0, 0.5);
+   backdrop-filter: blur(4px);
+
+   top: 0;
+   left: 0;
+   z-index: 999;
+ }
+
+ .card-modal-bobAI {
+
+   height: 400px;
+   width: 400px;
+
+   border-radius: 15px;
+   background-color: #fefbf7;
+   overflow: hidden;
+
+ }
+
+ .modal-bobAI .titulo-bobAI {
+
+   justify-content: space-between;
+   background-color: rgb(1, 120, 11);;
+ }
+
+ .modal-bobAI .titulo-bobAI h2 {
+
+   margin: 0 20px;
+   font-size: 22px;
+ }
+
+ .modal-bobAI .titulo-bobAI a {
+
+  margin: 0 20px;
+   font-size: 32px;
+   cursor: pointer;
+ }
+
+ .texto-bobAI {
+   font-size: 18px;
+   margin: 20px;
+ }
+
+ .texto-bobAI li {
+
+   margin-left: 20px;
+   margin-bottom: 5px;
+ }

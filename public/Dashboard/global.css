@@ -44,3 +44,23 @@ body{
     font-weight: 700;
     color: white;
 }
+
+/* Bob-AI*/
+
+.icon-bob-AI {
+    display: block;
+    position: fixed;
+
+    bottom: 5px;
+    right: 10px;
+
+    z-index: 99;
+    
+}
+
+.icon-bob-AI img{
+
+    height: 100px;
+    width: 100px;
+
+}
