@@ -18,7 +18,6 @@ body{
 
 
 .main{
-    background-image: url('./assets/imgs/1.png');
     width: calc(100vw - 250px);
     height: 100vh;
     background-size: cover;
