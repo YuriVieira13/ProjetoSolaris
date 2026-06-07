@@ -12,7 +12,7 @@
   <title>Hectare A1</title>
 </head>
 
-<body onload="carregarAlertasNaoVistosHectare()">
+<body>
   <div class="div_container">
     <aside class="sidebar">
       <img src="../assets/imgs/logo.png" alt="Logo solaris" class="img_logo" />
@@ -250,7 +250,7 @@
         }
       }
 
-      txtQtdAlertas.innerHTML = qtdAlertas;
+      carregarAlertasNaoVistosHectare()
     }
 
     function criarAlerta(motivo, idHectare) {
@@ -409,9 +409,7 @@
     }
 
     function carregarAlertasNaoVistosHectare() {
-      let idAreaPlantio = sessionStorage.getItem("ID_AREA_PLANTIL");
-
-      fetch(`/area/buscarAlertasNaoVistosHectare/${idAreaPlantio}`, {
+      fetch(`/area/buscarAlertasNaoVistosHectare/${idHectare}`, {
         method: "GET"
       })
         .then(res => res.json())

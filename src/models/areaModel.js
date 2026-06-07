@@ -63,6 +63,7 @@ SELECT
     e.cidade,
     e.uf,
     e.estrada,
+    f.imagem,
     e.km
 FROM fazenda f
 JOIN funcionarioFazenda funcfazenda
@@ -143,11 +144,11 @@ function carregarAlertasNaoVistosArea(fkAreaPlantio) {
     return database.executar(instrucao);
 }
 
-function carregarAlertasNaoVistosHectare(idHectare) {
-    var instrucao = ` SELECT COUNT(DISTINCT alerta.idAlerta) AS qtd_hectares_alerta
+function buscarAlertasNaoVistosHectare(idHectare) {
+    var instrucao = `SELECT COUNT(*) AS qtd_hectares_alerta
     FROM alerta JOIN hectare 
     ON alerta.fkHectare = hectare.idHectare
-    WHERE hectare.idHectare = ${idHectare} AND alerta.visto = 0 AND alerta.situacao LIKE 'Hectare%';`
+    WHERE alerta.fkHectare = ${idHectare} AND alerta.visto = 0 AND alerta.situacao LIKE 'Hectare%';`
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
@@ -164,5 +165,5 @@ module.exports = {
     listarAreaPorFazenda,
     filtrarData,
     carregarAlertasNaoVistosArea,
-    carregarAlertasNaoVistosHectare
+    buscarAlertasNaoVistosHectare
 };
