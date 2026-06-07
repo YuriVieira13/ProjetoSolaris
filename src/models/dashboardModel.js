@@ -41,12 +41,20 @@ function listarFuncionarios(fkFazenda) {
   return database.executar(instrucao);
 }
 
-function deletarFuncionario(idUsuario){
-
+function deletarFuncionario(idUsuario) {
   const instrucao = `
       DELETE FROM funcionario
       WHERE idUsuario = ${idUsuario};
   `;
+
+  return database.executar(instrucao);
+}
+
+function periodo() {
+  const instrucao = `
+      SELECT 
+        DATE_FORMAT(NOW() - INTERVAL 6 DAY, '%d/%m') as comeco,
+        DATE_FORMAT(NOW(), '%d/%m') as fim;`;
 
   return database.executar(instrucao);
 }
@@ -56,5 +64,6 @@ module.exports = {
   listarMeta,
   mudarMeta,
   listarFuncionarios,
-  deletarFuncionario
+  deletarFuncionario,
+  periodo,
 };

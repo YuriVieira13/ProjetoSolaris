@@ -15,10 +15,12 @@ router.put("/mudarMeta/:idAreaPlantio", function (req, res) {
   dashboardController.mudarMeta(req, res);
 });
 
-
-
 router.get("/listarFuncionarios/:fkFazenda", function (req, res) {
   dashboardController.listarFuncionarios(req, res);
+});
+
+router.get("/periodo/", function (req, res) {
+  dashboardController.periodo(req, res);
 });
 
 router.delete("/deletarFuncionario/:idUsuario", function(req, res){
