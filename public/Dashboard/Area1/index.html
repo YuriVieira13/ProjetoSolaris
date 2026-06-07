@@ -12,7 +12,7 @@
   <title>Document</title>
 </head>
 
-<body onload="carregarAlertasNaoVistosArea()">
+<body>
   <div class="div_container">
     <aside class="sidebar">
       <img src="./assets/imgs/logo.png" alt="Logo solaris" class="img_logo" />
@@ -204,13 +204,13 @@
 
     for (let i = 0; i < quantidadeHectares; i++) {
       if (mediaMaxima[i] > limiteMaximo[0]) {
-        criarAlerta('Hectare passou do limite máximo de PPFD', dados[i].idHectare);
+        criarAlerta('Média semanal da área passou do limite máximo de PPFD', dados[i].idHectare);
         gridMapa.innerHTML += `<a
             href="./areas/hectare.html"
             class="area"
             style="background-color: rgb(201, 6, 6)" onclick='salvarIdHectare(${dados[i].idHectare})'>Hectare ${i + 1}</a>`;
       } else if (mediaMinima[i] < limiteMinimo[0]) {
-        criarAlerta('Hectare não atingiu quantidade mínima de PPFD', dados[i].idHectare);
+        criarAlerta('Média semanal da área não atingiu quantidade mínima de PPFD', dados[i].idHectare);
         gridMapa.innerHTML += `<a
             href="./areas/hectare.html"
             class="area"
@@ -267,6 +267,10 @@
         normal++;
       }
     }
+
+    setTimeout(() => {
+      carregarAlertasNaoVistosArea();
+    }, 500);
 
     plotarGraficos();
   }
