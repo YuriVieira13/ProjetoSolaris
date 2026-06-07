@@ -77,7 +77,7 @@ WHERE func.idUsuario = ${idUsuario};`;
 function listarAreaPorFazenda(idFazenda) {
     var instrucao = `
     SELECT idAreaPlantio, nome FROM areaplantio
-    WHERE fkFazenda" = ${idFazenda};`;
+    WHERE fkFazenda = ${idFazenda};`;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
