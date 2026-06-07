@@ -7,9 +7,9 @@
     <title>Alertas</title>
     <link rel="stylesheet" href="styles/alertas.css" />
     <link rel="stylesheet" href="./dashboard/sidebar.css">
-
     <link rel="icon" href="assets/icons" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
 </head>
 
 <body onload="carregarAlertas()">
@@ -20,22 +20,21 @@
             <div class="div_barra"></div>
 
             <nav class="navbar">
-                <h4 class="nomeUsuario">SELECIONE A ÁREA DESEJADA</h4>
-
-                <a href="#" class="btn_sidebar" onclick="direcionar(1)">Área de Plantio 1</a>
-
-                <a href="#" class="btn_sidebar" onclick="direcionar(2)"> Área de Plantio 2</a>
+                <a href="Dashboard/dashboard.html" class="btn_sidebar">Inicio</a>
+                <a href="#" class="btn_sidebar">Relatórios</a>
+                <a href="#" class="btn_sidebar">Fazendas</a>
             </nav>
 
             <div class="div_barra"></div>
-            <div class="div_btnCadastro">
+            <h4 class="titulo">Configurações da conta</h4>
 
-                <a href="../Cadastro.html" class="btn_sidebar btn_cadastroSide btn_cadastrar">Cadastrar Funcionario</a>
-
-            </div>
+            <img src="./assets/imgs/Pessoa.png" class="img_perfil" />
+            <h4 class="nomeUsuario">Fernando Brandão</h4>
+            <button class="btn_sidebar">Configurações</button>
         </aside>
-        <div id="main" style="background-color: red;">
-            <div id="alertas"></div>
+        <div id="main">
+            <h3>NOME FAZENDA</h3>
+            <h3>RELATORIOS</h3>
             <div id="modal"></div>
         </div>
     </div>
@@ -56,9 +55,9 @@
             .then(json => {
                 listaAlertas = json;
                 for (let i = 0; i < json.length; i++) {
-                    alertas.innerHTML += `<button class="alerta" onclick="abrirModal(${i})">
-                     ${json[i].nome} <span>${json[i].Alerta} </span> HECTARE ${json[i].idHectare}
-                     </button>`
+                    main.innerHTML += `<button class="alerta" onclick="abrirModal(${i})">
+                     ${json[i].nome.toUpperCase()} <span>${json[i].situacao.toUpperCase()} </span> HECTARE ${json[i].idHectare}
+                      <i class="bi bi-exclamation-circle"></i></button>`
                 }
             })
             .catch(err => {
@@ -74,14 +73,12 @@
 
         modal.innerHTML = `<div class="conteudo">
       <h2>DETALHES DO ALERTA</h2>
-      <p><strong>MOTIVO:</strong> ${alerta.Alerta}</p>
-      <p><strong>FAZENDA:</strong> ${alerta.nome_fazenda}</p>
-      <p><strong>ÁREA:</strong> ${alerta.nome}</p>
-      <p><strong>HECTARE:</strong> HECTARE ${alerta.idHectare}</p>
-      <h3>ESPECIFICAÇÃO DO ALERTA</h3>
-      <div class="especificacao">
-        ${alerta.descricao}
-      </div>
+       <div id="informacoes">
+        <p><strong>MOTIVO DO ALERTA:</strong><span> ${alerta.situacao.toUpperCase()}</span></p>
+        <p><strong>FAZENDA:</strong><span>${alerta.nome_fazenda.toUpperCase()}</span></p>
+        <p><strong>ÁREA:</strong><span>${alerta.nome.toUpperCase()}</span></p>
+        <p><strong>HECTARE:</strong><span>HECTARE ${alerta.idHectare}</span></p>
+        </div>
       <button onclick="visualizarAlerta(${alerta.idAlerta})">MARCAR COMO VISTO</button>
     </div>`
     }
@@ -93,7 +90,7 @@
             method: "PUT"
         })
             .then(() => {
-                alertas.innerHTML = "";
+                main.innerHTML = "";
                 carregarAlertas();
             })
             .catch(err => {
