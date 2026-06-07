@@ -82,7 +82,7 @@ function listarAreaPorFazenda(idFazenda) {
     return database.executar(instrucao);
 }
 
-function filtrarData(idAreaPlantio,DataFormatada) {
+function filtrarData(idAreaPlantio, DataFormatada) {
     var instrucao = `
 SELECT 
     ap.idAreaPlantio,
@@ -126,7 +126,7 @@ function carregarAlertasNaoVistos(fkAreaPlantio) {
     JOIN hectare h ON a.fkHectare = h.idHectare
     WHERE a.visto = 0
     AND h.fkAreaPlantio = ${fkAreaPlantio} AND a.situacao LIKE 'Hectare%';`
-        console.log("Executando a instrução SQL: \n" + instrucao);
+    console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
