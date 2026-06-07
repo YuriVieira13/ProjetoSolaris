@@ -71,6 +71,17 @@ function listarAreaPorFazenda(req, res) {
 }
 
 
+function filtrarData(req, res) {
+    var dataFormatada = req.params.dataFormatada;
+    var idAreaPlantio = req.params.idAreaPlantio;
+    areaModel.filtrarData(idAreaPlantio,dataFormatada).then(function (resultado) {
+        res.status(200).json(resultado);
+    }).catch(function (erro) {
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
 module.exports = {
     listarArea,
     listarLuz,
@@ -78,5 +89,6 @@ module.exports = {
     criarAlerta,
     visualizarAlerta,
     listarFazendas,
-    listarAreaPorFazenda
+    listarAreaPorFazenda,
+    filtrarData
 }

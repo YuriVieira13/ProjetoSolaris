@@ -32,4 +32,8 @@ router.get("/listarAreaPorFazenda/:idFazenda", function (req, res) {
     areaController.listarAreaPorFazenda(req, res);
 });
 
+router.get("/filtrarData/:idAreaPlantio/:dataFormatada", function (req, res) {
+    areaController.filtrarData(req, res);
+});
+
 module.exports = router;
