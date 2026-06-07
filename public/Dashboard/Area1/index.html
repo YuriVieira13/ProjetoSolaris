@@ -11,10 +11,26 @@
   <script src="../../js/verificarCargo.js"></script>
   <title>Document</title>
 </head>
-<body onload="carregarAlertasNaoVistos()">
+
+<body>
   <div class="div_container">
     <aside class="sidebar">
       <img src="./assets/imgs/logo.png" alt="Logo solaris" class="img_logo" />
+
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./style.css" />
+        <link rel="stylesheet" href="../sidebar.css" />
+        <link rel="stylesheet" href="../global.css" />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <title>Document</title>
+      </head>
+
+      <body onload="carregarAlertasNaoVistosArea()">
+        <div class="div_container">
+          <aside class="sidebar">
+            <img src="./assets/imgs/logo.png" alt="Logo solaris" class="img_logo" />
 
       <div class="div_barra"></div>
 
@@ -416,9 +432,10 @@
           console.log(sessionStorage.ID_HECTARE);
         }
 
-        function carregarAlertasNaoVistos() {
+        function carregarAlertasNaoVistosArea() {
           let idAreaPlantio = sessionStorage.getItem("ID_AREA_PLANTIL");
-          fetch(`/area/buscarAlertasNaoVistos/${idAreaPlantio}`, {
+
+          fetch(`/area/buscarAlertasNaoVistosArea/${idAreaPlantio}`, {
             method: "GET"
           })
             .then(res => res.json())
