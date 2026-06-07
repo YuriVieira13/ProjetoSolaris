@@ -152,7 +152,7 @@
 
       <nav class="navbar">
         <a href="./fazendas.html" class="btn_sidebar">Fazendas</a>
-        <a href="./Area1/funcionariosDash.html" class="btn_sidebar">Usuários</a>
+        <a href="./Area1/funcionariosDash.html" class="btn_sidebar" id="btn_usuarios">Usuários</a>
         <a href="#" class="btn_sidebar">Relatórios</a>
       </nav>
 
@@ -223,6 +223,7 @@
         });
 
         
+      verificarBotaoUsuarios();
     }, verificarSuporte();
 
     function plotarFazendas(dados) {
@@ -237,19 +238,35 @@
 
       for (var i = 0; i < dados.length; i++) {
         var f = dados[i];
-        var endereco = f.estrada
-          ? f.estrada + (f.cidade ? ", " + f.cidade : "")
-          : f.cidade || "Endereço não informado";
+        var endereco;
+        if (f.estrada) {
+          if (f.cidade) {
+            endereco = f.estrada + ", " + f.cidade;
+          } else {
+            endereco = f.estrada;
+          }
+        } else {
+          if (f.cidade) {
+            endereco = f.cidade;
+          } else {
+            endereco = "Endereço não informado";
+          }
+        }
 
-        var imgSrc = f.imagem ? f.imagem : "./assets/imgs/mapa.png";
+        var imgSrc;
+        if (f.imagem) {
+          imgSrc = f.imagem;
+        } else {
+          imgSrc = "./assets/imgs/mapa.png";
+        }
 
         grid.innerHTML +=
           '<div class="card-fazenda" onclick="selecionarFazenda(' +
           f.idFazenda +
           ', \'' +
-          escapar(f.nome) +
+          f.nome +
           "', '" +
-          escapar(endereco) +
+          endereco +
           '\')">' +
           '<img src="' +
           imgSrc +
@@ -269,10 +286,6 @@
       }
     }
 
-    function escapar(str) {
-      if (!str) return "";
-      return str.replace(/'/g, "\\'");
-    }
 
     function selecionarFazenda(idFazenda, nomeFazenda, endereco) {
       sessionStorage.setItem("ID_FAZENDA", idFazenda);
