@@ -79,25 +79,25 @@
   <div class="div_container">
     <aside class="sidebar">
       <img src="./assets/imgs/logo.png" alt="Logo Solaris" class="img_logo" />
-
+      <h4 class="nomeUsuario" id="nomeUsuario">—</h4>
       <div class="div_barra"></div>
 
       <nav class="navbar">
-        <a href="./dashboard.html" class="btn_sidebar">Áreas</a>
-        <a href="../../Alertas.html" class="btn_sidebar">Alertas</a>
-        <a href="#" class="btn_sidebar">Relatórios</a>
+        <a href="./dashboard.html" class="btn_sidebar"> Ver áreas</a>
         <a href="./fazendas.html" class="btn_sidebar">Fazendas</a>
       </nav>
 
       <div class="div_barra"></div>
 
-      <h4 class="titulo">Configurações da conta</h4>
 
-      <img src="./assets/imgs/Pessoa.png" alt="Foto de perfil" class="img_perfil">
-      <h4 class="nomeUsuario" id="nomeUsuario">—</h4>
+
+    <div class="infoConta">
+     
         <button onclick="irCadastro()" class="btn_sidebar">Cadastrar Funcionário</button>
       <button class="btn_sidebar" onclick="sessionStorage.clear(); window.location.href='/index.html';"
         style="background:rgba(220,50,50,0.25);border-color:rgba(220,50,50,0.5);">Sair</button>
+    <div>
+    
 
     </aside>
 
@@ -114,35 +114,15 @@
       </div>
 
       <div class="mapa-container">
-        <img src="./assets/imgs/1.png" alt="Mapa da fazenda" class="img-mapa" />
+        <img src="./assets/imgs/1.png" alt="Mapa da fazenda" class="img-mapa" id="mapa" />
       </div>
     </div>
   </div>
 
   <script>
     window.onload = function () {
-      var idUsuario = sessionStorage.getItem("ID_USUARIO");
-      if (!idUsuario) {
-        window.location.href = "../Login.html";
-        return;
-      }
-
-      var idFazenda = sessionStorage.getItem("ID_FAZENDA");
-      if (!idFazenda) {
-        window.location.href = "./fazendas.html";
-        return;
-      }
-
-      var nomeUsuario = sessionStorage.getItem("NOME_USUARIO") || "—";
-      var nomeFazenda =
-        sessionStorage.getItem("NOME_FAZENDA") || "Fazenda";
-      var enderecoFazenda =
-        sessionStorage.getItem("ENDERECO_FAZENDA") || "—";
-
-      document.getElementById("nomeUsuario").innerText = nomeUsuario;
-      document.getElementById("header-nome").innerText =
-        nomeFazenda.toUpperCase();
-      document.getElementById("header-endereco").innerText = enderecoFazenda;
+      var imagemFazenda = sessionStorage.getItem("IMAGEM_FAZENDA");
+    document.getElementById("mapa").src = `./assets/imgs/${imagemFazenda}`
     };
 
     function irCadastro(){

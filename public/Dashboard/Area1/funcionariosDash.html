@@ -20,62 +20,54 @@
                     alt="Logo solaris"
                     class="img_logo"
                 />
-
+                <h4 class="nomeUsuario" id="nomeUsuarioId">—</h4>
                 <div class="div_barra"></div>
 
                 <nav class="navbar">
                     <a href="./index.html" class="btn_sidebar">Dashboard</a>
+                    <a
+                        class="btn_sidebar"
+                        href="./historico.html"
+                        style="
+                            background: rgba(255, 255, 255, 0.22);
+                            border-color: rgba(255, 255, 255, 0.4);
+                        "
+                        >Histórico</a
+                    >
+                    <a
+                        class="btn_sidebar"
+                        href="./funcionariosDash.html"
+                        id="btn_usuarios"
+                        >Usuários</a
+                    >
+                    <a href="../../Alertas.html" class="btn_sidebar">Alertas</a>
+                    <a href="../dashboard.html" class="btn_sidebar"
+                        >Selecionar Área</a
+                    >
+                </nav>
 
-            <nav class="navbar">
-                <a href="./index.html" class="btn_sidebar">Dashboard</a>
-                <a href="./historico.html" class="btn_sidebar">Histórico</a>
-                <a href="./funcionariosDash.html" class="btn_sidebar" id="btn_usuarios" style="background:rgba(255,255,255,0.22);border-color:rgba(255,255,255,0.4);">Usuários</a>
-                <a href="../dashboard.html" class="btn_sidebar">Selecionar Área</a>
-            </nav>
+                <div class="div_barra"></div>
 
-                <h4 class="titulo">Configurações da conta</h4>
-
-                <img src="./assets/imgs/Pessoa.png" class="img_perfil" />
-                <h4 class="nomeUsuario">Fernando Brandão</h4>
-                <button class="btn_sidebar">Configurações</button>
+                <div class="infoConta">
+                    <button onclick="irCadastro()" class="btn_sidebar">
+                        Cadastrar Funcionário
+                    </button>
+                    <button
+                        class="btn_sidebar"
+                        onclick="sessionStorage.clear(); window.location.href='/index.html';"
+                        style="
+                            background: rgba(220, 50, 50, 0.25);
+                            border-color: rgba(220, 50, 50, 0.5);
+                        "
+                    >
+                        Sair
+                    </button>
+                </div>
             </aside>
 
-            <img src="./assets/imgs/Pessoa.png" class="img_perfil" />
-            <h4 class="nomeUsuario" id="nomeUsuario">—</h4>
-            <button class="btn_sidebar">Configurações</button>
-            <button class="btn_sidebar" onclick="sessionStorage.clear(); window.location.href='/index.html';" style="background:rgba(220,50,50,0.25);border-color:rgba(220,50,50,0.5);">Sair</button>
-        </aside>
-
-        <div class="div_conteudo">
-            <div class="header">
-                <p class="p_header">Primeira área de plantio</p>
-            </div>
-
-            <div class="main">
-                <div class="div_cards">
-                    <div class="div_card">
-                        <span>Total de Usuários</span>
-                        <h1 id="qtdUsuarios">0</h1>
-                        <p>Cadastrados</p>
-                    </div>
-
-                    <div class="div_card">
-                        <span>Administradores</span>
-                        <h1 id="qtdAdministradores">0</h1>
-                        <p>Usuários</p>
-                    </div>
-
-                    <div class="div_card">
-                        <span>Suportes</span>
-                        <h1 id="qtdSuportes">0</h1>
-                        <p>Usuários</p>
-                    </div>
-
-                    <div class="div_card">
-                        <span>Funcionários</span>
-                        <h1 id="qtdFuncionarios">0</h1>
-                        <p>Usuários</p>
-                    </div>
+            <div class="div_conteudo">
+                <div class="header">
+                    <p class="p_header">Primeira área de plantio</p>
                 </div>
 
                 <div class="main">
@@ -115,7 +107,8 @@
                             />
 
                             <select
-                                id="selectCargo" onchange="filtrarFuncionariosCargo()"
+                                id="selectCargo"
+                                onchange="filtrarFuncionariosCargo()"
                             >
                                 <option value="">Todos os cargos</option>
                                 <option value="funcionario">Funcionário</option>
@@ -140,42 +133,58 @@
                                 </tr>
                             </thead>
 
-                            <tbody id="tbodyFuncionarios">
-
-                            </tbody>
+                            <tbody id="tbodyFuncionarios"></tbody>
                         </table>
                     </div>
                 </div>
-            </div>
 
-            <div class="icon-bob-AI">
-                <a href="../bobAI.html"
-                    ><img src="../../assets/icons/icon-bob-ai.png" alt=""
-                /></a>
+                <div class="icon-bob-AI">
+                    <a href="../bobAI.html"
+                        ><img src="../../assets/icons/icon-bob-ai.png" alt=""
+                    /></a>
+                </div>
             </div>
         </div>
     </body>
 
-<script>
-    window.onload = function () {
-        var nome = sessionStorage.getItem("NOME_USUARIO");
-        if (nome) document.getElementById("nomeUsuario").innerText = nome;
-        verificarBotaoUsuarios();
-        verificarSuporte();
-        listarFuncionarios();
-    };
+    <script>
+        window.onload = function () {
+            var idUsuario = sessionStorage.getItem("ID_USUARIO");
+            if (!idUsuario) {
+                window.location.href = "../../Login.html";
+                return;
+            }
+
+            var idFazenda = sessionStorage.getItem("ID_FAZENDA");
+            if (!idFazenda) {
+                window.location.href = "../fazendas.html";
+                return;
+            }
+
+            var nomeUsuario = sessionStorage.getItem("NOME_USUARIO") || "—";
+            console.log(nomeUsuario);
+            nomeUsuarioId.innerHTML = nomeUsuario;
+
+            verificarBotaoUsuarios();
+            verificarSuporte();
+            listarFuncionarios();
+        };
+
+        function irCadastro() {
+            window.location.href = `../../Cadastro.html`;
+        }
 
         let listaFuncionarios = [];
-    
-            fetch(`/dashboard/listarFuncionarios/${fkFazenda}`)
-                .then((res) => res.json())
-                .then((dados) => {
-                    listaFuncionarios = dados;
-                    exibirFuncionarios(listaFuncionarios);
-                })
-                .catch((erro) => {
-                    console.log(erro);
-                });
+
+        fetch(`/dashboard/listarFuncionarios/${fkFazenda}`)
+            .then((res) => res.json())
+            .then((dados) => {
+                listaFuncionarios = dados;
+                exibirFuncionarios(listaFuncionarios);
+            })
+            .catch((erro) => {
+                console.log(erro);
+            });
 
         function exibirFuncionarios(lista) {
             tbodyFuncionarios.innerHTML = "";
@@ -202,7 +211,9 @@
             let funcionariosFiltrados = [];
 
             for (let i = 0; i < listaFuncionarios.length; i++) {
-                if (listaFuncionarios[i].nome.toLowerCase().includes(pesquisa)) {
+                if (
+                    listaFuncionarios[i].nome.toLowerCase().includes(pesquisa)
+                ) {
                     funcionariosFiltrados.push(listaFuncionarios[i]);
                 }
             }
@@ -210,14 +221,15 @@
             exibirFuncionarios(funcionariosFiltrados);
         }
 
-
         function filtrarFuncionariosCargo() {
             let pesquisa = selectCargo.value.toLowerCase();
 
             let funcionariosFiltrados = [];
 
             for (let i = 0; i < listaFuncionarios.length; i++) {
-                if (listaFuncionarios[i].cargo.toLowerCase().includes(pesquisa)) {
+                if (
+                    listaFuncionarios[i].cargo.toLowerCase().includes(pesquisa)
+                ) {
                     funcionariosFiltrados.push(listaFuncionarios[i]);
                 }
             }
