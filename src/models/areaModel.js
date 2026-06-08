@@ -24,6 +24,7 @@ function listarLuz(idAreaPlantio, idHectare) {
     return database.executar(instrucao);
 }
 
+/*
 function buscarAlertas(idUsuario, idFazenda) {
     var instrucao = `
     SELECT alerta.idAlerta, h.idHectare, ap.nome, faz.nome as nome_fazenda, alerta.situacao, alerta.idAlerta, alerta.visto
@@ -37,6 +38,27 @@ function buscarAlertas(idUsuario, idFazenda) {
     WHERE func.idUsuario = ${idUsuario} AND faz.idFazenda = ${idFazenda} AND alerta.visto = 0;`;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
+} 
+*/
+
+function buscarAlertas(idUsuario, idFazenda) {
+    var instrucao = `
+        SELECT 
+            a.idAlerta,
+            a.situacao,
+            a.visto,
+            a.dtAlerta,
+            h.idHectare,
+            ap.nome AS nome_area,
+            f.nome AS nome_fazenda
+        FROM alerta a
+        JOIN hectare h ON a.fkHectare = h.idHectare
+        JOIN areaplantio ap ON h.fkAreaPlantio = ap.idAreaPlantio
+        JOIN fazenda f ON ap.fkFazenda = f.idFazenda
+        WHERE f.idFazenda = ${idFazenda}
+        AND a.visto = 0;`;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+     return database.executar(instrucao);
 }
 
 function criarAlerta(motivo, idHectare) {
