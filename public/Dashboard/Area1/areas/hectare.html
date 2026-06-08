@@ -177,7 +177,7 @@
                         statusArea = dados[0].Status;
 
                         if (dados[0].Status == "Ativo") {
-                            statusSensor.innerHTML = `<h1 style="color: greenyellow">${dados[0].Status}</h1>`;
+                            statusSensor.innerHTML = `<h1 style="color: green">${dados[0].Status}</h1>`;
                         } else {
                             statusSensor.innerHTML = `<h1 style="color: red">${dados[0].Status}</h1>`;
                         }
@@ -359,8 +359,8 @@
                                     PPFDMaximo[5],
                                     PPFDMaximo[6],
                                 ],
-                                borderColor: "orange",
-                                backgroundColor: "orange",
+                                borderColor: "yellow",
+                                backgroundColor: "yellow",
                                 tension: 0.3,
                             },
                             {

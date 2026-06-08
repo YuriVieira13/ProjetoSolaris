@@ -231,7 +231,7 @@
         container.innerHTML +=
           '<a href="#" class="btn-area-panel" onclick="direcionar(' +
           dados[i].idAreaPlantio +
-          ')">' +
+          ',' + (i + 1) + ')">' +
           (dados[i].nome || "Área de Plantio " + (i + 1)) +
           "</a>";
       }
