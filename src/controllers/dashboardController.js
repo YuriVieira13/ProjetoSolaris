@@ -76,6 +76,21 @@ function deletarFuncionario(req, res) {
     });
 }
 
+function deletarFuncionarioFk(req, res) {
+  const idUsuario = req.params.idUsuario;
+
+  dashboardModel
+    .deletarFuncionarioFk(idUsuario)
+    .then((resultado) => {
+      res.status(200).json(resultado);
+    })
+    .catch((erro) => {
+      console.log(erro);
+      res.status(500).json(erro);
+    });
+}
+
+
 function ultimaMedicao(req, res) {
   const idHectare = req.params.idHectare;
 
@@ -98,4 +113,5 @@ module.exports = {
   deletarFuncionario,
   periodo,
   ultimaMedicao,
+  deletarFuncionarioFk,
 };

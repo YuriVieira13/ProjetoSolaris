@@ -31,5 +31,10 @@ router.delete("/deletarFuncionario/:idUsuario", function(req, res){
   dashboardController.deletarFuncionario(req, res);
 });
 
+router.delete("/deletarFuncionarioFk/:idUsuario", function(req, res){
+  dashboardController.deletarFuncionarioFk(req, res);
+});
+
+
 
 module.exports = router;

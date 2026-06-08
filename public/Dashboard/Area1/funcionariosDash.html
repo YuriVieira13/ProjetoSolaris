@@ -25,12 +25,7 @@
 
                 <nav class="navbar">
                     <a href="./index.html" class="btn_sidebar">Dashboard</a>
-                    <a
-                        class="btn_sidebar"
-                        href="./historico.html"
-    
-                        >Histórico</a
-                    >
+                    <a class="btn_sidebar" href="./historico.html">Histórico</a>
                     <a
                         class="btn_sidebar"
                         href="./funcionariosDash.html"
@@ -172,18 +167,26 @@
         }
 
         let listaFuncionarios = [];
+        let fkFazenda = sessionStorage.getItem("ID_FAZENDA");
 
-        fetch(`/dashboard/listarFuncionarios/${fkFazenda}`)
-            .then((res) => res.json())
-            .then((dados) => {
-                listaFuncionarios = dados;
-                exibirFuncionarios(listaFuncionarios);
-            })
-            .catch((erro) => {
-                console.log(erro);
-            });
+        function listarFuncionarios() {
+            fetch(`/dashboard/listarFuncionarios/${fkFazenda}`)
+                .then((res) => res.json())
+                .then((dados) => {
+                    listaFuncionarios = dados;
+                    exibirFuncionarios(listaFuncionarios);
+                })
+                .catch((erro) => {
+                    console.log(erro);
+                });
+        }
 
         function exibirFuncionarios(lista) {
+            let totalUsuarios  = lista.length
+            let totalAdministradores = 0;
+            let totalSuportes = 0;
+            let totalFuncionarios = 0;
+
             tbodyFuncionarios.innerHTML = "";
 
             for (let i = 0; i < lista.length; i++) {
@@ -193,13 +196,31 @@
             <td>${lista[i].email}</td>
             <td>${lista[i].cargo}</td>
             <td>
-                <i class="bi bi-pencil-square"></i>
                 <i class="bi bi-trash"
                    onclick="deletarFuncionario(${lista[i].idUsuario})"></i>
             </td>
         </tr>
         `;
             }
+
+            for (let i = 0; i < lista.length; i++) {
+                if (lista[i].cargo == "Administrador") {
+                    totalAdministradores++;
+                }
+
+                if (lista[i].cargo == "suporte") {
+                    totalSuportes++;
+                }
+
+                if (lista[i].cargo == "Funcionario") {
+                    totalFuncionarios++;
+                }
+            }
+
+            qtdUsuarios.innerHTML = totalUsuarios;
+            qtdAdministradores.innerHTML = totalAdministradores;
+            qtdSuportes.innerHTML = totalSuportes;
+            qtdFuncionarios.innerHTML = totalFuncionarios;
         }
 
         function filtrarFuncionarios() {
@@ -235,18 +256,33 @@
         }
 
         function deletarFuncionario(idUsuario) {
-            let validar = prompt(
-                "Voce Realmente deseja excluir esse usuario? Digite 'Sim' ou 'Não' "
-            ).toLowerCase();
+            let validar = confirm(
+                "Voce Realmente deseja excluir esse usuario?"
+            );
 
             console.log(validar);
-            if (validar == "sim") {
-                fetch(`/dashboard/deletarFuncionario/${idUsuario}`, {
+            if (validar) {
+                fetch(`/dashboard/deletarFuncionarioFk/${idUsuario}`, {
                     method: "DELETE",
                 })
                     .then((res) => {
                         if (res.ok) {
-                            listarFuncionarios();
+                            fetch(
+                                `/dashboard/deletarFuncionario/${idUsuario}`,
+                                {
+                                    method: "DELETE",
+                                }
+                            )
+                                .then((res) => {
+                                    if (res.ok) {
+                                        listarFuncionarios();
+                                    } else {
+                                        alert("Erro ao excluir funcionário");
+                                    }
+                                })
+                                .catch((erro) => {
+                                    console.log(erro);
+                                });
                         } else {
                             alert("Erro ao excluir funcionário");
                         }
