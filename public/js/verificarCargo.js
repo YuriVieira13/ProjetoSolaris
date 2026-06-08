@@ -16,7 +16,6 @@ function verificarAdministrador() {
 
     if (cargoMinusculo != "administrador") {
 
-        document.getElementById("botao_cadastrar").style.display = 'none'
     }
 }
 

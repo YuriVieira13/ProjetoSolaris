@@ -31,7 +31,7 @@
             <div class="div_barra"></div>
 
             <div class="infoConta">
-                <button id="botao_cadastrar" onclick="irCadastro()" class="btn_sidebar">
+                <button onclick="irCadastro()" class="btn_sidebar">
                     Cadastrar Funcionário
                 </button>
                 <button class="btn_sidebar" onclick="sessionStorage.clear(); window.location.href='/index.html';" style="
@@ -115,31 +115,27 @@
 </body>
 
 <script>
-    window.onload =
-        verificarSuporte(),
-        verificarAdministrador(),
-        function () {
-            var idUsuario = sessionStorage.getItem("ID_USUARIO");
-            if (!idUsuario) {
-                window.location.href = "../../Login.html";
-                return;
-            }
+    window.onload = function () {
+        var idUsuario = sessionStorage.getItem("ID_USUARIO");
+        if (!idUsuario) {
+            window.location.href = "../../Login.html";
+            return;
+        }
 
+        var idFazenda = sessionStorage.getItem("ID_FAZENDA");
+        if (!idFazenda) {
+            window.location.href = "../fazendas.html";
+            return;
+        }
 
+        var nomeUsuario = sessionStorage.getItem("NOME_USUARIO") || "—";
+        console.log(nomeUsuario);
+        nomeUsuarioId.innerHTML = nomeUsuario;
 
-            var idFazenda = sessionStorage.getItem("ID_FAZENDA");
-            if (!idFazenda) {
-                window.location.href = "../fazendas.html";
-                return;
-            }
-
-            var nomeUsuario = sessionStorage.getItem("NOME_USUARIO") || "—";
-            console.log(nomeUsuario);
-            nomeUsuarioId.innerHTML = nomeUsuario;
-
-            verificarBotaoUsuarios();
-            esconderGraficos();
-        };
+        verificarBotaoUsuarios();
+        verificarSuporte();
+        esconderGraficos();
+    };
 
     let mediaMaxima = [];
     let mediaMinima = [];
@@ -222,7 +218,7 @@
         botaoVoltar.style.display = "flex";
 
         let mensagem = transformarDataBR(data);
-
+      
         let p_header = document.getElementById("p_header");
         p_header.innerHTML = mensagem;
         console.log(data);
@@ -232,7 +228,7 @@
         let data = ipt_data.value;
 
         if (data == "") {
-
+            
             alert("Você esqueceu de colocar uma data")
             return;
         }

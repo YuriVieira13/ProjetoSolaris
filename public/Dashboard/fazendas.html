@@ -1,150 +1,173 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./global.css" />
+    <link rel="stylesheet" href="./sidebar.css" />
+    <link rel="stylesheet" href="./Fazendas.css" />
+    <script src="../js/verificarCargo.js"></script>
+    <title>Solaris - Selecionar Fazenda</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./global.css" />
-  <link rel="stylesheet" href="./sidebar.css" />
-  <link rel="stylesheet" href="./Fazendas.css" />
-  <script src="../js/verificarCargo.js"></script>
-  <title>Solaris - Selecionar Fazenda</title>
-</head>
+  <body onload="verificarSuporte()">
+    <div class="div_container">
+      <aside
+        class="sidebar"
+        style="justify-content: space-between; display: none"
+      >
+        <img src="./assets/imgs/logo.png" alt="Logo Solaris" class="img_logo" />
 
-<body>
-  <div class="div_container">
+        <div class="infoConta">
+          <h4 class="nomeUsuario" id="nomeUsuario">—</h4>
+          <button onclick="irCadastro()" class="btn_sidebar">
+            Cadastrar Funcionário
+          </button>
+          <button
+            class="btn_sidebar"
+            onclick="
+              sessionStorage.clear();
+              window.location.href = '/index.html';
+            "
+            style="
+              background: rgba(220, 50, 50, 0.25);
+              border-color: rgba(220, 50, 50, 0.5);
+            "
+          >
+            Sair
+          </button>
+        </div>
+      </aside>
 
-    <div class="div_botao">
-      <button class="btn_sidebar btn_sair" onclick="sessionStorage.clear(); window.location.href = '/index.html';">
-        Sair
-      </button>
-    </div>
+      <div class="main">
+        <div class="header">
+          <img src="./assets/imgs/logo.png" alt="Logo" class="header-logo" />
+          <h1>Bem-Vindo a <span>Solaris</span></h1>
+        </div>
 
-    <div class="main">
-      <div class="header">
-        <img src="./assets/imgs/logo.png" alt="Logo" class="header-logo" />
-        <h1>Bem-Vindo a <span>Solaris</span></h1>
-      </div>
+        <div class="content">
+          <h2>Selecione a fazenda que deseja visualizar</h2>
+          <p class="subtitulo">Fazendas disponíveis</p>
 
-      <div class="content">
-        <h2>Selecione a fazenda que deseja visualizar</h2>
-        <p class="subtitulo">Fazendas disponíveis</p>
-
-        <div class="cards-grid" id="fazendas-grid">
-          <p class="msg-vazio" id="msg-carregando">Carregando fazendas...</p>
+          <div class="cards-grid" id="fazendas-grid">
+            <p class="msg-vazio" id="msg-carregando">Carregando fazendas...</p>
+          </div>
         </div>
       </div>
+
+      <div class="icon-bob-AI">
+        <a href="../bobAI.html"
+          ><img src="../assets/icons/icon-bob-ai.png" alt=""
+        /></a>
+      </div>
     </div>
 
-    <div class="icon-bob-AI">
-      <a href="../bobAI.html"><img src="../assets/icons/icon-bob-ai.png" alt="" /></a>
-    </div>
-  </div>
+    <script>
+      ((window.onload = function () {
+        var nomeUsuario = sessionStorage.getItem("NOME_USUARIO");
+        if (nomeUsuario) {
+          document.getElementById("nomeUsuario").innerText = nomeUsuario;
+        }
 
-  <script>
-    ((window.onload = function () {
+        var idUsuario = sessionStorage.getItem("ID_USUARIO");
+        if (!idUsuario) {
+          window.location.href = "../Login.html";
+          return;
+        }
 
-      var idUsuario = sessionStorage.getItem("ID_USUARIO");
-      if (!idUsuario) {
-        window.location.href = "../Login.html";
-        return;
-      }
+        fetch("/area/listarFazendas/" + idUsuario)
+          .then(function (res) {
+            if (!res.ok) {
+              return res.json().then(function (err) {
+                throw new Error("SQL: " + err);
+              });
+            }
+            return res.json();
+          })
+          .then(function (dados) {
+            plotarFazendas(dados);
+          })
+          .catch(function (erro) {
+            console.error("Erro ao carregar fazendas:", erro);
+            var msgEl = document.getElementById("msg-carregando");
+            var grid = document.getElementById("fazendas-grid");
+            grid.innerHTML =
+              '<p class="msg-vazio">Erro ao carregar fazendas. Verifique o console.</p>';
+          });
 
-      fetch("/area/listarFazendas/" + idUsuario)
-        .then(function (res) {
-          if (!res.ok) {
-            return res.json().then(function (err) {
-              throw new Error("SQL: " + err);
-            });
-          }
-          return res.json();
-        })
-        .then(function (dados) {
-          plotarFazendas(dados);
-        })
-        .catch(function (erro) {
-          console.error("Erro ao carregar fazendas:", erro);
-          var msgEl = document.getElementById("msg-carregando");
-          var grid = document.getElementById("fazendas-grid");
+        verificarBotaoUsuarios();
+      }),
+        verificarSuporte());
+
+      function plotarFazendas(dados) {
+        var grid = document.getElementById("fazendas-grid");
+        grid.innerHTML = "";
+
+        if (!dados || dados.length === 0) {
           grid.innerHTML =
-            '<p class="msg-vazio">Erro ao carregar fazendas. Verifique o console.</p>';
-        });
-
-      verificarBotaoUsuarios();
-      verificarSuporte();
-    }),
-      verificarSuporte());
-
-    function plotarFazendas(dados) {
-      var grid = document.getElementById("fazendas-grid");
-      grid.innerHTML = "";
-
-      if (!dados || dados.length === 0) {
-        grid.innerHTML =
-          '<p class="msg-vazio">Nenhuma fazenda encontrada para este usuário.</p>';
-        return;
-      }
-
-      for (var i = 0; i < dados.length; i++) {
-        var f = dados[i];
-        var endereco;
-        if (f.estrada) {
-          if (f.cidade) {
-            endereco = f.estrada + ", " + f.cidade;
-          } else {
-            endereco = f.estrada;
-          }
-        } else {
-          if (f.cidade) {
-            endereco = f.cidade;
-          } else {
-            endereco = "Endereço não informado";
-          }
+            '<p class="msg-vazio">Nenhuma fazenda encontrada para este usuário.</p>';
+          return;
         }
 
-        var imgSrc;
-        if (f.imagem) {
-          imgSrc = `./assets/imgs/${f.imagem}`;
-        } else {
-          imgSrc = "./assets/imgs/mapa.png";
+        for (var i = 0; i < dados.length; i++) {
+          var f = dados[i];
+          var endereco;
+          if (f.estrada) {
+            if (f.cidade) {
+              endereco = f.estrada + ", " + f.cidade;
+            } else {
+              endereco = f.estrada;
+            }
+          } else {
+            if (f.cidade) {
+              endereco = f.cidade;
+            } else {
+              endereco = "Endereço não informado";
+            }
+          }
+
+          var imgSrc;
+          if (f.imagem) {
+            imgSrc = `./assets/imgs/${f.imagem}`;
+          } else {
+            imgSrc = "./assets/imgs/mapa.png";
+          }
+
+          grid.innerHTML +=
+            '<div class="card-fazenda" onclick="selecionarFazenda(' +
+            f.idFazenda +
+            ", '" +
+            f.nome +
+            "', '" +
+            f.imagem +
+            "', '" +
+            endereco +
+            "')\">" +
+            '<img src="' +
+            imgSrc +
+            '" alt="Fazenda" onerror="this.src=\'./assets/imgs/mapa.png\'" />' +
+            '<div class="card-info">' +
+            "<h3>" +
+            f.nome.toUpperCase() +
+            "</h3>" +
+            '<p><i class="bi bi-geo-alt-fill"></i> ' +
+            endereco +
+            "</p>" +
+            '<p><i class="bi bi-person-fill"></i> ' +
+            (f.nomeEmpresa || "") +
+            "</p>" +
+            "</div>" +
+            "</div>";
         }
-
-        grid.innerHTML +=
-          '<div class="card-fazenda" onclick="selecionarFazenda(' +
-          f.idFazenda +
-          ", '" +
-          f.nome +
-          "', '" +
-          f.imagem +
-          "', '" +
-          endereco +
-          "')\">" +
-          '<img src="' +
-          imgSrc +
-          '" alt="Fazenda" onerror="this.src=\'./assets/imgs/mapa.png\'" />' +
-          '<div class="card-info">' +
-          "<h3>" +
-          f.nome.toUpperCase() +
-          "</h3>" +
-          '<p><i class="bi bi-geo-alt-fill"></i> ' +
-          endereco +
-          "</p>" +
-          '<p><i class="bi bi-person-fill"></i> ' +
-          (f.nomeEmpresa || "") +
-          "</p>" +
-          "</div>" +
-          "</div>";
       }
-    }
 
-    function selecionarFazenda(idFazenda, nomeFazenda, imagem, endereco) {
-      sessionStorage.setItem("ID_FAZENDA", idFazenda);
-      sessionStorage.setItem("NOME_FAZENDA", nomeFazenda);
-      sessionStorage.setItem("ENDERECO_FAZENDA", endereco);
-      sessionStorage.setItem("IMAGEM_FAZENDA", imagem);
-      window.location.href = "./dashboard.html";
-    }
-  </script>
-</body>
-
+      function selecionarFazenda(idFazenda, nomeFazenda, imagem, endereco) {
+        sessionStorage.setItem("ID_FAZENDA", idFazenda);
+        sessionStorage.setItem("NOME_FAZENDA", nomeFazenda);
+        sessionStorage.setItem("ENDERECO_FAZENDA", endereco);
+        sessionStorage.setItem("IMAGEM_FAZENDA", imagem);
+        window.location.href = "./dashboard.html";
+      }
+    </script>
+  </body>
 </html>
