@@ -44,8 +44,9 @@
             </div>
         </aside>
         <div id="main">
-            <div id="nomeFazenda"></div>
             <h3>RELATORIOS</h3>
+            <div id="nomeFazenda"></div>
+            <div id="alertas"></div>
             <div id="modal"></div>
         </div>
     </div>
@@ -66,7 +67,7 @@
             .then((json) => {
                 listaAlertas = json;
                 for (let i = 0; i < json.length; i++) {
-                    main.innerHTML += `<button class="alerta" onclick="abrirModal(${i})">
+                    alertas.innerHTML += `<button class="alerta" onclick="abrirModal(${i})">
                      ${json[i].nome_fazenda} <span>${json[i].situacao} </span> HECTARE ${json[i].idHectare}
                       <i class="bi bi-exclamation-circle"></i></button>`;
                 }
@@ -101,7 +102,7 @@
             method: "PUT",
         })
             .then(() => {
-                main.innerHTML = "";
+                alertas.innerHTML = "";
                 carregarAlertas();
             })
             .catch((err) => {
