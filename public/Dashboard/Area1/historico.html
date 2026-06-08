@@ -179,6 +179,12 @@
         }
         dataFutura = Number(dataAtualizada) + 6;
 
+        if (dataFutura > 31) {
+
+            let mensagem = `Dados da semana do dia ${dataAtualizada}`
+            return mensagem;
+        }
+
         dataAtualizada += "/";
         dataFutura += "/";
 
@@ -195,8 +201,8 @@
             dataFutura += data[i];
         }
 
-        let datas = [dataAtualizada, dataFutura];
-        return datas;
+        let mensagem = `Dados de ${dataAtualizada} até ${dataFutura}`;
+        return mensagem;
     }
 
     function atualizarDisplay() {
@@ -211,11 +217,10 @@
         let botaoVoltar = document.getElementById("btn_voltar");
         botaoVoltar.style.display = "flex";
 
-        let dataAtualizada = transformarDataBR(data)[0];
-        let dataFutura = transformarDataBR(data)[1];
-
+        let mensagem = transformarDataBR(data);
+      
         let p_header = document.getElementById("p_header");
-        p_header.innerHTML = `Dados de ${dataAtualizada} até ${dataFutura}`;
+        p_header.innerHTML = mensagem;
         console.log(data);
     }
 
