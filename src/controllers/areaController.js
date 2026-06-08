@@ -91,10 +91,10 @@ function carregarAlertasNaoVistosArea(req, res) {
     })
 }
 
-function carregarAlertasNaoVistosHectare(req, res) {
+function buscarAlertasNaoVistosHectare(req, res) {
     var idAreaPlantio = req.params.idAreaPlantio;
 
-    areaModel.carregarAlertasNaoVistosHectare(idAreaPlantio).then(function (resultado) {
+    areaModel.buscarAlertasNaoVistosHectare(idAreaPlantio).then(function (resultado) {
         res.status(200).json(resultado);
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage);
@@ -111,5 +111,5 @@ module.exports = {
     listarAreaPorFazenda,
     filtrarData,
     carregarAlertasNaoVistosArea,
-    carregarAlertasNaoVistosHectare
+    buscarAlertasNaoVistosHectare
 }

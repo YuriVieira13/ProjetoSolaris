@@ -40,4 +40,9 @@ router.get("/buscarAlertasNaoVistosArea/:idAreaPlantio", function (req, res) {
     areaController.carregarAlertasNaoVistosArea(req, res);
 });
 
+router.get("/buscarAlertasNaoVistosHectare/:idAreaPlantio", function (req, res) {
+    areaController.buscarAlertasNaoVistosHectare(req, res);
+});
+
+
 module.exports = router;
