@@ -1,181 +1,190 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="../sidebar.css" />
+    <link rel="stylesheet" href="../global.css" />
+    <link rel="stylesheet" href="./funcionarioDash.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../../js/verificarCargo.js"></script>
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./style.css" />
-  <link rel="stylesheet" href="../sidebar.css" />
-  <link rel="stylesheet" href="../global.css" />
-  <link rel="stylesheet" href="./funcionarioDash.css" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="../../js/verificarCargo.js"></script>
-  <title>Document</title>
-</head>
+  <body>
+    <div class="div_container">
+      <aside class="sidebar">
+        <img src="./assets/imgs/logo.png" alt="Logo solaris" class="img_logo" />
+        <h4 class="nomeUsuario" id="nomeUsuarioId">—</h4>
+        <div class="div_barra"></div>
 
-<body onload="verificarAdministrador()">
-  <div class="div_container">
-    <aside class="sidebar">
-      <img src="./assets/imgs/logo.png" alt="Logo solaris" class="img_logo" />
-      <h4 class="nomeUsuario" id="nomeUsuarioId">—</h4>
-      <div class="div_barra"></div>
+        <nav class="navbar">
+          <a href="./index.html" class="btn_sidebar">Dashboard</a>
+          <a class="btn_sidebar" href="./historico.html">Histórico</a>
+          <a
+            class="btn_sidebar"
+            href="./funcionariosDash.html"
+            id="btn_usuarios"
+            >Usuários</a
+          >
+          <a href="../../Alertas.html" class="btn_sidebar">Alertas</a>
+          <a href="../dashboard.html" class="btn_sidebar">Selecionar Área</a>
+        </nav>
 
-      <nav class="navbar">
-        <a href="./index.html" class="btn_sidebar">Dashboard</a>
-        <a class="btn_sidebar" href="./historico.html">Histórico</a>
-        <a class="btn_sidebar" href="./funcionariosDash.html" id="btn_usuarios">Usuários</a>
-        <a href="../../Alertas.html" class="btn_sidebar">Alertas</a>
-        <a href="../dashboard.html" class="btn_sidebar">Selecionar Área</a>
-      </nav>
+        <div class="div_barra"></div>
 
-      <div class="div_barra"></div>
-
-      <div class="infoConta">
-        <button id="botao_cadastrar" onclick="irCadastro()" class="btn_sidebar">
-          Cadastrar Funcionário
-        </button>
-        <button class="btn_sidebar" onclick="
+        <div class="infoConta">
+          <button onclick="irCadastro()" class="btn_sidebar">
+            Cadastrar Funcionário
+          </button>
+          <button
+            class="btn_sidebar"
+            onclick="
               sessionStorage.clear();
               window.location.href = '/index.html';
-            " style="
+            "
+            style="
               background: rgba(220, 50, 50, 0.25);
               border-color: rgba(220, 50, 50, 0.5);
-            ">
-          Sair
-        </button>
-      </div>
-    </aside>
+            "
+          >
+            Sair
+          </button>
+        </div>
+      </aside>
 
-    <div class="div_conteudo">
-      <div class="header">
-        <p class="p_header" id="p_header"></p>
-      </div>
+      <div class="div_conteudo">
+        <div class="header">
+          <p class="p_header" id="p_header"></p>
+        </div>
 
-      <div class="main">
-        <div class="div_cards">
-          <div class="div_card">
-            <span>Total de Usuários</span>
-            <h1 id="qtdUsuarios">0</h1>
-            <p>Cadastrados</p>
+        <div class="main">
+          <div class="div_cards">
+            <div class="div_card">
+              <span>Total de Usuários</span>
+              <h1 id="qtdUsuarios">0</h1>
+              <p>Cadastrados</p>
+            </div>
+
+            <div class="div_card">
+              <span>Administradores</span>
+              <h1 id="qtdAdministradores">0</h1>
+              <p>Usuários</p>
+            </div>
+
+            <div class="div_card">
+              <span>Suportes</span>
+              <h1 id="qtdSuportes">0</h1>
+              <p>Usuários</p>
+            </div>
+
+            <div class="div_card">
+              <span>Funcionários</span>
+              <h1 id="qtdFuncionarios">0</h1>
+              <p>Usuários</p>
+            </div>
           </div>
 
-          <div class="div_card">
-            <span>Administradores</span>
-            <h1 id="qtdAdministradores">0</h1>
-            <p>Usuários</p>
-          </div>
+          <div class="box_funcionarios">
+            <div class="div_filtros">
+              <input
+                type="text"
+                id="iptPesquisa"
+                placeholder="Pesquisar funcionário..."
+                onkeyup="filtrarFuncionarios()"
+              />
 
-          <div class="div_card">
-            <span>Suportes</span>
-            <h1 id="qtdSuportes">0</h1>
-            <p>Usuários</p>
-          </div>
+              <select id="selectCargo" onchange="filtrarFuncionariosCargo()">
+                <option value="">Todos os cargos</option>
+                <option value="funcionario">Funcionário</option>
+                <option value="administrador">Administrador</option>
+                <option value="suporte">Suporte</option>
+              </select>
 
-          <div class="div_card">
-            <span>Funcionários</span>
-            <h1 id="qtdFuncionarios">0</h1>
-            <p>Usuários</p>
+              <a class="btn_cadastrar" href="../../Cadastro.html">
+                Cadastrar Funcionário
+              </a>
+            </div>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Email</th>
+                  <th>Cargo</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+
+              <tbody id="tbodyFuncionarios"></tbody>
+            </table>
           </div>
         </div>
 
-        <div class="box_funcionarios">
-          <div class="div_filtros">
-            <input type="text" id="iptPesquisa" placeholder="Pesquisar funcionário..."
-              onkeyup="filtrarFuncionarios()" />
-
-            <select id="selectCargo" onchange="filtrarFuncionariosCargo()">
-              <option value="">Todos os cargos</option>
-              <option value="funcionario">Funcionário</option>
-              <option value="administrador">Administrador</option>
-              <option value="suporte">Suporte</option>
-            </select>
-
-            <a id="botao_cadastrar" class="btn_cadastrar" href="../../Cadastro.html">
-              Cadastrar Funcionário
-            </a>
-          </div>
-
-          <table>
-            <thead>
-              <tr>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Cargo</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-
-            <tbody id="tbodyFuncionarios"></tbody>
-          </table>
-        </div>
       </div>
-
+      <div class="icon-bob-AI">
+        <a href="../bobAI.html"
+          ><img src="../../assets/icons/icon-bob-ai.png" alt=""
+        /></a>
+      </div>
     </div>
-  </div>
-  <div class="icon-bob-AI">
-    <a href="../bobAI.html"><img src="../../assets/icons/icon-bob-ai.png" alt="" /></a>
-  </div>
-</body>
+  </body>
 
-<script>
-  window.onload =
-
-    verificarSuporte(),
-    verificarAdministrador(),
-    function () {
+  <script>
+    window.onload = verificarSuporte(),verificarAdministrador(), function () {
       var idUsuario = sessionStorage.getItem("ID_USUARIO");
       if (!idUsuario) {
         window.location.href = "../../Login.html";
         return;
       }
 
-      var idFazenda = sessionStorage.getItem("ID_FAZENDA");
-      if (!idFazenda) {
-        window.location.href = "../fazendas.html";
-        return;
-      }
+            var idFazenda = sessionStorage.getItem("ID_FAZENDA");
+            if (!idFazenda) {
+                window.location.href = "../fazendas.html";
+                return;
+            }
 
-      var nomeUsuario = sessionStorage.getItem("NOME_USUARIO") || "—";
-      console.log(nomeUsuario);
-      nomeUsuarioId.innerHTML = nomeUsuario;
+            var nomeUsuario = sessionStorage.getItem("NOME_USUARIO") || "—";
+            console.log(nomeUsuario);
+            nomeUsuarioId.innerHTML = nomeUsuario;
 
-      let posicao = sessionStorage.getItem("POSICAO");
-      p_header.innerHTML = `${posicao}º área de plantio`;
+            let posicao = sessionStorage.getItem("POSICAO");
+            p_header.innerHTML = `${posicao}º área de plantio`;
 
-      verificarBotaoUsuarios();
-      verificarSuporte();
-      listarFuncionarios();
-    };
+            verificarBotaoUsuarios();
+            listarFuncionarios();
+        };
 
-  function irCadastro() {
-    window.location.href = `../../Cadastro.html`;
-  }
+    function irCadastro() {
+      window.location.href = `../../Cadastro.html`;
+    }
 
-  let listaFuncionarios = [];
-  let fkFazenda = sessionStorage.getItem("ID_FAZENDA");
+    let listaFuncionarios = [];
+    let fkFazenda = sessionStorage.getItem("ID_FAZENDA");
 
-  function listarFuncionarios() {
-    fetch(`/dashboard/listarFuncionarios/${fkFazenda}`)
-      .then((res) => res.json())
-      .then((dados) => {
-        listaFuncionarios = dados;
-        exibirFuncionarios(listaFuncionarios);
-      })
-      .catch((erro) => {
-        console.log(erro);
-      });
-  }
+    function listarFuncionarios() {
+      fetch(`/dashboard/listarFuncionarios/${fkFazenda}`)
+        .then((res) => res.json())
+        .then((dados) => {
+          listaFuncionarios = dados;
+          exibirFuncionarios(listaFuncionarios);
+        })
+        .catch((erro) => {
+          console.log(erro);
+        });
+    }
 
-  function exibirFuncionarios(lista) {
-    let totalUsuarios = lista.length;
-    let totalAdministradores = 0;
-    let totalSuportes = 0;
-    let totalFuncionarios = 0;
+    function exibirFuncionarios(lista) {
+      let totalUsuarios = lista.length;
+      let totalAdministradores = 0;
+      let totalSuportes = 0;
+      let totalFuncionarios = 0;
 
-    tbodyFuncionarios.innerHTML = "";
+      tbodyFuncionarios.innerHTML = "";
 
-    for (let i = 0; i < lista.length; i++) {
-      tbodyFuncionarios.innerHTML += `
+      for (let i = 0; i < lista.length; i++) {
+        tbodyFuncionarios.innerHTML += `
         <tr>
             <td>${lista[i].nome}</td>
             <td>${lista[i].email}</td>
@@ -186,90 +195,89 @@
             </td>
         </tr>
         `;
+      }
+
+      for (let i = 0; i < lista.length; i++) {
+        if (lista[i].cargo == "Administrador") {
+          totalAdministradores++;
+        }
+
+        if (lista[i].cargo == "suporte") {
+          totalSuportes++;
+        }
+
+        if (lista[i].cargo == "Funcionario") {
+          totalFuncionarios++;
+        }
+      }
+
+      qtdUsuarios.innerHTML = totalUsuarios;
+      qtdAdministradores.innerHTML = totalAdministradores;
+      qtdSuportes.innerHTML = totalSuportes;
+      qtdFuncionarios.innerHTML = totalFuncionarios;
     }
 
-    for (let i = 0; i < lista.length; i++) {
-      if (lista[i].cargo == "Administrador") {
-        totalAdministradores++;
+    function filtrarFuncionarios() {
+      let pesquisa = iptPesquisa.value.toLowerCase();
+
+      let funcionariosFiltrados = [];
+
+      for (let i = 0; i < listaFuncionarios.length; i++) {
+        if (listaFuncionarios[i].nome.toLowerCase().includes(pesquisa)) {
+          funcionariosFiltrados.push(listaFuncionarios[i]);
+        }
       }
 
-      if (lista[i].cargo == "suporte") {
-        totalSuportes++;
-      }
-
-      if (lista[i].cargo == "Funcionario") {
-        totalFuncionarios++;
-      }
+      exibirFuncionarios(funcionariosFiltrados);
     }
 
-    qtdUsuarios.innerHTML = totalUsuarios;
-    qtdAdministradores.innerHTML = totalAdministradores;
-    qtdSuportes.innerHTML = totalSuportes;
-    qtdFuncionarios.innerHTML = totalFuncionarios;
-  }
+    function filtrarFuncionariosCargo() {
+      let pesquisa = selectCargo.value.toLowerCase();
 
-  function filtrarFuncionarios() {
-    let pesquisa = iptPesquisa.value.toLowerCase();
+      let funcionariosFiltrados = [];
 
-    let funcionariosFiltrados = [];
-
-    for (let i = 0; i < listaFuncionarios.length; i++) {
-      if (listaFuncionarios[i].nome.toLowerCase().includes(pesquisa)) {
-        funcionariosFiltrados.push(listaFuncionarios[i]);
+      for (let i = 0; i < listaFuncionarios.length; i++) {
+        if (listaFuncionarios[i].cargo.toLowerCase().includes(pesquisa)) {
+          funcionariosFiltrados.push(listaFuncionarios[i]);
+        }
       }
+
+      exibirFuncionarios(funcionariosFiltrados);
     }
 
-    exibirFuncionarios(funcionariosFiltrados);
-  }
+    function deletarFuncionario(idUsuario) {
+      let validar = confirm("Voce Realmente deseja excluir esse usuario?");
 
-  function filtrarFuncionariosCargo() {
-    let pesquisa = selectCargo.value.toLowerCase();
-
-    let funcionariosFiltrados = [];
-
-    for (let i = 0; i < listaFuncionarios.length; i++) {
-      if (listaFuncionarios[i].cargo.toLowerCase().includes(pesquisa)) {
-        funcionariosFiltrados.push(listaFuncionarios[i]);
-      }
-    }
-
-    exibirFuncionarios(funcionariosFiltrados);
-  }
-
-  function deletarFuncionario(idUsuario) {
-    let validar = confirm("Voce Realmente deseja excluir esse usuario?");
-
-    console.log(validar);
-    if (validar) {
-      fetch(`/dashboard/deletarFuncionarioFk/${idUsuario}`, {
-        method: "DELETE",
-      })
-        .then((res) => {
-          if (res.ok) {
-            fetch(`/dashboard/deletarFuncionario/${idUsuario}`, {
-              method: "DELETE",
-            })
-              .then((res) => {
-                if (res.ok) {
-                  listarFuncionarios();
-                } else {
-                  alert("Erro ao excluir funcionário");
-                }
-              })
-              .catch((erro) => {
-                console.log(erro);
-              });
-          } else {
-            alert("Erro ao excluir funcionário");
-          }
+      console.log(validar);
+      if (validar) {
+        fetch(`/dashboard/deletarFuncionarioFk/${idUsuario}`, {
+          method: "DELETE",
         })
-        .catch((erro) => {
-          console.log(erro);
-        });
-    } else {
-      return;
+          .then((res) => {
+            if (res.ok) {
+              fetch(`/dashboard/deletarFuncionario/${idUsuario}`, {
+                method: "DELETE",
+              })
+                .then((res) => {
+                  if (res.ok) {
+                    listarFuncionarios();
+                  } else {
+                    alert("Erro ao excluir funcionário");
+                  }
+                })
+                .catch((erro) => {
+                  console.log(erro);
+                });
+            } else {
+              alert("Erro ao excluir funcionário");
+            }
+          })
+          .catch((erro) => {
+            console.log(erro);
+          });
+      } else {
+        return;
+      }
     }
-  }
-</script>
-
+  </script>
 </html>

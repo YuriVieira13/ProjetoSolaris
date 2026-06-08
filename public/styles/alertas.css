@@ -4,18 +4,18 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
 
 
-*{
-    margin:0;
+* {
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "DM Sans", sans-serif;
 }
 
-body{
+body {
     background-color: #f1f0b0;
 }
 
-.sidebar{
+.sidebar {
     position: sticky;
     top: 0;
     left: 0;
@@ -27,28 +27,28 @@ body{
     align-items: center;
     gap: 25px;
     background: linear-gradient(180deg, #6aa84f, #4e7f35);
-    box-shadow: 5px 0 25px rgba(0,0,0,0.15);
+    box-shadow: 5px 0 25px rgba(0, 0, 0, 0.15);
     overflow: hidden;
     box-sizing: border-box;
     min-width: 250px;
 }
 
-.img_logo{
+.img_logo {
     width: 140px;
     margin-top: 5px;
 }
 
 
 
-.div_barra{
+.div_barra {
     width: 100%;
     height: 1px;
-    background: rgba(255,255,255,0.15);
+    background: rgba(255, 255, 255, 0.15);
 }
 
 
 
-.navbar{
+.navbar {
     width: 100%;
 
     display: flex;
@@ -58,15 +58,15 @@ body{
 
 
 
-.btn_sidebar{
+.btn_sidebar {
     width: 100%;
     height: 52px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 14px;
-    background: rgba(255,255,255,0.10);
-    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     color: white;
     font-size: 15px;
     font-weight: 600;
@@ -76,51 +76,51 @@ body{
     backdrop-filter: blur(6px);
 }
 
-.btn_sidebar:hover{
-    background: rgba(255,255,255,0.20);
+.btn_sidebar:hover {
+    background: rgba(255, 255, 255, 0.20);
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
 }
 
 
 
-.titulo{
+.titulo {
     font-size: 12px;
-    color: rgba(255,255,255,0.75);
+    color: rgba(255, 255, 255, 0.75);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
 
 
-.img_perfil{
+.img_perfil {
     width: 95px;
     height: 95px;
     border-radius: 50%;
     object-fit: cover;
-    border: 4px solid rgba(255,255,255,0.25);
-    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+    border: 4px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
 }
 
-.nomeUsuario{
+.nomeUsuario {
     color: white;
     font-size: 18px;
     font-weight: 700;
     margin-top: -10px;
 }
 
-.div_container{
+.div_container {
     display: flex;
 }
 
-#main{
+#main {
     width: 100%;
     height: 100vh;
     display: flex;
     padding: 35px;
     flex-direction: column;
     align-items: center;
-    gap: 10px; 
+    gap: 10px;
 }
 
 #main button {
@@ -137,8 +137,8 @@ body{
     gap: 80px;
 }
 
-button span{
-    color:#eb1313
+button span {
+    color: #eb1313
 }
 
 #modal {
@@ -151,19 +151,63 @@ button span{
     padding: 10px;
     width: 35%;
 }
+
 #modal span {
     border: 2px solid #93cc4c;
     border-radius: 2px;
 }
-#modal button{
+
+#modal button {
     background-color: #93cc4c;
     border: none;
 }
 
-i{
+i {
     color: #eb1313;
 }
 
-#informacoes{
-    
+.conteudo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.conteudo span {
+    align-items: flex-end;
+}
+
+#informacoes {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 65px;
+    gap: 20px;
+}
+
+#alertas {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    padding: 35px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#informacoes span {
+    align-self: flex-end;
+}
+
+#informacoes p {
+    display: flex;
+}
+
+.conteudo button {
+    width: 40px;
+    margin-top: 200px;
+}
+
+#nomeFazenda {
+    font-weight: bolder;
 }
