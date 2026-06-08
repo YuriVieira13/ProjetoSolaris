@@ -1,108 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Alertas</title>
-        <link rel="stylesheet" href="styles/alertas.css" />
-        <link rel="stylesheet" href="./Dashboard/sidebar.css" />
-        <link rel="icon" href="assets/icons" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-            rel="stylesheet"
-        />
-    </head>
 
-    <body onload="">
-        <div class="div_container">
-            <aside class="sidebar">
-                <img
-                    src="./assets/imgs/logo.png"
-                    alt="Logo solaris"
-                    class="img_logo"
-                />
-                <h4 class="nomeUsuario" id="nomeUsuarioId">—</h4>
-                <div class="div_barra"></div>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alertas</title>
+    <link rel="stylesheet" href="styles/alertas.css" />
+    <link rel="stylesheet" href="./Dashboard/sidebar.css" />
+    <link rel="icon" href="assets/icons" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet" />
+</head>
 
-                <nav class="navbar">
-                    <a href="./Dashboard/Area1/index.html" class="btn_sidebar">Dashboard</a>
+<body>
+    <div class="div_container">
+        <aside class="sidebar">
+            <img src="./assets/imgs/logo.png" alt="Logo solaris" class="img_logo" />
+            <h4 class="nomeUsuario" id="nomeUsuarioId">—</h4>
+            <div class="div_barra"></div>
 
-                    <a class="btn_sidebar" href="./Dashboard/Area1/historico.html">Histórico</a>
+            <nav class="navbar">
+                <a href="./Dashboard/Area1/index.html" class="btn_sidebar">Dashboard</a>
 
-                    <a class="btn_sidebar" href="./Dashboard/Area1/funcionariosDash.html"
-                        >Usuários</a
-                    >
-                    <a href="#" class="btn_sidebar">Alertas</a>
-                    <a href="./Dashboard/dashboard.html" class="btn_sidebar"
-                        >Selecionar Àrea</a
-                    >
-                </nav>
+                <a class="btn_sidebar" href="./Dashboard/Area1/historico.html">Histórico</a>
 
-                <div class="div_barra"></div>
+                <a class="btn_sidebar" href="./Dashboard/Area1/funcionariosDash.html">Usuários</a>
+                <a href="#" class="btn_sidebar">Alertas</a>
+                <a href="./Dashboard/dashboard.html" class="btn_sidebar">Selecionar Àrea</a>
+            </nav>
 
-                <div class="infoConta">
-                    <button onclick="irCadastro()" class="btn_sidebar">
-                        Cadastrar Funcionário
-                    </button>
-                    <button
-                        class="btn_sidebar"
-                        onclick="sessionStorage.clear(); window.location.href='/index.html';"
-                        style="
+            <div class="div_barra"></div>
+
+            <div class="infoConta">
+                <button onclick="irCadastro()" class="btn_sidebar">
+                    Cadastrar Funcionário
+                </button>
+                <button class="btn_sidebar" onclick="sessionStorage.clear(); window.location.href='/index.html';" style="
                             background: rgba(220, 50, 50, 0.25);
                             border-color: rgba(220, 50, 50, 0.5);
-                        "
-                    >
-                        Sair
-                    </button>
-                </div>
-            </aside>
-            <div id="main">
-                <h3>NOME FAZENDA</h3>
-                <h3>RELATORIOS</h3>
-                <div id="modal"></div>
+                        ">
+                    Sair
+                </button>
             </div>
+        </aside>
+        <div id="main">
+            <h3>NOME FAZENDA</h3>
+            <h3>RELATORIOS</h3>
+            <div id="modal"></div>
         </div>
-    </body>
-    <script>
-        let listaAlertas = [];
-        function carregarAlertas() {
+    </div>
+</body>
+<script>
+    let listaAlertas = [];
+    function carregarAlertas() {
+        let idUsuario = sessionStorage.ID_USUARIO;
+        let idFazenda = Number(sessionStorage.ID_FAZENDA);
 
-            
-
-
-
-            let idUsuario = sessionStorage.ID_USUARIO;
-            let idFazenda = Number(sessionStorage.ID_FAZENDA);
-
-            fetch(`/area/buscarAlertas/${idUsuario}/${idFazenda}`, {
-                method: "GET",
-            })
-                .then((res) => res.json())
-                .then((json) => {
-                    listaAlertas = json;
-                    for (let i = 0; i < json.length; i++) {
-                        main.innerHTML += `<button class="alerta" onclick="abrirModal(${i})">
-                     ${json[i].nome.toUpperCase()} <span>${json[
-                            i
-                        ].situacao.toUpperCase()} </span> HECTARE ${
-                            json[i].idHectare
-                        }
+        fetch(`/area/buscarAlertas/${idUsuario}/${idFazenda}`, {
+            method: "GET",
+        })
+            .then((res) => res.json())
+            .then((json) => {
+                listaAlertas = json;
+                for (let i = 0; i < json.length; i++) {
+                    main.innerHTML += `<button class="alerta" onclick="abrirModal(${i})">
+                     ${json[i].nome_fazenda} <span>${json[i].situacao} </span> HECTARE ${json[i].idHectare}
                       <i class="bi bi-exclamation-circle"></i></button>`;
-                    }
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-        }
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
 
-        function abrirModal(i) {
-            let alerta = listaAlertas[i];
+    function abrirModal(i) {
+        let alerta = listaAlertas[i];
 
-            let modal = document.getElementById("modal");
-            modal.style.display = "flex";
+        let modal = document.getElementById("modal");
+        modal.style.display = "flex";
 
-            modal.innerHTML = `<div class="conteudo">
+        modal.innerHTML = `<div class="conteudo">
       <h2>DETALHES DO ALERTA</h2>
        <div id="informacoes">
         <p><strong>MOTIVO DO ALERTA:</strong><span> ${alerta.situacao.toUpperCase()}</span></p>
@@ -110,49 +87,49 @@
         <p><strong>ÁREA:</strong><span>${alerta.nome.toUpperCase()}</span></p>
         <p><strong>HECTARE:</strong><span>HECTARE ${alerta.idHectare}</span></p>
         </div>
-      <button onclick="visualizarAlerta(${
-          alerta.idAlerta
-      })">MARCAR COMO VISTO</button>
+      <button onclick="visualizarAlerta(${alerta.idAlerta
+            })">MARCAR COMO VISTO</button>
     </div>`;
-        }
+    }
 
-        function visualizarAlerta(idAlerta) {
-            document.getElementById("modal").style.display = "none";
+    function visualizarAlerta(idAlerta) {
+        document.getElementById("modal").style.display = "none";
 
-            fetch(`/area/visualizarAlerta/${idAlerta}`, {
-                method: "PUT",
+        fetch(`/area/visualizarAlerta/${idAlerta}`, {
+            method: "PUT",
+        })
+            .then(() => {
+                main.innerHTML = "";
+                carregarAlertas();
             })
-                .then(() => {
-                    main.innerHTML = "";
-                    carregarAlertas();
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
+            .catch((err) => {
+                console.log(err);
+            });
+    }
+
+
+    function carregarDados() {
+        var idUsuario = sessionStorage.getItem("ID_USUARIO");
+        if (!idUsuario) {
+            window.location.href = "../../Login.html";
+            return;
         }
 
-
-        function carregarDados(){
-            var idUsuario = sessionStorage.getItem("ID_USUARIO");
-            if (!idUsuario) {
-                window.location.href = "../../Login.html";
-                return;
-            }
-
-            var idFazenda = sessionStorage.getItem("ID_FAZENDA");
-            if (!idFazenda) {
-                window.location.href = "../fazendas.html";
-                return;
-            }
-
-            var nomeUsuario = sessionStorage.getItem("NOME_USUARIO") || "—";
-            console.log(nomeUsuario);
-            nomeUsuarioId.innerHTML = nomeUsuario;
+        var idFazenda = sessionStorage.getItem("ID_FAZENDA");
+        if (!idFazenda) {
+            window.location.href = "../fazendas.html";
+            return;
         }
 
-        window.onload = function () {
-            carregarAlertas();
-            carregarDados()
-        }
-    </script>
+        var nomeUsuario = sessionStorage.getItem("NOME_USUARIO") || "—";
+        console.log(nomeUsuario);
+        nomeUsuarioId.innerHTML = nomeUsuario;
+    }
+
+    window.onload = function () {
+        carregarAlertas();
+        carregarDados()
+    }
+</script>
+
 </html>
