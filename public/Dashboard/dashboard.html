@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./style.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="/js/transporte.js"></script>
+    <script src="../js/verificarCargo.js"></script>
     <title>Solaris - Selecionar Área</title>
   </head>
   <body>
@@ -31,18 +32,14 @@
         <div class="div_barra"></div>
 
         <div class="infoConta">
-          <button onclick="irCadastro()" class="btn_sidebar">
+          <button id="botao_cadastrar" onclick="irCadastro()" class="btn_sidebar">
             Cadastrar Funcionário
           </button>
           <button
-            class="btn_sidebar"
+            class="btn_sidebar btn_sair"
             onclick="
               sessionStorage.clear();
               window.location.href = '/index.html';
-            "
-            style="
-              background: rgba(220, 50, 50, 0.25);
-              border-color: rgba(220, 50, 50, 0.5);
             "
           >
             Sair
@@ -73,6 +70,8 @@
         window.location.href = "../Login.html";
         return;
       }
+
+      verificarAdministrador()
 
       var nomeUsuario = sessionStorage.getItem("NOME_USUARIO") || "—";
       document.getElementById("nomeUsuario").innerText = nomeUsuario;

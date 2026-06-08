@@ -183,7 +183,7 @@ function cadastrar() {
             nomeServer: nomeFinal,
             emailServer: emailFinal,
             cargoServer: cargoFinal,
-            senhaServer: senhaFinal,
+            senhaServer: senhaFinal
             //fkEmpresaServer : fkEmpresa,
         }),
     })
