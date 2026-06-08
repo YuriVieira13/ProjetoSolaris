@@ -39,7 +39,7 @@
                 <div class="div_barra"></div>
 
                 <div class="infoConta">
-                    <button onclick="irCadastro()" class="btn_sidebar">
+                    <button id="botao_cadastrar"onclick="irCadastro()" class="btn_sidebar">
                         Cadastrar Funcionário
                     </button>
                     <button
@@ -162,16 +162,16 @@
                     </div>
                 </div>
 
-                <div class="icon-bob-AI">
-                    <a href="../bobAI.html"
-                        ><img src="../../assets/icons/icon-bob-ai.png" alt=""
-                    /></a>
-                </div>
-            </div>
-        </div>
-    </body>
-    <script>
-        (window.onload = carregarDados()), verificarSuporte();
+      </div>
+    </div>
+    <div class="icon-bob-AI">
+      <a href="../bobAI.html"
+        ><img src="../../assets/icons/icon-bob-ai.png" alt=""
+      /></a>
+    </div>
+  </body>
+  <script>
+    ((window.onload = carregarDados()), verificarSuporte(), verificarAdministrador());
 
         let mediaMaxima = [];
         let mediaMinima = [];

@@ -1,121 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="./style.css" />
-        <link rel="stylesheet" href="../../sidebar.css" />
-        <link rel="stylesheet" href="../../global.css" />
 
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <title>Hectare A1</title>
-    </head>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="../../sidebar.css" />
+    <link rel="stylesheet" href="../../global.css" />
+    <script src="../../../js/verificarCargo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Hectare A1</title>
+</head>
 
-    <body>
-        <div class="div_container">
-            <aside class="sidebar">
-                <img
-                    src="../assets/imgs/logo.png"
-                    alt="Logo solaris"
-                    class="img_logo"
-                />
-                <h4 class="nomeUsuario" id="nomeUsuarioId">—</h4>
-                <div class="div_barra"></div>
+<body>
+    <div class="div_container">
+        <aside class="sidebar">
+            <img src="../assets/imgs/logo.png" alt="Logo solaris" class="img_logo" />
+            <h4 class="nomeUsuario" id="nomeUsuarioId">—</h4>
+            <div class="div_barra"></div>
 
-                <nav class="navbar">
-                    <a href="../index.html" class="btn_sidebar">Dashboard</a>
-                    <a class="btn_sidebar" href="../historico.html"
-                        >Histórico</a
-                    >
-                    <a
-                        class="btn_sidebar"
-                        href="../funcionariosDash.html"
-                        id="btn_usuarios"
-                        >Usuários</a
-                    >
+            <nav class="navbar">
+                <a href="../index.html" class="btn_sidebar">Dashboard</a>
+                <a class="btn_sidebar" href="../historico.html">Histórico</a>
+                <a class="btn_sidebar" href="../funcionariosDash.html" id="btn_usuarios">Usuários</a>
 
-                    <a href="../../../Alertas.html" class="btn_sidebar"
-                        >Alertas</a
-                    >
-                    <a href="../../dashboard.html" class="btn_sidebar"
-                        >Selecionar Área</a
-                    >
-                </nav>
+                <a href="../../../Alertas.html" class="btn_sidebar">Alertas</a>
+                <a href="../../dashboard.html" class="btn_sidebar">Selecionar Área</a>
+            </nav>
 
-                <div class="div_barra"></div>
+            <div class="div_barra"></div>
 
-                <div class="infoConta">
-                    <button onclick="irCadastro()" class="btn_sidebar">
-                        Cadastrar Funcionário
-                    </button>
-                    <button
-                        class="btn_sidebar"
-                        onclick="sessionStorage.clear(); window.location.href='/index.html';"
-                        style="
+            <div class="infoConta">
+                <button id="botao_cadastrar" onclick="irCadastro()" class="btn_sidebar">
+                    Cadastrar Funcionário
+                </button>
+                <button class="btn_sidebar" onclick="sessionStorage.clear(); window.location.href='/index.html';" style="
                             background: rgba(220, 50, 50, 0.25);
                             border-color: rgba(220, 50, 50, 0.5);
-                        "
-                    >
-                        Sair
-                    </button>
-                </div>
-            </aside>
+                        ">
+                    Sair
+                </button>
+            </div>
+        </aside>
 
-            <div class="div_conteudo">
-                <div class="header">
-                    <p class="p_header" id="tituloArea">Hectare A1</p>
-                    <p class="p_titulo" id="ultima_medicao"></p>
-                </div>
+        <div class="div_conteudo">
+            <div class="header">
+                <p class="p_header" id="tituloArea">Hectare A1</p>
+                <p class="p_titulo" id="ultima_medicao"></p>
+            </div>
 
-                <div class="main">
-                    <section>
-                        <div class="div_cards">
-                            <div class="div_card">
-                                <span>Status do Hectare</span>
-                                <div id="statusSensor"></div>
-                            </div>
-
-                            <div class="div_card">
-                                <span>Média Máxima da Semana</span>
-                                <h1 style="color: orange" id="ppfdMax"></h1>
-                                <p class="p_media">PPFD</p>
-                            </div>
-
-                            <div class="div_card">
-                                <span>Média mínima da semana</span>
-                                <h1
-                                    style="color: rgb(47, 47, 128)"
-                                    id="ppfdMin"
-                                >
-                                    835
-                                </h1>
-                                <p class="p_media">PPDF</p>
-                            </div>
-
-                            <div class="div_card">
-                                <span>Alertas</span>
-                                <h1 id="txtQtdAlertas"></h1>
-                                <p>Não vistos!</p>
-                            </div>
+            <div class="main">
+                <section>
+                    <div class="div_cards">
+                        <div class="div_card">
+                            <span>Status do Hectare</span>
+                            <div id="statusSensor"></div>
                         </div>
 
-                        <section class="conteudo">
-                            <div class="box grande">
-                                <canvas id="graficoPPFD"></canvas>
-                            </div>
+                        <div class="div_card">
+                            <span>Média Máxima da Semana</span>
+                            <h1 style="color: orange" id="ppfdMax"></h1>
+                            <p class="p_media">PPFD</p>
+                        </div>
 
-                            <div class="box mapa">
-                                <h3>Mapa de Localização da Propriedade</h3>
+                        <div class="div_card">
+                            <span>Média mínima da semana</span>
+                            <h1 style="color: rgb(47, 47, 128)" id="ppfdMin">
+                                835
+                            </h1>
+                            <p class="p_media">PPDF</p>
+                        </div>
 
-                                <div class="grid-mapa" id="gridMapa"></div>
-                            </div>
+                        <div class="div_card">
+                            <span>Alertas</span>
+                            <h1 id="txtQtdAlertas"></h1>
+                            <p>Não vistos!</p>
+                        </div>
+                    </div>
 
-                            <div class="box pequeno">
-                                <canvas id="graficoMeta"></canvas>
-                            </div>
-                        </section>
+                    <section class="conteudo">
+                        <div class="box grande">
+                            <canvas id="graficoPPFD"></canvas>
+                        </div>
+
+                        <div class="box mapa">
+                            <h3>Mapa de Localização da Propriedade</h3>
+
+                            <div class="grid-mapa" id="gridMapa"></div>
+                        </div>
+
+                        <div class="box pequeno">
+                            <canvas id="graficoMeta"></canvas>
+                        </div>
                     </section>
-                </div>
+                </section>
+            </div>
+
+            <div class="icon-bob-AI">
+                <a href="../bobAI.html"><img src="../../../assets/icons/icon-bob-ai.png" alt="" /></a>
             </div>
         </div>
 
@@ -125,7 +107,7 @@
             console.log("idHectare", idHectare);
             let idAreaPlantio = sessionStorage.getItem("ID_AREA_PLANTIL");
 
-            window.onload = listarDados(idHectare);
+            window.onload = listarDados(idHectare), verificarAdministrador(), verificarSuporte();
 
             // Variáveis Globais
             let PPFDMaximo = [];
@@ -245,15 +227,13 @@
                     if (dados[i].idHectare == idHectare) {
                         gridMapa.innerHTML += `<a
               href='#'
-              class="area ativa"  onclick='salvarIdHectare(${
-                  dados[i].idHectare
-              })'>Hectare ${i + 1}</a>`;
+              class="area ativa"  onclick='salvarIdHectare(${dados[i].idHectare
+                            })'>Hectare ${i + 1}</a>`;
                     } else {
                         gridMapa.innerHTML += `<a
               href='#'
-              class="area" onclick='salvarIdHectare(${
-                  dados[i].idHectare
-              })'>Hectare ${i + 1}</a>`;
+              class="area" onclick='salvarIdHectare(${dados[i].idHectare
+                            })'>Hectare ${i + 1}</a>`;
                     }
                 }
             }
@@ -487,5 +467,6 @@
                     });
             }
         </script>
-    </body>
+</body>
+
 </html>
