@@ -11,32 +11,34 @@
         <title>Hectare A1</title>
     </head>
 
-<body>
-  <div class="div_container">
-    <aside class="sidebar">
-      <img src="../assets/imgs/logo.png" alt="Logo solaris" class="img_logo" />
-
-      <div class="div_barra"></div>
+    <body>
+        <div class="div_container">
+            <aside class="sidebar">
+                <img
+                    src="../assets/imgs/logo.png"
+                    alt="Logo solaris"
+                    class="img_logo"
+                />
+                <h4 class="nomeUsuario" id="nomeUsuarioId">—</h4>
+                <div class="div_barra"></div>
 
                 <nav class="navbar">
                     <a href="../index.html" class="btn_sidebar">Dashboard</a>
-                    <a
-                        class="btn_sidebar"
-                        href="../historico.html"
+                    <a class="btn_sidebar" href="../historico.html"
                         >Histórico</a
                     >
                     <a
                         class="btn_sidebar"
                         href="../funcionariosDash.html"
                         id="btn_usuarios"
-                        >Usuários</a   
+                        >Usuários</a
                     >
 
-                    <a href="../../../Alertas.html" class="btn_sidebar">Alertas</a>
+                    <a href="../../../Alertas.html" class="btn_sidebar"
+                        >Alertas</a
+                    >
                     <a href="../../dashboard.html" class="btn_sidebar"
                         >Selecionar Área</a
-
-
                     >
                 </nav>
 
@@ -310,8 +312,8 @@
                     }
                 }
 
-      carregarAlertasNaoVistosHectare()
-    }
+                carregarAlertasNaoVistosHectare();
+            }
 
             function criarAlerta(motivo, idHectare) {
                 fetch(`/area/criarAlerta/${motivo}/${idHectare}`, {
@@ -468,19 +470,18 @@
                 });
             }
 
-    function carregarAlertasNaoVistosHectare() {
-      fetch(`/area/buscarAlertasNaoVistosHectare/${idHectare}`, {
-        method: "GET"
-      })
-        .then(res => res.json())
-        .then(json => {
-          txtQtdAlertas.innerHTML = `${json[0].qtd_hectares_alerta}`
-        })
-        .catch(err => {
-          console.log(err);
-        })
-    }
-  </script>
-</body>
-
+            function carregarAlertasNaoVistosHectare() {
+                fetch(`/area/buscarAlertasNaoVistosHectare/${idHectare}`, {
+                    method: "GET",
+                })
+                    .then((res) => res.json())
+                    .then((json) => {
+                        txtQtdAlertas.innerHTML = `${json[0].qtd_hectares_alerta}`;
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            }
+        </script>
+    </body>
 </html>
