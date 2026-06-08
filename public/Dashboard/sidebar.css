@@ -1,4 +1,4 @@
-.sidebar{
+.sidebar {
     position: sticky;
     top: 0;
     left: 0;
@@ -10,33 +10,38 @@
     align-items: center;
     gap: 25px;
     background: linear-gradient(180deg, #6aa84f, #4e7f35);
-    box-shadow: 5px 0 25px rgba(0,0,0,0.15);
+    box-shadow: 5px 0 25px rgba(0, 0, 0, 0.15);
     overflow: hidden;
     box-sizing: border-box;
     min-width: 250px;
 }
 
-.img_logo{
+.img_logo {
     width: 140px;
     margin-top: 5px;
 }
 
 
-.infoConta{
-    height: 100%; display: flex; flex-direction: column; justify-content: end; gap: 20px;
+.infoConta {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    gap: 20px;
 }
 
 
 
-.div_barra{
+.div_barra {
     width: 100%;
     height: 1px;
-    background: rgba(255,255,255,0.15);
+    background: rgba(255, 255, 255, 0.15);
 }
 
 
 
-.navbar{
+.navbar {
     width: 100%;
 
     display: flex;
@@ -46,15 +51,15 @@
 
 
 
-.btn_sidebar{
+.btn_sidebar {
     width: 100%;
     height: 52px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 14px;
-    background: rgba(255,255,255,0.10);
-    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     color: white;
     font-size: 15px;
     font-weight: 600;
@@ -64,36 +69,51 @@
     backdrop-filter: blur(6px);
 }
 
-.btn_sidebar:hover{
-    background: rgba(255,255,255,0.20);
+.btn_sidebar:hover {
+    background: rgba(255, 255, 255, 0.20);
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
 }
 
 
 
-.titulo{
+.titulo {
     font-size: 12px;
-    color: rgba(255,255,255,0.75);
+    color: rgba(255, 255, 255, 0.75);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
 
 
-.img_perfil{
+.img_perfil {
     width: 95px;
     height: 95px;
     border-radius: 50%;
     object-fit: cover;
-    border: 4px solid rgba(255,255,255,0.25);
-    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+    border: 4px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
 }
 
-.nomeUsuario{
+.nomeUsuario {
     color: white;
     font-size: 18px;
     font-weight: 700;
     margin-top: -10px;
 }
 
+.btn_sair {
+
+    background: rgba(220, 50, 50, 0.25);
+    border-color: rgba(220, 50, 50, 0.5);
+}
+
+.div_botao {
+    position: fixed;
+
+    bottom: 30px;
+    left: 30px;
+    width: 150px;
+
+     z-index: 999;
+}
