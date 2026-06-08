@@ -1,288 +1,307 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./global.css" />
+    <link rel="stylesheet" href="./sidebar.css" />
+    <script src="../js/verificarCargo.js"></script>
+    <title>Solaris - Selecionar Fazenda</title>
+    <style>
+      body {
+        background-color: #f4f1e8;
+      }
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./global.css" />
-  <link rel="stylesheet" href="./sidebar.css" />
-  <script src="../js/verificarCargo.js"></script>
-  <title>Solaris - Selecionar Fazenda</title>
-  <style>
-    body {
-      background-color: #f4f1e8;
-    }
+      .main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        padding: 0;
+      }
 
-    .main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow-y: auto;
-      padding: 0;
-    }
+      .header {
+        width: 100%;
+        background: linear-gradient(180deg, #6aa84f, #4e7f35);
+        height: fit-content;
+        padding: 18px 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
 
-    .header {
-      width: 100%;
-      background: linear-gradient(180deg, #6aa84f, #4e7f35);
-      height: fit-content;
-      padding: 18px 35px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 10px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
+      .header-logo {
+        width: 200px;
+      }
 
-    .header-logo {
-      width: 200px;
-    }
+      .header h1 {
+        color: white;
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+      }
 
-    .header h1 {
-      color: white;
-      font-size: 26px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
+      .header h1 span {
+        color: #d4f0b0;
+      }
 
-    .header h1 span {
-      color: #d4f0b0;
-    }
+      .content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 30px;
+        gap: 30px;
+      }
 
-    .content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 30px;
-      gap: 30px;
-    }
+      .content h2 {
+        font-size: 28px;
+        font-weight: 700;
+        color: #3e4a2e;
+        text-align: center;
+      }
 
-    .content h2 {
-      font-size: 28px;
-      font-weight: 700;
-      color: #3e4a2e;
-      text-align: center;
-    }
+      .subtitulo {
+        font-size: 13px;
+        font-weight: 700;
+        color: #5a6a45;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        border-bottom: 2px solid #6aa84f;
+        padding-bottom: 6px;
+        text-align: center;
+      }
 
-    .subtitulo {
-      font-size: 13px;
-      font-weight: 700;
-      color: #5a6a45;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      border-bottom: 2px solid #6aa84f;
-      padding-bottom: 6px;
-      text-align: center;
-    }
+      .cards-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 24px;
+        width: 100%;
+        max-width: 960px;
+      }
 
-    .cards-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 24px;
-      width: 100%;
-      max-width: 960px;
-    }
+      .card-fazenda {
+        width: 260px;
+        background: white;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+        border: 2px solid transparent;
+      }
 
-    .card-fazenda {
-      width: 260px;
-      background: white;
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      border: 2px solid transparent;
-    }
+      .card-fazenda:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        border-color: #6aa84f;
+      }
 
-    .card-fazenda:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-      border-color: #6aa84f;
-    }
+      .card-fazenda img {
+        width: 100%;
+        height: 155px;
+        object-fit: cover;
+      }
 
-    .card-fazenda img {
-      width: 100%;
-      height: 155px;
-      object-fit: cover;
-    }
+      .card-info {
+        padding: 14px 16px;
+        background: #4a7a30;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
 
-    .card-info {
-      padding: 14px 16px;
-      background: #4a7a30;
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
+      .card-info h3 {
+        color: white;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+      }
 
-    .card-info h3 {
-      color: white;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
+      .card-info p {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
 
-    .card-info p {
-      color: rgba(255, 255, 255, 0.85);
-      font-size: 12px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
+      .card-info p i {
+        font-size: 13px;
+      }
 
-    .card-info p i {
-      font-size: 13px;
-    }
+      .msg-vazio {
+        color: #888;
+        font-size: 15px;
+        margin-top: 40px;
+      }
+    </style>
+  </head>
 
-    .msg-vazio {
-      color: #888;
-      font-size: 15px;
-      margin-top: 40px;
-    }
-  </style>
-</head>
+  <body onload="verificarSuporte()">
+    <div class="div_container">
+      <aside
+        class="sidebar"
+        style="justify-content: space-between; display: none"
+      >
+        <img src="./assets/imgs/logo.png" alt="Logo Solaris" class="img_logo" />
 
-<body onload="verificarSuporte()">
-  <div class="div_container">
-    <aside class="sidebar">
-      <img src="./assets/imgs/logo.png" alt="Logo Solaris" class="img_logo" />
+        <div class="infoConta">
+          <h4 class="nomeUsuario" id="nomeUsuario">—</h4>
+          <button onclick="irCadastro()" class="btn_sidebar">
+            Cadastrar Funcionário
+          </button>
+          <button
+            class="btn_sidebar"
+            onclick="
+              sessionStorage.clear();
+              window.location.href = '/index.html';
+            "
+            style="
+              background: rgba(220, 50, 50, 0.25);
+              border-color: rgba(220, 50, 50, 0.5);
+            "
+          >
+            Sair
+          </button>
+        </div>
+      </aside>
 
-      <div class="div_barra"></div>
+      <div class="main">
+        <div class="header">
+          <img src="./assets/imgs/logo.png" alt="Logo" class="header-logo" />
+          <h1>Bem-Vindo a <span>Solaris</span></h1>
+        </div>
 
-      <nav class="navbar">
-        <a href="./fazendas.html" class="btn_sidebar">Fazendas</a>
-        <a href="./Area1/funcionariosDash.html" class="btn_sidebar">Usuários</a>
-        <a href="#" class="btn_sidebar">Relatórios</a>
-      </nav>
+        <div class="content">
+          <h2>Selecione a fazenda que deseja visualizar</h2>
+          <p class="subtitulo">Fazendas disponíveis</p>
 
-      <div class="div_barra"></div>
-
-      <h4 class="titulo">Configurações da conta</h4>
-
-      <img src="./assets/imgs/Pessoa.png" alt="Foto de perfil" class="img_perfil" />
-      <h4 class="nomeUsuario" id="nomeUsuario">—</h4>
-      <button onclick="irCadastro()" class="btn_sidebar">Cadastrar Funcionário</button>
-      <button class="btn_sidebar" onclick="sessionStorage.clear(); window.location.href='/index.html';"
-        style="background:rgba(220,50,50,0.25);border-color:rgba(220,50,50,0.5);">Sair</button>
-    </aside>
-
-    <div class="main">
-      <div class="header">
-        <img src="./assets/imgs/logo.png" alt="Logo" class="header-logo" />
-        <h1>Bem-Vindo a <span>Solaris</span></h1>
-      </div>
-
-      <div class="content">
-        <h2>Selecione a fazenda que deseja visualizar</h2>
-        <p class="subtitulo">Fazendas disponíveis</p>
-        
-        <div class="cards-grid" id="fazendas-grid">
-          <p class="msg-vazio" id="msg-carregando">Carregando fazendas...</p>
+          <div class="cards-grid" id="fazendas-grid">
+            <p class="msg-vazio" id="msg-carregando">Carregando fazendas...</p>
+          </div>
         </div>
       </div>
+
+      <div class="icon-bob-AI">
+        <a href="../bobAI.html"
+          ><img src="../assets/icons/icon-bob-ai.png" alt=""
+        /></a>
+      </div>
     </div>
-     
-    <div class="icon-bob-AI">
-      <a href="../bobAI.html"><img src="../assets/icons/icon-bob-ai.png" alt=""></a>
-    </div>
 
-  </div>
-  
-  <script>
-    window.onload = function () {
-      var nomeUsuario = sessionStorage.getItem("NOME_USUARIO");
-      if (nomeUsuario) {
-        document.getElementById("nomeUsuario").innerText = nomeUsuario;
-      }
+    <script>
+      ((window.onload = function () {
+        var nomeUsuario = sessionStorage.getItem("NOME_USUARIO");
+        if (nomeUsuario) {
+          document.getElementById("nomeUsuario").innerText = nomeUsuario;
+        }
 
-      var idUsuario = sessionStorage.getItem("ID_USUARIO");
-      if (!idUsuario) {
-        window.location.href = "../Login.html";
-        return;
-      }
+        var idUsuario = sessionStorage.getItem("ID_USUARIO");
+        if (!idUsuario) {
+          window.location.href = "../Login.html";
+          return;
+        }
 
-      fetch("/area/listarFazendas/" + idUsuario)
-        .then(function (res) {
-          if (!res.ok) {
-            return res.json().then(function (err) {
-              throw new Error("SQL: " + err);
-            });
-          }
-          return res.json();
-        })
-        .then(function (dados) {
-          plotarFazendas(dados);
-        })
-        .catch(function (erro) {
-          console.error("Erro ao carregar fazendas:", erro);
-          var msgEl = document.getElementById("msg-carregando");
-          var grid = document.getElementById("fazendas-grid");
+        fetch("/area/listarFazendas/" + idUsuario)
+          .then(function (res) {
+            if (!res.ok) {
+              return res.json().then(function (err) {
+                throw new Error("SQL: " + err);
+              });
+            }
+            return res.json();
+          })
+          .then(function (dados) {
+            plotarFazendas(dados);
+          })
+          .catch(function (erro) {
+            console.error("Erro ao carregar fazendas:", erro);
+            var msgEl = document.getElementById("msg-carregando");
+            var grid = document.getElementById("fazendas-grid");
+            grid.innerHTML =
+              '<p class="msg-vazio">Erro ao carregar fazendas. Verifique o console.</p>';
+          });
+
+        verificarBotaoUsuarios();
+      }),
+        verificarSuporte());
+
+      function plotarFazendas(dados) {
+        var grid = document.getElementById("fazendas-grid");
+        grid.innerHTML = "";
+
+        if (!dados || dados.length === 0) {
           grid.innerHTML =
-            '<p class="msg-vazio">Erro ao carregar fazendas. Verifique o console.</p>';
-        });
+            '<p class="msg-vazio">Nenhuma fazenda encontrada para este usuário.</p>';
+          return;
+        }
 
-        
-    }, verificarSuporte();
+        for (var i = 0; i < dados.length; i++) {
+          var f = dados[i];
+          var endereco;
+          if (f.estrada) {
+            if (f.cidade) {
+              endereco = f.estrada + ", " + f.cidade;
+            } else {
+              endereco = f.estrada;
+            }
+          } else {
+            if (f.cidade) {
+              endereco = f.cidade;
+            } else {
+              endereco = "Endereço não informado";
+            }
+          }
 
-    function plotarFazendas(dados) {
-      var grid = document.getElementById("fazendas-grid");
-      grid.innerHTML = "";
+          var imgSrc;
+          if (f.imagem) {
+            imgSrc = `./assets/imgs/${f.imagem}`;
+          } else {
+            imgSrc = "./assets/imgs/mapa.png";
+          }
 
-      if (!dados || dados.length === 0) {
-        grid.innerHTML =
-          '<p class="msg-vazio">Nenhuma fazenda encontrada para este usuário.</p>';
-        return;
+          grid.innerHTML +=
+            '<div class="card-fazenda" onclick="selecionarFazenda(' +
+            f.idFazenda +
+            ", '" +
+            f.nome +
+            "', '" +
+            f.imagem +
+            "', '" +
+            endereco +
+            "')\">" +
+            '<img src="' +
+            imgSrc +
+            '" alt="Fazenda" onerror="this.src=\'./assets/imgs/mapa.png\'" />' +
+            '<div class="card-info">' +
+            "<h3>" +
+            f.nome.toUpperCase() +
+            "</h3>" +
+            '<p><i class="bi bi-geo-alt-fill"></i> ' +
+            endereco +
+            "</p>" +
+            '<p><i class="bi bi-person-fill"></i> ' +
+            (f.nomeEmpresa || "") +
+            "</p>" +
+            "</div>" +
+            "</div>";
+        }
       }
 
-      for (var i = 0; i < dados.length; i++) {
-        var f = dados[i];
-        var endereco = f.estrada
-          ? f.estrada + (f.cidade ? ", " + f.cidade : "")
-          : f.cidade || "Endereço não informado";
-
-        var imgSrc = f.imagem ? f.imagem : "./assets/imgs/mapa.png";
-
-        grid.innerHTML +=
-          '<div class="card-fazenda" onclick="selecionarFazenda(' +
-          f.idFazenda +
-          ', \'' +
-          escapar(f.nome) +
-          "', '" +
-          escapar(endereco) +
-          '\')">' +
-          '<img src="' +
-          imgSrc +
-          '" alt="Fazenda" onerror="this.src=\'./assets/imgs/mapa.png\'" />' +
-          '<div class="card-info">' +
-          "<h3>" +
-          f.nome.toUpperCase() +
-          "</h3>" +
-          '<p><i class="bi bi-geo-alt-fill"></i> ' +
-          endereco +
-          "</p>" +
-          '<p><i class="bi bi-person-fill"></i> ' +
-          (f.nomeEmpresa || "") +
-          "</p>" +
-          "</div>" +
-          "</div>";
+      function selecionarFazenda(idFazenda, nomeFazenda, imagem, endereco) {
+        sessionStorage.setItem("ID_FAZENDA", idFazenda);
+        sessionStorage.setItem("NOME_FAZENDA", nomeFazenda);
+        sessionStorage.setItem("ENDERECO_FAZENDA", endereco);
+        sessionStorage.setItem("IMAGEM_FAZENDA", imagem);
+        window.location.href = "./dashboard.html";
       }
-    }
-
-    function escapar(str) {
-      if (!str) return "";
-      return str.replace(/'/g, "\\'");
-    }
-
-    function selecionarFazenda(idFazenda, nomeFazenda, endereco) {
-      sessionStorage.setItem("ID_FAZENDA", idFazenda);
-      sessionStorage.setItem("NOME_FAZENDA", nomeFazenda);
-      sessionStorage.setItem("ENDERECO_FAZENDA", endereco);
-      window.location.href = "./fazenda.html";
-    }
-
-
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>

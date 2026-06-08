@@ -1,20 +1,28 @@
-function verificarSuporte(){
+function verificarSuporte() {
 
     let cargo = sessionStorage.CARGO_USUARIO
     let cargoMinusculo = cargo.toLowerCase()
 
-    if(cargoMinusculo != "suporte"){
+    if (cargoMinusculo != "suporte") {
 
         document.querySelector(`.icon-bob-AI`).style.display = `none`
     }
 }
 
-function verificarAdministrador(){
+function verificarAdministrador() {
 
     let cargo = sessionStorage.CARGO_USUARIO
     let cargoMinusculo = cargo.toLowerCase()
 
-    if(cargoMinusculo != "administrador"){
+    if (cargoMinusculo != "administrador") {
 
+    }
+}
+
+function verificarBotaoUsuarios() {
+    let cargo = sessionStorage.getItem("CARGO_USUARIO");
+    if (cargo !== "administrador" && cargo !== "suporte") {
+        let btn = document.getElementById("btn_usuarios");
+        if (btn) btn.style.display = "none";
     }
 }

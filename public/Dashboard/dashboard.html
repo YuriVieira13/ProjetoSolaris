@@ -8,6 +8,45 @@
     <link rel="stylesheet" href="./sidebar.css" />
     <link rel="stylesheet" href="./style.css" />
     <style>
+      .header {
+        width: 100%;
+        background: linear-gradient(180deg, #6aa84f, #4e7f35);
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+      }
+
+      .header-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: white;
+      }
+
+      .header-info {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .header-nome {
+        color: white;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+        padding-bottom: 2px;
+      }
+
+      .header-endereco {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
       .main {
         display: flex;
         flex-direction: column;
@@ -32,7 +71,7 @@
       }
 
       .panel-titulo {
-        color: rgba(255,255,255,0.65);
+        color: rgba(255, 255, 255, 0.65);
         font-size: 11px;
         letter-spacing: 1.8px;
         text-transform: uppercase;
@@ -43,8 +82,8 @@
         display: block;
         width: 100%;
         padding: 10px 14px;
-        background: rgba(255,255,255,0.12);
-        border: 1px solid rgba(255,255,255,0.25);
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.25);
         border-radius: 8px;
         color: white;
         font-size: 13px;
@@ -57,12 +96,12 @@
       }
 
       .btn-area-panel:hover {
-        background: rgba(255,255,255,0.25);
+        background: rgba(255, 255, 255, 0.25);
       }
 
       .mapa-wrapper {
         flex: 1;
-        background-image: url('./assets/imgs/1.png');
+        background-image: url("./assets/imgs/1.png");
         background-size: cover;
         background-position: center;
       }
@@ -75,34 +114,51 @@
     <div class="div_container">
       <aside class="sidebar">
         <img src="./assets/imgs/logo.png" alt="Logo solaris" class="img_logo" />
-
+        <h4 class="nomeUsuario" id="nomeUsuario">—</h4>
         <div class="div_barra"></div>
 
         <nav class="navbar">
-          <a href="./fazenda.html" class="btn_sidebar">Início</a>
-          <a href="#" class="btn_sidebar" id="btn_areas" style="background:rgba(255,255,255,0.22);border-color:rgba(255,255,255,0.4);">Áreas</a>
-          <a href="../../Alertas.html" class="btn_sidebar">Alertas</a>
-          <a href="#" class="btn_sidebar">Relatórios</a>
-          <a href="./fazendas.html" class="btn_sidebar">Fazendas</a>
+          <a href="./fazendas.html" class="btn_sidebar">Voltar para Fazendas</a>
         </nav>
 
-        <div class="div_barra" style="margin-top:auto;"></div>
+        <div class="div_barra"></div>
 
-        <h4 class="titulo">Configurações da conta</h4>
-        <img src="./assets/imgs/Pessoa.png" alt="Foto de perfil" class="img_perfil" />
-        <h4 class="nomeUsuario" id="nomeUsuario">—</h4>
-        <button class="btn_sidebar">Configurações</button>
-        <button class="btn_sidebar" onclick="sessionStorage.clear(); window.location.href='/index.html';" style="background:rgba(220,50,50,0.25);border-color:rgba(220,50,50,0.5);">Sair</button>
+        <nav class="navbar" id="areas_button">
+          <h4 class="panel-titulo">Selecione a área</h4>
+        </nav>
+
+        <div class="div_barra"></div>
+
+        <div class="infoConta">
+          <button onclick="irCadastro()" class="btn_sidebar">
+            Cadastrar Funcionário
+          </button>
+          <button
+            class="btn_sidebar"
+            onclick="
+              sessionStorage.clear();
+              window.location.href = '/index.html';
+            "
+            style="
+              background: rgba(220, 50, 50, 0.25);
+              border-color: rgba(220, 50, 50, 0.5);
+            "
+          >
+            Sair
+          </button>
+        </div>
       </aside>
 
-      <div class="main">
-        <h4 class="tituloMapa">Clique no mapa na área desejada</h4>
-        <div class="main-body">
-          <div class="panel-areas">
-            <h4 class="panel-titulo">Selecione a área</h4>
-            <div id="areas_button"></div>
+      <div class="main" id="main">
+        <div class="header">
+          <div class="header-dot"></div>
+          <div class="header-info">
+            <span class="header-nome" id="header-nome">FAZENDA</span>
+            <span class="header-endereco">
+              <i class="bi bi-geo-alt-fill"></i>
+              <span id="header-endereco">—</span>
+            </span>
           </div>
-          <div class="mapa-wrapper"></div>
         </div>
       </div>
     </div>
@@ -130,15 +186,45 @@
       }
 
       fetch("/area/listarAreaPorFazenda/" + idFazenda)
-        .then(function (res) { return res.json(); })
-        .then(function (dados) { plotarAreas(dados); })
-        .catch(function (erro) { console.log("Erro:", erro); });
+        .then(function (res) {
+          return res.json();
+        })
+        .then(function (dados) {
+          plotarAreas(dados);
+        })
+        .catch(function (erro) {
+          console.log("Erro:", erro);
+        });
+
+      var idUsuario = sessionStorage.getItem("ID_USUARIO");
+      if (!idUsuario) {
+        window.location.href = "../Login.html";
+        return;
+      }
+
+      var idFazenda = sessionStorage.getItem("ID_FAZENDA");
+      if (!idFazenda) {
+        window.location.href = "./fazendas.html";
+        return;
+      }
+
+      var nomeUsuario = sessionStorage.getItem("NOME_USUARIO") || "—";
+      var nomeFazenda = sessionStorage.getItem("NOME_FAZENDA") || "Fazenda";
+      var enderecoFazenda = sessionStorage.getItem("ENDERECO_FAZENDA") || "—";
+      var imagemFazenda = sessionStorage.getItem("IMAGEM_FAZENDA");
+
+      document.getElementById("nomeUsuario").innerText = nomeUsuario;
+      document.getElementById("header-nome").innerText =
+        nomeFazenda.toUpperCase();
+      document.getElementById("header-endereco").innerText = enderecoFazenda;
+      document.getElementById("main").style.backgroundImage = `url("./assets/imgs/${imagemFazenda}")`;
     };
 
     function plotarAreas(dados) {
       var container = document.getElementById("areas_button");
       if (!dados || dados.length === 0) {
-        container.innerHTML = "<p style='color:rgba(255,255,255,0.6);font-size:12px;text-align:center;'>Nenhuma área encontrada.</p>";
+        container.innerHTML =
+          "<p style='color:rgba(255,255,255,0.6);font-size:12px;text-align:center;'>Nenhuma área encontrada.</p>";
         return;
       }
       for (var i = 0; i < dados.length; i++) {
@@ -149,6 +235,10 @@
           (dados[i].nome || "Área de Plantio " + (i + 1)) +
           "</a>";
       }
+    }
+
+    function irCadastro() {
+      window.location.href = `../../Cadastro.html`;
     }
   </script>
 </html>

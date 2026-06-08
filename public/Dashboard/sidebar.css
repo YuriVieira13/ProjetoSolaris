@@ -22,6 +22,11 @@
 }
 
 
+.infoConta{
+    height: 100%; display: flex; flex-direction: column; justify-content: end; gap: 20px;
+}
+
+
 
 .div_barra{
     width: 100%;
