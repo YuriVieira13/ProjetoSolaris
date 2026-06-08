@@ -61,6 +61,7 @@
             </span>
           </div>
         </div>
+        <div class="mapa" id="mapa"></div>
       </div>
     </div>
   </body>
@@ -118,7 +119,7 @@
       document.getElementById("header-nome").innerText =
         nomeFazenda.toUpperCase();
       document.getElementById("header-endereco").innerText = enderecoFazenda;
-      document.getElementById("main").style.backgroundImage = `url("./assets/imgs/${imagemFazenda}")`;
+      document.getElementById("mapa").style.backgroundImage = `url("./assets/imgs/${imagemFazenda}")`;
     };
 
     function plotarAreas(dados) {
