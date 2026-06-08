@@ -44,7 +44,7 @@
             </div>
         </aside>
         <div id="main">
-            <h3>NOME FAZENDA</h3>
+            <div id="nomeFazenda"></div>
             <h3>RELATORIOS</h3>
             <div id="modal"></div>
         </div>
@@ -55,6 +55,9 @@
     function carregarAlertas() {
         let idUsuario = sessionStorage.ID_USUARIO;
         let idFazenda = Number(sessionStorage.ID_FAZENDA);
+        let nomeDaFazenda = sessionStorage.NOME_FAZENDA;
+
+        nomeFazenda.innerHTML = nomeDaFazenda;
 
         fetch(`/area/buscarAlertas/${idUsuario}/${idFazenda}`, {
             method: "GET",
@@ -84,11 +87,10 @@
        <div id="informacoes">
         <p><strong>MOTIVO DO ALERTA:</strong><span> ${alerta.situacao}</span></p>
         <p><strong>FAZENDA:</strong><span>${alerta.nome_fazenda}</span></p>
-        <p><strong>ÁREA:</strong><span>${alerta.nome}</span></p>
+        <p><strong>ÁREA:</strong><span>${alerta.nome_area}</span></p>
         <p><strong>HECTARE:</strong><span>HECTARE ${alerta.idHectare}</span></p>
         </div>
-      <button onclick="visualizarAlerta(${alerta.idAlerta
-            })">MARCAR COMO VISTO</button>
+      <button onclick="visualizarAlerta(${alerta.idAlerta})">MARCAR COMO VISTO</button>
     </div>`;
     }
 

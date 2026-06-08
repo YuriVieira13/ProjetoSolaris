@@ -164,6 +164,34 @@ i{
     color: #eb1313;
 }
 
+.conteudo{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+.conteudo span{
+    align-items: flex-end;
+}
+
 #informacoes{
-    
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 65px;
+    gap: 20px;
+}
+#informacoes span{
+    align-self: flex-end;
+}
+#informacoes p{
+    display: flex;
+}
+.conteudo button{
+    width: 40px;
+    margin-top: 200px;
+}
+
+#nomeFazenda{
+    font-weight: bolder;
 }
