@@ -82,9 +82,9 @@
         modal.innerHTML = `<div class="conteudo">
       <h2>DETALHES DO ALERTA</h2>
        <div id="informacoes">
-        <p><strong>MOTIVO DO ALERTA:</strong><span> ${alerta.situacao.toUpperCase()}</span></p>
-        <p><strong>FAZENDA:</strong><span>${alerta.nome_fazenda.toUpperCase()}</span></p>
-        <p><strong>ÁREA:</strong><span>${alerta.nome.toUpperCase()}</span></p>
+        <p><strong>MOTIVO DO ALERTA:</strong><span> ${alerta.situacao}</span></p>
+        <p><strong>FAZENDA:</strong><span>${alerta.nome_fazenda}</span></p>
+        <p><strong>ÁREA:</strong><span>${alerta.nome}</span></p>
         <p><strong>HECTARE:</strong><span>HECTARE ${alerta.idHectare}</span></p>
         </div>
       <button onclick="visualizarAlerta(${alerta.idAlerta
