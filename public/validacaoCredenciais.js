@@ -192,18 +192,21 @@ function cadastrar() {
 
             if (resposta.ok) {
 
-                alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
-
-                setTimeout(() => {
-                    window.location = "login.html";
-                }, "2000");
-
-                limparFormulario();
+                return resposta.json()
 
             } else {
                 throw "Houve um erro ao tentar realizar o cadastro!";
             }
         })
+
+        .then(function (json) {
+
+            let idFuncionario = json.insertId
+            console.log(idFuncionario)
+            cadastrarFuncFazenda(idFuncionario)
+
+        })
+
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
         });
@@ -315,15 +318,17 @@ function pegarFazendas() {
         })
 
 }
+/* Var Global*/
 
-function mostrarFazendas(json){
+let fazendas = []
+let idFazenda = []
+
+function mostrarFazendas(json) {
 
     console.log(json)
 
-    let fazendas = []
-    let idFazenda = []
 
-    for(let i = 0; i < json.length; i++){
+    for (let i = 0; i < json.length; i++) {
 
         fazendas.push(json[i].nome)
         idFazenda.push(json[i].idFazenda)
@@ -333,10 +338,49 @@ function mostrarFazendas(json){
 
     let mensagem = ``
 
-    for(let i = 0; i < fazendas.length; i ++){
+    for (let i = 0; i < fazendas.length; i++) {
 
-        mensagem += `${fazendas[i]} - <input class="checkbox" type="checkbox" value="${idFazenda[i]}"><br>`
+        mensagem += `${fazendas[i]} <label> - <input class="checkbox" type="checkbox" value="${idFazenda[i]}"> </label> <br>`
     }
 
     div_exibirFazendas.innerHTML = mensagem;
+}
+
+function cadastrarFuncFazenda(idFuncionario) {
+
+    let checkboxesMarcadas = document.querySelectorAll(".checkbox:checked")
+    console.log(checkboxesMarcadas)
+
+    for (let i = 0; i < checkboxesMarcadas.length; i++) {
+
+        let idFazenda = checkboxesMarcadas[i].value
+
+        fetch("/usuarios/cadastrarFuncFazenda", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                fkFuncionarioServer: idFuncionario,
+                fkFazendaServer: idFazenda
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+
+                    alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+    }
+
+
+
 }

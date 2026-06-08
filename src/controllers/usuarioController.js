@@ -87,7 +87,24 @@ function cadastrar(req, res) {
     }
 }
 
+function cadastrarFuncFazenda(req, res){
+
+    var fkFuncionario = req.body.fkFuncionarioServer;
+    var fkFazenda = req.body.fkFazendaServer;
+
+    usuarioModel.cadastrarFuncFazenda(fkFuncionario, fkFazenda)
+        .then(function (resultado) {
+            res.json(resultado)
+        })
+        .catch(function (erro) {
+            
+            res.status(500).json(erro.sqlMessage);
+        });
+
+}
+
 module.exports = {
     autenticar,
     cadastrar,
+    cadastrarFuncFazenda,
 };
