@@ -278,8 +278,9 @@
                     mediaMaxima += PPFDMaximo[i];
 
                     //Chamando função de criar alertas caso o ppfd passe de 1700
-                    if (PPFDMaximo[i] > 1700) {
-                        criarAlerta("Hectare passou do PPFD Máximo", idHectare);
+                    if (PPFDMaximo[i] > limiteMaximo) {
+          
+                        criarAlerta(`Hectare passou do PPFD Máximo ${i}`, idHectare);
                     }
                 }
                 mediaMaxima = mediaMaxima / PPFDMaximo.length;
@@ -289,9 +290,10 @@
                     mediaMinima += PPFDMinimo[i];
 
                     //Chamando função de criar alertas caso o ppfd não atinja 400
-                    if (PPFDMinimo[i] < 400) {
+                    if (PPFDMinimo[i] < limiteMinimo) {
+            
                         criarAlerta(
-                            "Hectare não atingiu o PPFD Mínimo",
+                            `Hectare não atingiu o PPFD Mínimo ${i}`,
                             idHectare
                         );
                     }
@@ -312,10 +314,11 @@
                     }
                 }
 
-                carregarAlertasNaoVistosHectare();
+              
             }
 
-            function criarAlerta(motivo, idHectare) {
+           async function criarAlerta(motivo, idHectare) {
+                
                 fetch(`/area/criarAlerta/${motivo}/${idHectare}`, {
                     method: "POST",
                     headers: {
@@ -326,9 +329,9 @@
                     }),
                 })
                     .then((res) => res.json())
-                    .then((data) => console.log(data))
+                    .then((data) =>   carregarAlertasNaoVistosHectare())
                     .catch((err) => {
-                        console.log(err);
+        
                     });
             }
 
@@ -471,6 +474,7 @@
             }
 
             function carregarAlertasNaoVistosHectare() {
+                console.log('Chamando alertas')
                 fetch(`/area/buscarAlertasNaoVistosHectare/${idHectare}`, {
                     method: "GET",
                 })
